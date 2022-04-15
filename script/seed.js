@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Instrument, Brand} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -14,6 +14,63 @@ async function seed() {
   const users = await Promise.all([
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
+  ])
+
+  const [Fender, Gibson, PRS, Jackson, Steinway] = await Promise.all(
+    ['Fender', 'Gibson', 'PRS', 'Jackson', 'Steinway'].map(brand =>{
+      return Brand.create({ name: brand })
+    })
+  )
+
+  await Promise.all([
+    Instrument.create({
+      category: 'Guitar',
+      name: 'Stratocaster',
+      price: 999,
+      brandId: Fender.id
+    }),
+    Instrument.create({
+      category: 'Guitar',
+      name: 'Telecaster',
+      price: 999,
+      brandId: Fender.id
+    }),
+    Instrument.create({
+      category: 'Guitar',
+      name: 'LesPaul',
+      price: 999,
+      brandId: Gibson.id
+    }),
+    Instrument.create({
+      category: 'Guitar',
+      name: 'Custom-24',
+      price: 999,
+      brandId: PRS.id
+    }),
+    Instrument.create({
+      category: 'Guitar',
+      name: 'Custom-24',
+      price: 999,
+      brandId: PRS.id
+    }),
+    Instrument.create({
+      category: 'Guitar',
+      name: 'Soloist',
+      price: 999,
+      brandId: Jackson.id
+    }),
+    Instrument.create({
+      category: 'Piano',
+      name: 'Baby-Grand',
+      price: 999,
+      brandId: Steinway.id
+    }),
+    Instrument.create({
+      category: 'Bass',
+      name: 'Jazz-Bass',
+      price: 999,
+      brandId: Fender.id
+    }),
   ])
 
   console.log(`seeded ${users.length} users`)
