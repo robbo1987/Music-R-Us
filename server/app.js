@@ -4,7 +4,6 @@ const morgan = require('morgan')
 const app = express()
 module.exports = app
 
-console.log('test')
 // logging middleware
 app.use(morgan('dev'))
 
