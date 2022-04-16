@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, brands, instruments}) => (
   <div>
     <h1>FS-App-Template</h1>
     <nav>
@@ -20,6 +20,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/instruments">Instruments ({instruments.length})</Link>
+          <Link to="/brands">Brands ({brands.length})</Link>
         </div>
       )}
     </nav>
@@ -32,7 +34,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    instruments: state.instruments,
+    brands: state.brands
   }
 }
 
