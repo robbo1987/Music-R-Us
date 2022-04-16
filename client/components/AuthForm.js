@@ -6,8 +6,8 @@ import {authenticate} from '../store'
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
-
+  const {name, displayName, handleSubmit, error,brands} = props
+  
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -54,6 +54,8 @@ const mapSignup = state => {
     error: state.auth.error
   }
 }
+
+
 
 const mapDispatch = dispatch => {
   return {
