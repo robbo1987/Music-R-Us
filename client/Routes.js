@@ -5,6 +5,8 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
 import {setBrands, setInstruments }from './store'
+import Brands from './components/Brands'
+import Instruments from './components/Instruments';
 
 /**
  * COMPONENT
