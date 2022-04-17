@@ -26,7 +26,7 @@ const Instrument =  db.define('instrument', {
   },
   image: {
     type: STRING,
-    default: './public/stockImage.png'
+    default: ""
   },
   description: {
     type: TEXT,
