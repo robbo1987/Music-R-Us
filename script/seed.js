@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Instrument, Brand} } = require('../server/db')
+const {db, models: {User, Instrument, Brand, Lineitem, Order} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -22,7 +22,7 @@ async function seed() {
     })
   )
 
-  await Promise.all([
+  const instruments = await Promise.all([
     Instrument.create({
       category: 'Guitar',
       name: 'Stratocaster',
@@ -72,6 +72,9 @@ async function seed() {
       brandId: Fender.id
     }),
   ])
+  const order = await Order.create()
+  const lineitem = await Lineitem.create({quantity: 4, instrumentId: instruments[0].id, orderId: order.id})
+  // console.log(await order.total)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
