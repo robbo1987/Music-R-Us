@@ -7,6 +7,7 @@ import {me} from './store'
 import {setBrands, setInstruments }from './store'
 import Brands from './components/Brands'
 import Instruments from './components/Instruments';
+import Brand from './components/Brand'
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
           <Switch>
             <Route path='/brands' exact component={Brands} />
             <Route path='/instruments' exact component={Instruments} />
+            <Route path='/brands/:id' exact component={Brand} />
           </Switch>
       </div>
     )
