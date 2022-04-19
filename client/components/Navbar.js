@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {logout, resetOrders} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, brands, instruments}) => (
   <div>
@@ -11,6 +11,7 @@ const Navbar = ({handleClick, isLoggedIn, brands, instruments}) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
+          <Link to="/orders">Orders</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -44,6 +45,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+      dispatch(resetOrders())
     }
   }
 }

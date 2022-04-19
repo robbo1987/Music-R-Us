@@ -78,7 +78,7 @@ async function seed() {
       category: "Guitar",
       name: "Soloist",
       price: 999,
-      brandId: Jackson.id,
+      brandId: Jackson.id
     }),
     Instrument.create({
       category: "Piano",

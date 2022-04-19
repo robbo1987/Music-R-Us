@@ -6,7 +6,7 @@ import {authenticate} from '../store'
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error,brands} = props
+  const {name, displayName, handleSubmit, error} = props
   
   return (
     <div>
