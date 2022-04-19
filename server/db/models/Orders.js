@@ -8,7 +8,7 @@ const Instrument = require('./Instruments');
 const Order =  db.define('order', {
   isCart: {
     type: BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   },
   total: {
     type: VIRTUAL,
