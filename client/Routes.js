@@ -4,10 +4,12 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
-import {setBrands, setInstruments }from './store'
+import {setBrands, setInstruments, setOrders, setLineitem}from './store'
 import Brands from './components/Brands'
 import Instruments from './components/Instruments';
 import Brand from './components/Brand'
+import Orders from './components/Orders'
+
 
 /**
  * COMPONENT
@@ -25,6 +27,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path='/orders' exact component={Orders} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -60,8 +63,10 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(setOrders())
       dispatch(setBrands())
       dispatch(setInstruments())
+      dispatch(setLineitem())
     }
   }
 }

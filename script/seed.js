@@ -37,25 +37,7 @@ async function seed() {
     }),
     Instrument.create({
       category: 'Guitar',
-      name: 'Les Paul Standard',
-      price: 999,
-      brandId: Gibson.id
-    }),
-    Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul Custom',
-      price: 999,
-      brandId: Gibson.id
-    }),
-    Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul 1960 Reissue ',
-      price: 999,
-      brandId: Gibson.id
-    }),
-    Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul Classic',
+      name: 'LesPaul',
       price: 999,
       brandId: Gibson.id
     }),
@@ -67,7 +49,7 @@ async function seed() {
     }),
     Instrument.create({
       category: 'Guitar',
-      name: 'Custom-22',
+      name: 'Custom-24',
       price: 999,
       brandId: PRS.id
     }),
@@ -75,7 +57,7 @@ async function seed() {
       category: 'Guitar',
       name: 'Soloist',
       price: 999,
-      brandId: Jackson.id,
+      brandId: Jackson.id
     }),
     Instrument.create({
       category: 'Piano',
@@ -89,106 +71,10 @@ async function seed() {
       price: 999,
       brandId: Fender.id
     }),
-    Instrument.create({
-      category: 'Bass',
-      name: 'P-Bass',
-      price: 999,
-      brandId: Fender.id
-    }),
-    Instrument.create({
-      category: 'Bass',
-      name: 'SG STANDARD BASS',
-      price: 999,
-      brandId: Gibson.id
-    }),
-    Instrument.create({
-      category: 'Bass',
-      name: 'Thunderbird Bass',
-      price: 999,
-      brandId: Gibson.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'Model D',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'Model B',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'Model A',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'Model O',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'Model M',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'Model S',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Piano',
-      name: 'SPIRIO',
-      price: 999,
-      brandId: Steinway.id
-    }),
-    Instrument.create({
-      category: 'Guitar',
-      name: 'Pro Series Jeff Loomis',
-      price: 999,
-      brandId: Jackson.id,
-    }),
-    Instrument.create({
-      category: 'Guitar',
-      name: 'Pro Series Rhandy Rhoads',
-      price: 999,
-      brandId: Jackson.id,
-    }),
-    Instrument.create({
-      category: 'Guitar',
-      name: 'Pro Series King V',
-      price: 999,
-      brandId: Jackson.id,
-    }),
-    Instrument.create({
-      category: 'Bass',
-      name: 'David Ellefson Signature Model',
-      price: 999,
-      brandId: Jackson.id,
-    }),
-    Instrument.create({
-      category: 'Bass',
-      name: 'X Series',
-      price: 999,
-      brandId: Jackson.id,
-    }),
-    Instrument.create({
-      category: 'Bass',
-      name: 'JS3',
-      price: 999,
-      brandId: Jackson.id,
-    }),
   ])
-  const order = await Order.create()
+  const order = await Order.create({userId: users[1].id, isCart: false})
   const lineitem = await Lineitem.create({quantity: 4, instrumentId: instruments[0].id, orderId: order.id})
-  // console.log(await order.total)
+  // console.log(order.total)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
@@ -230,7 +116,3 @@ if (module === require.main) {
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed
-
-
-// inventory
-// fender startocaster
