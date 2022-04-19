@@ -2,16 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const Brand = ({ instruments, brand, categories }) => {
-  const instrumentsList = instruments.filter(
-    (instrument) => instrument.brandId === brand.id
-  );
-  if (!brand) return null;
+export const Category = ({ instruments, brands, category }) => {
+  const instrumentsList =
+    instruments.filter((instrument) => instrument.categoryId === category.id) ||
+    {};
   return (
     <div>
-      <h1>{brand.name} Instruments</h1>
+      <h1>{`List of ${category.name}'s in our Store`}</h1>
       <ul>
         {instrumentsList.map((instrument) => {
+          const brand = brands.find((brand) => brand.id === instrument.brandId);
           return (
             <div key={instrument.id}>
               <div>
@@ -34,9 +34,11 @@ export const Brand = ({ instruments, brand, categories }) => {
 };
 
 const mapState = ({ instruments, brands, categories }, otherProps) => {
-  const brand =
-    brands.find((brand) => brand.id === otherProps.match.params.id * 1) || {};
-  return { instruments, brand, categories };
+  const category =
+    categories.find(
+      (category) => category.id === otherProps.match.params.id * 1
+    ) || {};
+  return { instruments, brands, category };
 };
 
-export default connect(mapState)(Brand);
+export default connect(mapState)(Category);

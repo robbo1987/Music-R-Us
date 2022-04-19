@@ -1,203 +1,215 @@
-'use strict'
+"use strict";
 
-const {db, models: {User, Instrument, Brand, Lineitem, Order} } = require('../server/db')
+const {
+  db,
+  models: { User, Instrument, Category, Brand, Lineitem, Order },
+} = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
-  console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log("db synced!");
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+    User.create({ username: "cody", password: "123" }),
+    User.create({ username: "murphy", password: "123" }),
+  ]);
 
   const [Fender, Gibson, PRS, Jackson, Steinway] = await Promise.all(
-    ['Fender', 'Gibson', 'PRS', 'Jackson', 'Steinway'].map(brand =>{
-      return Brand.create({ name: brand })
+    ["Fender", "Gibson", "PRS", "Jackson", "Steinway"].map((brand) => {
+      return Brand.create({ name: brand });
     })
-  )
+  );
 
+  const [Guitar, Piano, Bass] = await Promise.all(
+    ["Guitar", "Piano", "Bass"].map((category) => {
+      return Category.create({ name: category });
+    })
+  );
   const instruments = await Promise.all([
     Instrument.create({
-      category: 'Guitar',
-      name: 'Stratocaster',
+      categoryId: Guitar.id,
+      name: "Stratocaster",
       price: 999,
-      brandId: Fender.id
+      brandId: Fender.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Telecaster',
+      categoryId: Guitar.id,
+      name: "Telecaster",
       price: 999,
-      brandId: Fender.id
+      brandId: Fender.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul Standard',
+      categoryId: Guitar.id,
+      name: "Les Paul Standard",
       price: 999,
-      brandId: Gibson.id
+      brandId: Gibson.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul Custom',
+      categoryId: Guitar.id,
+      name: "Les Paul Custom",
       price: 999,
-      brandId: Gibson.id
+      brandId: Gibson.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul 1960 Reissue ',
+      categoryId: Guitar.id,
+      name: "Les Paul 1960 Reissue ",
       price: 999,
-      brandId: Gibson.id
+      brandId: Gibson.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Les Paul Classic',
+      categoryId: Guitar.id,
+      name: "Les Paul Classic",
       price: 999,
-      brandId: Gibson.id
+      brandId: Gibson.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Custom-24',
+      categoryId: Guitar.id,
+      name: "Custom-24",
       price: 999,
-      brandId: PRS.id
+      brandId: PRS.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Custom-22',
+      categoryId: Guitar.id,
+      name: "Custom-22",
       price: 999,
-      brandId: PRS.id
+      brandId: PRS.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Soloist',
+      categoryId: Guitar.id,
+      name: "Soloist",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Baby-Grand',
+      categoryId: Piano.id,
+      name: "Baby-Grand",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'Jazz-Bass',
+      categoryId: Bass.id,
+      name: "Jazz-Bass",
       price: 999,
-      brandId: Fender.id
+      brandId: Fender.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'P-Bass',
+      categoryId: Bass.id,
+      name: "P-Bass",
       price: 999,
-      brandId: Fender.id
+      brandId: Fender.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'SG STANDARD BASS',
+      categoryId: Bass.id,
+      name: "SG STANDARD BASS",
       price: 999,
-      brandId: Gibson.id
+      brandId: Gibson.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'Thunderbird Bass',
+      categoryId: Bass.id,
+      name: "Thunderbird Bass",
       price: 999,
-      brandId: Gibson.id
+      brandId: Gibson.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Model D',
+      categoryId: Piano.id,
+      name: "Model D",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Model B',
+      categoryId: Piano.id,
+      name: "Model B",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Model A',
+      categoryId: Piano.id,
+      name: "Model A",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Model O',
+      categoryId: Piano.id,
+      name: "Model O",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Model M',
+      categoryId: Piano.id,
+      name: "Model M",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'Model S',
+      categoryId: Piano.id,
+      name: "Model S",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Piano',
-      name: 'SPIRIO',
+      categoryId: Piano.id,
+      name: "SPIRIO",
       price: 999,
-      brandId: Steinway.id
+      brandId: Steinway.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Pro Series Jeff Loomis',
+      categoryId: Guitar.id,
+      name: "Pro Series Jeff Loomis",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Pro Series Rhandy Rhoads',
+      categoryId: Guitar.id,
+      name: "Pro Series Rhandy Rhoads",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: 'Guitar',
-      name: 'Pro Series King V',
+      categoryId: Guitar.id,
+      name: "Pro Series King V",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'David Ellefson Signature Model',
+      categoryId: Bass.id,
+      name: "David Ellefson Signature Model",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'X Series',
+      categoryId: Bass.id,
+      name: "X Series",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: 'Bass',
-      name: 'JS3',
+      categoryId: Bass.id,
+      name: "JS3",
       price: 999,
       brandId: Jackson.id,
     }),
-  ])
-  const order = await Order.create()
-  const lineitem = await Lineitem.create({quantity: 4, instrumentId: instruments[0].id, orderId: order.id})
+  ]);
+  const order = await Order.create();
+  const lineitem = await Lineitem.create({
+    quantity: 4,
+    instrumentId: instruments[0].id,
+    orderId: order.id,
+  });
   // console.log(await order.total)
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
   return {
     users: {
       cody: users[0],
-      murphy: users[1]
-    }
-  }
+      murphy: users[1],
+    },
+  };
 }
 
 /*
@@ -206,16 +218,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...')
+  console.log("seeding...");
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log("closing db connection");
+    await db.close();
+    console.log("db connection closed");
   }
 }
 
@@ -225,12 +237,11 @@ async function runSeed() {
   any errors that might occur inside of `seed`.
 */
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
-
+module.exports = seed;
 
 // inventory
 // fender startocaster

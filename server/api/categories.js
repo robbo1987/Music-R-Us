@@ -1,13 +1,13 @@
 const router = require("express").Router();
 const {
-  models: { Instrument },
+  models: { Category },
 } = require("../db");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const instruments = await Instrument.findAll();
-    res.json(instruments);
+    const categories = await Category.findAll();
+    res.json(categories);
   } catch (err) {
     next(err);
   }
