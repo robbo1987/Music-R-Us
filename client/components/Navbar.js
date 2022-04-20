@@ -1,9 +1,9 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout, resetOrders} from '../store'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout, resetOrders } from "../store";
 
-const Navbar = ({handleClick, isLoggedIn, brands, instruments}) => (
+const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
   <div>
     <h1>FS-App-Template</h1>
     <nav>
@@ -22,32 +22,33 @@ const Navbar = ({handleClick, isLoggedIn, brands, instruments}) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/instruments">Instruments ({instruments.length})</Link>
-          <Link to="/brands">Brands ({brands.length})</Link>
+          <Link to="/brands">Shop By Brands ({brands.length})</Link>
+          <Link to="/categories">Shop By Categories</Link>
         </div>
       )}
     </nav>
     <hr />
   </div>
-)
+);
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
     instruments: state.instruments,
-    brands: state.brands
-  }
-}
+    brands: state.brands,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(logout())
-      dispatch(resetOrders())
-    }
-  }
-}
+      dispatch(logout());
+      dispatch(resetOrders());
+    },
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);

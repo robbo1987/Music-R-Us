@@ -4,14 +4,14 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me, setCategories } from "./store";
-import {setBrands, setInstruments, setOrders, setLineitem}from "./store"
+import { setBrands, setInstruments, setOrders, setLineitem } from "./store";
 import Brands from "./components/Brands";
 import Instruments from "./components/Instruments";
 import Brand from "./components/Brand";
-import LandingPage from "./components/LandingPage";
+import Categories from "./components/Categories";
 import Category from "./components/Category";
 import SelectedInstrument from "./components/SelectedInstrument";
-import Orders from "./components/Orders"
+import Orders from "./components/Orders";
 
 /**
  * COMPONENT
@@ -29,7 +29,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path='/orders' exact component={Orders} />
+            <Route path="/orders" exact component={Orders} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -40,7 +40,7 @@ class Routes extends Component {
           </Switch>
         )}
         <Switch>
-          <Route path="/landingpage" exact component={LandingPage} />
+          <Route path="/categories" exact component={Categories} />
           <Route path="/brands" exact component={Brands} />
           <Route path="/instruments" exact component={Instruments} />
           <Route path="/categories/:id" exact component={Category} />
@@ -66,7 +66,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
-
       dispatch(me());
       dispatch(setOrders());
       dispatch(setBrands());
@@ -75,7 +74,6 @@ const mapDispatch = (dispatch) => {
     },
   };
 };
-
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes

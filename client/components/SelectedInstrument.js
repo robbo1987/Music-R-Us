@@ -6,12 +6,16 @@ export const SelectedInstrument = ({ instrument, brand, category }) => {
   return (
     <div>
       <ul>
+        <div>
+          <img id="detailPage" src={`/public/${instrument.image}`} />
+        </div>
         <li>{instrument.name}</li>
         <li>{`$ ${instrument.price} `}</li>
         <Link to={`/categories/${category.id}`}>{category.name}</Link>
         <div>
           <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
         </div>
+        <button>Add To Cart</button>
       </ul>
     </div>
   );
