@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const LandingPage = ({ categories }) => {
+export const Categories = ({ categories }) => {
   return (
     <div>
       {categories.map((category) => {
@@ -18,4 +18,4 @@ export const LandingPage = ({ categories }) => {
 
 const mapState = (state) => state;
 
-export default connect(mapState)(LandingPage);
+export default connect(mapState)(Categories);
