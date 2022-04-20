@@ -7,7 +7,7 @@ export const SelectedInstrument = ({ instrument, brand, category }) => {
     <div>
       <ul>
         <div>
-          <img id="detailPage" src={`/public/${instrument.image}`} />
+          <img id="singlePage" src={`/public/photos/${instrument.image}`} />
         </div>
         <li>{instrument.name}</li>
         <li>{`$ ${instrument.price} `}</li>

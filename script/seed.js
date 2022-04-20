@@ -37,36 +37,42 @@ async function seed() {
       name: "Stratocaster",
       price: 999,
       brandId: Fender.id,
+      image:"strat1.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Telecaster",
       price: 999,
       brandId: Fender.id,
+      image:"telecaster1.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul Standard",
       price: 999,
       brandId: Gibson.id,
+      image: "lesPaul1.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul Custom",
       price: 999,
       brandId: Gibson.id,
+      image:"lesPaulCustom.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul 1960 Reissue ",
       price: 999,
       brandId: Gibson.id,
+      image:"lesPaul60.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul Classic",
       price: 999,
       brandId: Gibson.id,
+      image:"lesPaulClassic.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
@@ -74,12 +80,14 @@ async function seed() {
       name: "Custom-24",
       price: 999,
       brandId: PRS.id,
+      image:"prsCu24.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Custom-22",
       price: 999,
       brandId: PRS.id,
+      image:"prsCu22.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
@@ -92,108 +100,126 @@ async function seed() {
       name: "Baby-Grand",
       price: 999,
       brandId: Steinway.id,
+      image:"babygrand.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "Jazz-Bass",
       price: 999,
       brandId: Fender.id,
+      image:"jazzBass.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "P-Bass",
       price: 999,
       brandId: Fender.id,
+      image:"pBass.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "SG STANDARD BASS",
       price: 999,
       brandId: Gibson.id,
+      image:"sgBass.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "Thunderbird Bass",
       price: 999,
       brandId: Gibson.id,
+      image:"tBass.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Model D",
       price: 999,
       brandId: Steinway.id,
+      image:"modelD.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Model B",
       price: 999,
       brandId: Steinway.id,
+      image:"modelB.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Model A",
       price: 999,
       brandId: Steinway.id,
+      image:"modelA.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Model O",
       price: 999,
       brandId: Steinway.id,
+      image:"modelO.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Model M",
       price: 999,
       brandId: Steinway.id,
+      image:"modelM.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Model S",
       price: 999,
       brandId: Steinway.id,
+      image:"modelS.jpg"
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "SPIRIO",
       price: 999,
       brandId: Steinway.id,
+      image:"spirio.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Pro Series Jeff Loomis",
       price: 999,
       brandId: Jackson.id,
+      image:"Loomis.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Pro Series Rhandy Rhoads",
       price: 999,
       brandId: Jackson.id,
+      image:"RR.jpg"
     }),
     Instrument.create({
       categoryId: Guitar.id,
       name: "Pro Series King V",
       price: 999,
       brandId: Jackson.id,
+      image:"kingV.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "David Ellefson Signature Model",
       price: 999,
       brandId: Jackson.id,
+      image:"des.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "X Series",
       price: 999,
       brandId: Jackson.id,
+      image:"x.jpg"
     }),
     Instrument.create({
       categoryId: Bass.id,
       name: "JS3",
       price: 999,
       brandId: Jackson.id,
+      image:"js3.jpg"
     }),
   ]);
 
