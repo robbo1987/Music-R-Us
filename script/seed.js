@@ -3,6 +3,7 @@
 const {
   db,
   models: { User, Instrument, Category, Brand, Lineitem, Order },
+
 } = require("../server/db");
 
 /**
@@ -69,6 +70,7 @@ async function seed() {
     }),
     Instrument.create({
       categoryId: Guitar.id,
+      category: "Guitar",
       name: "Custom-24",
       price: 999,
       brandId: PRS.id,
@@ -83,7 +85,7 @@ async function seed() {
       categoryId: Guitar.id,
       name: "Soloist",
       price: 999,
-      brandId: Jackson.id,
+      brandId: Jackson.id
     }),
     Instrument.create({
       categoryId: Piano.id,
@@ -194,14 +196,39 @@ async function seed() {
       brandId: Jackson.id,
     }),
   ]);
-  const order = await Order.create();
-  const lineitem = await Lineitem.create({
-    quantity: 4,
-    instrumentId: instruments[0].id,
-    orderId: order.id,
-  });
+
+  const orders = await Promise.all([
+    Order.create({ userId: 1 }),
+    Order.create({ userId: 1 }),
+    Order.create({ userId: 1 }),
+    Order.create({ userId: 1 }),
+    Order.create({ userId: 2 }),
+    Order.create({ userId: 2 }),
+    Order.create({ userId: 2 }),
+    Order.create({ userId: 2 }),
+    Order.create({ userId: 2 }),
+    Order.create({ userId: 2 }),
+  ]);
+
+  const lineitems = await Promise.all([
+    Lineitem.create({ quantity: 2, instrumentId: 1, orderId: 1 }),
+    Lineitem.create({ quantity: 1, instrumentId: 2, orderId: 2 }),
+    Lineitem.create({ quantity: 2, instrumentId: 3, orderId: 3 }),
+    Lineitem.create({ quantity: 2, instrumentId: 4, orderId: 4 }),
+    Lineitem.create({ quantity: 1, instrumentId: 5, orderId: 5 }),
+    Lineitem.create({ quantity: 2, instrumentId: 6, orderId: 6 }),
+    Lineitem.create({ quantity: 1, instrumentId: 7, orderId: 7 }),
+    Lineitem.create({ quantity: 2, instrumentId: 8, orderId: 8 }),
+    Lineitem.create({ quantity: 1, instrumentId: 9, orderId: 9 }),
+    Lineitem.create({ quantity: 3, instrumentId: 12, orderId: 6 }),
+    Lineitem.create({ quantity: 4, instrumentId: 16, orderId: 7 }),
+    Lineitem.create({ quantity: 4, instrumentId: 18, orderId: 8 }),
+    Lineitem.create({ quantity: 3, instrumentId: 19, orderId: 9 }),
+  ]);
+  //await Lineitem.create({quantity: 4, instrumentId: instruments[0].id, orderId: order.id})
   // console.log(await order.total)
 
+  console.log(lineitems);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {

@@ -5,9 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import instruments from './instruments'
 import brands from './brands'
+import orders from './orders'
+import lineitems from './lineitems'
+
 import categories from './categories'
 
-const reducer = combineReducers({ auth, instruments, brands, categories })
+const reducer = combineReducers({ auth, instruments, brands, categories, orders, lineitems })
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -18,3 +22,5 @@ export * from './auth'
 export * from './brands'
 export * from './instruments'
 export * from './categories'
+export * from './orders'
+export * from './lineitems'

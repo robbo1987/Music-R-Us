@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import { setOrders } from '../store'
 
 const TOKEN = 'token'
 
@@ -24,6 +25,7 @@ export const me = () => async dispatch => {
         authorization: token
       }
     })
+    console.log(res.data.correctPassword)
     return dispatch(setAuth(res.data))
   }
 }
@@ -33,6 +35,7 @@ export const authenticate = (username, password, method) => async dispatch => {
     const res = await axios.post(`/auth/${method}`, {username, password})
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
+    dispatch(setOrders())
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
   }
