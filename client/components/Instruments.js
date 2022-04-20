@@ -11,8 +11,11 @@ export const Instruments = ({ instruments, brands }) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           return (
             <div key={instrument.id}>
-              <Link to="/brands/">{brand.name}</Link>-{instrument.name} -
-              {instrument.category}
+              <Link to="/brands/">{brand.name}</Link>-
+              <Link to={`/instruments/${instrument.id}`}>
+                {instrument.name}
+              </Link>
+              -{instrument.category}
               <img id="detailPage" src={`/public/photos/${instrument.image}`} />
             </div>
           );
