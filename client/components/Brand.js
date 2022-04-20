@@ -15,7 +15,7 @@ export const Brand = ({ instruments, brand, categories }) => {
           return (
             <div key={instrument.id}>
               <div>
-                <img id="detailPage" src={instrument.image} />
+                <img id="detailPage" src={`/public/photos/${instrument.image}`} />
               </div>
               <div>
                 <Link to={`/instruments/${instrument.id}`}>

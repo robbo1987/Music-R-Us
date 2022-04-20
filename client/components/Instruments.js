@@ -13,7 +13,7 @@ export const Instruments = ({ instruments, brands }) => {
             <div key={instrument.id}>
               <Link to="/brands/">{brand.name}</Link>-{instrument.name} -
               {instrument.category}
-              <img id="detailPage" src={`/public/${instrument.image}`} />
+              <img id="detailPage" src={`/public/photos/${instrument.image}`} />
             </div>
           );
         })}

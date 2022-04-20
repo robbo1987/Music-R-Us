@@ -21,7 +21,13 @@ form div {
 }
 
 #detailPage{
-  height:60px;
-  width:60px;
+  height:100px;
+  width:150px;
+
+}
+
+#singlePage{
+  height:30px;
+  width:30px;
 
 }

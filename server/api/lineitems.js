@@ -4,9 +4,10 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const lineitems = await Lineitem.findAll()
-    res.json(lineitems)
+    const lineItems= await Lineitem.findAll()
+    res.json(lineItems)
   } catch (err) {
     next(err)
   }
 })
+
