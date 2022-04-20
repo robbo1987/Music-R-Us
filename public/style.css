@@ -20,14 +20,12 @@ form div {
   display: inline-block;
 }
 
-#detailPage{
-  height:100px;
-  width:150px;
-
+#detailPage {
+  height: 100px;
+  width: 150px;
 }
 
-#singlePage{
-  height:30px;
-  width:30px;
-
+#singlePage {
+  height: 500px;
+  width: 1400px;
 }
