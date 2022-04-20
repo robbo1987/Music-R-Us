@@ -2,7 +2,8 @@
 
 const {
   db,
-  models: { User, Instrument, Brand, Lineitem, Order },
+  models: { User, Instrument, Category, Brand, Lineitem, Order },
+
 } = require("../server/db");
 
 /**
@@ -25,170 +26,177 @@ async function seed() {
     })
   );
 
+  const [Guitar, Piano, Bass] = await Promise.all(
+    ["Guitar", "Piano", "Bass"].map((category) => {
+      return Category.create({ name: category });
+    })
+  );
   const instruments = await Promise.all([
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Stratocaster",
       price: 999,
       brandId: Fender.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Telecaster",
       price: 999,
       brandId: Fender.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Les Paul Standard",
       price: 999,
       brandId: Gibson.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Les Paul Custom",
       price: 999,
       brandId: Gibson.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Les Paul 1960 Reissue ",
       price: 999,
       brandId: Gibson.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Les Paul Classic",
       price: 999,
       brandId: Gibson.id,
     }),
     Instrument.create({
+      categoryId: Guitar.id,
       category: "Guitar",
       name: "Custom-24",
       price: 999,
       brandId: PRS.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Custom-22",
       price: 999,
       brandId: PRS.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Soloist",
       price: 999,
       brandId: Jackson.id
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Baby-Grand",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "Jazz-Bass",
       price: 999,
       brandId: Fender.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "P-Bass",
       price: 999,
       brandId: Fender.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "SG STANDARD BASS",
       price: 999,
       brandId: Gibson.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "Thunderbird Bass",
       price: 999,
       brandId: Gibson.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Model D",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Model B",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Model A",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Model O",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Model M",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "Model S",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Piano",
+      categoryId: Piano.id,
       name: "SPIRIO",
       price: 999,
       brandId: Steinway.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Pro Series Jeff Loomis",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Pro Series Rhandy Rhoads",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: "Guitar",
+      categoryId: Guitar.id,
       name: "Pro Series King V",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "David Ellefson Signature Model",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "X Series",
       price: 999,
       brandId: Jackson.id,
     }),
     Instrument.create({
-      category: "Bass",
+      categoryId: Bass.id,
       name: "JS3",
       price: 999,
       brandId: Jackson.id,
     }),
   ]);
+
   const orders = await Promise.all([
     Order.create({ userId: 1 }),
     Order.create({ userId: 1 }),

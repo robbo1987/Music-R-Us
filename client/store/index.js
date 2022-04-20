@@ -8,7 +8,10 @@ import brands from './brands'
 import orders from './orders'
 import lineitems from './lineitems'
 
-const reducer = combineReducers({ auth, instruments, brands, orders, lineitems })
+import categories from './categories'
+
+const reducer = combineReducers({ auth, instruments, brands, categories, orders, lineitems })
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -18,5 +21,6 @@ export default store
 export * from './auth'
 export * from './brands'
 export * from './instruments'
+export * from './categories'
 export * from './orders'
 export * from './lineitems'
