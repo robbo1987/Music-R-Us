@@ -7,12 +7,13 @@ export const Instruments = ({ instruments, brands }) => {
     <div>
       <ul>
         {instruments.map((instrument) => {
+          console.log(instrument.image);
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           return (
             <div key={instrument.id}>
               <Link to="/brands/">{brand.name}</Link>-{instrument.name} -
               {instrument.category}
-              <img id="detailPage" src={instrument.image} />
+              <img id="detailPage" src={`/public/${instrument.image}`} />
             </div>
           );
         })}

@@ -19,7 +19,7 @@ const Instrument = db.define("instrument", {
   },
   image: {
     type: STRING,
-    default: "",
+    defaultValue: "stockImage.png",
   },
   description: {
     type: TEXT,
