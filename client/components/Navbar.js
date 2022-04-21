@@ -5,12 +5,16 @@ import { logout, resetOrders } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
   <div>
-    <h1>FS-App-Template</h1>
+    <h1>Music R Us</h1>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
+          <Link to="/instruments">Instruments ({instruments.length})</Link>
+          <Link to="/brands">Shop By Brands ({brands.length})</Link>
+          <Link to="/categories">Shop By Categories</Link>
+          <Link to="/cart">Cart</Link>
           <Link to="/orders">Orders</Link>
           <a href="#" onClick={handleClick}>
             Logout
@@ -24,6 +28,7 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
           <Link to="/instruments">Instruments ({instruments.length})</Link>
           <Link to="/brands">Shop By Brands ({brands.length})</Link>
           <Link to="/categories">Shop By Categories</Link>
+          <Link to="/cart">Cart</Link>
         </div>
       )}
     </nav>
