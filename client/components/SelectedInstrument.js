@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const SelectedInstrument = ({ instrument, brand, category }) => {
+  // orders.find(order => order.userId === logginUser.id && order.isCart)
+  // lineitem ( instrument.id, order.id, quantity )
   return (
     <div>
       <ul>
         <div>
-          <h1>{brand.name} {instrument.name}</h1>
-          <img id="singlePage" src={`/public/photos/${instrument.image}`} />
+          <img id="detailPage" src={`/public/photos/${instrument.image}`} />
         </div>
-       
-       <h2> Price: $ {instrument.price} </h2>
-       <h2>Description: {instrument.description}</h2>
+        <li>{instrument.name}</li>
+        <li>{`$ ${instrument.price} `}</li>
         <Link to={`/categories/${category.id}`}>{category.name}</Link>
         <div>
           <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
         </div>
-        <button>Add To Cart</button>
       </ul>
     </div>
   );

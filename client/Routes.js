@@ -12,6 +12,7 @@ import Categories from "./components/Categories";
 import Category from "./components/Category";
 import SelectedInstrument from "./components/SelectedInstrument";
 import Orders from "./components/Orders";
+import Cart from "./components/Cart";
 
 /**
  * COMPONENT
@@ -28,9 +29,8 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route path="/home" exact component={Home} />
             <Route path="/orders" exact component={Orders} />
-            <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
@@ -46,6 +46,7 @@ class Routes extends Component {
           <Route path="/categories/:id" exact component={Category} />
           <Route path="/brands/:id" exact component={Brand} />
           <Route path="/instruments/:id" exact component={SelectedInstrument} />
+          <Route path="/cart" exact component={Cart} />
         </Switch>
       </div>
     );
@@ -71,6 +72,7 @@ const mapDispatch = (dispatch) => {
       dispatch(setBrands());
       dispatch(setInstruments());
       dispatch(setCategories());
+      dispatch(setLineitem());
     },
   };
 };

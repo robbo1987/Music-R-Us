@@ -286,11 +286,11 @@ async function seed() {
   ]);
 
   const orders = await Promise.all([
+    Order.create({ userId: 1, isCart: true }),
     Order.create({ userId: 1 }),
     Order.create({ userId: 1 }),
     Order.create({ userId: 1 }),
-    Order.create({ userId: 1 }),
-    Order.create({ userId: 2 }),
+    Order.create({ userId: 2, isCart: true }),
     Order.create({ userId: 2 }),
     Order.create({ userId: 2 }),
     Order.create({ userId: 2 }),
@@ -300,6 +300,8 @@ async function seed() {
 
   const lineitems = await Promise.all([
     Lineitem.create({ quantity: 2, instrumentId: 1, orderId: 1 }),
+    Lineitem.create({ quantity: 3, instrumentId: 4, orderId: 1 }),
+    Lineitem.create({ quantity: 4, instrumentId: 10, orderId: 1 }),
     Lineitem.create({ quantity: 1, instrumentId: 2, orderId: 2 }),
     Lineitem.create({ quantity: 2, instrumentId: 3, orderId: 3 }),
     Lineitem.create({ quantity: 2, instrumentId: 4, orderId: 4 }),
@@ -313,10 +315,7 @@ async function seed() {
     Lineitem.create({ quantity: 4, instrumentId: 18, orderId: 8 }),
     Lineitem.create({ quantity: 3, instrumentId: 19, orderId: 9 }),
   ]);
-  //await Lineitem.create({quantity: 4, instrumentId: instruments[0].id, orderId: order.id})
-  // console.log(await order.total)
 
-  console.log(lineitems);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
@@ -357,6 +356,3 @@ if (module === require.main) {
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;
-
-// inventory
-// fender startocaster
