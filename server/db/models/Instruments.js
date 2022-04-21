@@ -17,6 +17,10 @@ const Instrument = db.define("instrument", {
       notEmpty: true,
     },
   },
+  inventory: {
+    type: INTEGER,
+    defaultValue: 20,
+  },
   image: {
     type: STRING,
     defaultValue: "stockImage.png",
