@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 export const Brands = ({ brands }) => {
   return (
-    <div>
+    <div className="brandLink">
       {brands.map((brand) => {
         return (
-          <div key={brand.id}>
-            <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-          </div>
+          <Link key={brand.id} to={`/brands/${brand.id}`}>
+            {brand.name}
+          </Link>
         );
       })}
     </div>

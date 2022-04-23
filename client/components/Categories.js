@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 export const Categories = ({ categories }) => {
   return (
-    <div>
+    <div className="ctgyLink">
       {categories.map((category) => {
         return (
-          <div key={category.id}>
-            <Link to={`/categories/${category.id}`}>{category.name}</Link>
-          </div>
+          <Link key={category.id} to={`/categories/${category.id}`}>
+            {category.name}
+          </Link>
         );
       })}
     </div>
