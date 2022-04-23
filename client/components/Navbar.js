@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { logout, resetOrders } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
+
   <div>
     <h1>Music R Us</h1>
     <nav>
@@ -44,6 +45,7 @@ const mapState = (state) => {
     isLoggedIn: !!state.auth.id,
     instruments: state.instruments,
     brands: state.brands,
+    lineitems: state.lineitems
   };
 };
 

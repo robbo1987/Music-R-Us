@@ -43,12 +43,12 @@ export const Orders = ({ orders, lineitems, instruments }) => {
   );
 };
 
-const mapState = ({ orders, lineitem, instruments }) => {
+const mapState = ({ orders, lineitems, instruments }) => {
   const ordersWithoutCart = orders.filter((order) => !order.isCart);
 
   return {
     orders: ordersWithoutCart,
-    lineitem,
+    lineitems,
     instruments,
   };
 };

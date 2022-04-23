@@ -6,7 +6,7 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0,
+      quantity: 1,
       orderId: this.props.orderId ? this.props.orderId : NaN,
       instrumentId: this.props.instrument.id ? this.props.instrument.id : "",
     };
@@ -16,6 +16,11 @@ class AddToCart extends React.Component {
     if (!prevProps.instrument.id && this.props.instrument.id) {
       this.setState({
         instrumentId: this.props.instrument.id,
+      });
+    }
+    if (!prevProps.orderId && this.props.orderId) {
+      this.setState({
+        orderId: this.props.orderId,
       });
     }
   }

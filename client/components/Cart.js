@@ -52,7 +52,8 @@ export class Cart extends Component {
               <li key={item.id}>
                 {`Instrument: ${item.instrument.name}`}
                 <br></br>
-                {`Quantity: ${item.quantity}`}
+                {`Quantity:`}
+                {` ${item.quantity}`}
                 <br></br>
                 {`Subtotal: $${item.quantity * item.instrument.price}`}
               </li>
@@ -67,33 +68,37 @@ export class Cart extends Component {
 
 const mapState = ({ orders, lineitems, instruments, auth }) => {
   // search through the logged in User's orders to find the one that is the cart
-  const cart = orders.find((order) => order.userId === auth.id && order.isCart);
-  // find all of the cart items associated with the cart and attach and instrument key to them
-  /* cartItem looks like this 
-  {
-    id: it's own id
-    orderId: cart.id
-    instrumentId: some instrument.id,
-    quantity: some number,
-    instrument: {
-      the details of the instrument associated with the cartItem
+  if (lineitems.length && instruments.length) {
+    const cart = orders.find(
+      (order) => order.userId === auth.id && order.isCart
+    );
+    // find all of the cart items associated with the cart and attach and instrument key to them
+    /* cartItem looks like this 
+    {
+      id: it's own id
+      orderId: cart.id
+      instrumentId: some instrument.id,
+      quantity: some number,
+      instrument: {
+        the details of the instrument associated with the cartItem
+      }
     }
+    */
+    const cartItems = lineitems
+      .filter((item) => item.orderId === cart?.id)
+      .map((item) => {
+        const instrument = instruments.find(
+          (instrument) => instrument.id === item.instrumentId
+        );
+        return { ...item, instrument };
+      });
+    return {
+      cart,
+      cartItems,
+    };
   }
-  */
-  const cartItems = lineitems
-    .filter((item) => item.orderId === cart?.id)
-    .map((item) => {
-      const instrument = instruments.find(
-        (instrument) => instrument.id === item.instrumentId
-      );
-      return { ...item, instrument };
-    });
-  return {
-    cart,
-    cartItems,
-  };
+  return {};
 };
-
 const mapDispatch = (dispatch) => {
   return {
     updateOrder: (order) => {
