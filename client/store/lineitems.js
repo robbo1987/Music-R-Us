@@ -3,6 +3,7 @@ import axios from "axios";
 const SET_LINEITEM = "SET_LINEITEM";
 const UPDATE_LINEITEM = "UPDATE_LINEITEM";
 const CREATE_LINEITEM = "CREATE_LINEITEM";
+const DELETE_LINEITEM = "DELETE_LINEITEM";
 
 export const setLineitem = () => {
   return async (dispatch) => {
@@ -28,10 +29,16 @@ export const updateLineitem = (item) => {
 };
 
 export const createLineItem = (item) => {
-  console.log(item);
   return async (dispatch) => {
     const newItem = (await axios.post("/api/lineitems", item)).data;
     dispatch({ type: CREATE_LINEITEM, newItem });
+  };
+};
+
+export const deleteLineitem = (item) => {
+  return async (dispatch) => {
+    await axios.delete(`/api/lineitems/${item.id}`);
+    dispatch({ type: DELETE_LINEITEM, item });
   };
 };
 
@@ -45,6 +52,8 @@ export default function (state = [], action) {
       );
     case CREATE_LINEITEM:
       return [...state, action.newItem];
+    case DELETE_LINEITEM:
+      return state.filter((lineitem) => lineitem.id !== action.item.id);
     default:
       return state;
   }

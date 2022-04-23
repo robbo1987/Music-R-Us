@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateOrder, updateLineitem } from "../store";
+import { updateOrder, updateLineitem, deleteLineitem } from "../store";
 
 export class Cart extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export class Cart extends Component {
   render() {
     const { cart } = this.state;
     const cartItems = cart.cartItems;
-    const { updateOrder, updateLineitem } = this.props;
+    const { updateOrder, updateLineitem, deleteLineitem } = this.props;
 
     const Checkout = () => {
       const order = { ...cart };
@@ -69,6 +69,7 @@ export class Cart extends Component {
                 <button onClick={() => Increase(item)}>+</button>
                 <br></br>
                 {`Subtotal: $${item.quantity * item.instrument.price}`}
+                <button onClick={() => deleteLineitem(item)}>Remove</button>
               </li>
             );
           })}
@@ -119,6 +120,9 @@ const mapDispatch = (dispatch) => {
     },
     updateLineitem: (lineitem) => {
       dispatch(updateLineitem(lineitem));
+    },
+    deleteLineitem: (item) => {
+      dispatch(deleteLineitem(item));
     },
   };
 };

@@ -35,3 +35,13 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const lineitem = await Lineitem.findByPk(req.params.id * 1);
+    await lineitem.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
