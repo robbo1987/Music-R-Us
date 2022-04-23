@@ -3,13 +3,21 @@ import { connect } from "react-redux";
 import { createLineItem } from "../store";
 
 class AddToCart extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       quantity: 0,
-      orderId: "",
-      instrumentId: "",
+      orderId: this.props.orderId ? this.props.orderId : NaN,
+      instrumentId: this.props.instrument.id ? this.props.instrument.id : "",
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.instrument.id && this.props.instrument.id) {
+      this.setState({
+        instrumentId: this.props.instrument.id,
+      });
+    }
   }
 
   render() {
@@ -29,7 +37,15 @@ class AddToCart extends React.Component {
   }
 }
 
-export default connect(null, (dispatch) => {
+const mapState = ({ auth, orders }) => {
+  const cart = orders.find((order) => order.userId === auth.id && order.isCart);
+  console.log(cart);
+  return {
+    orderId: cart?.id,
+  };
+};
+
+export default connect(mapState, (dispatch) => {
   return {
     setCart: (item) => {
       dispatch(createLineItem(item));
