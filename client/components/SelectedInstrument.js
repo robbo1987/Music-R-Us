@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import AddToCart from "./AddToCart"
-
+import AddToCart from "./AddToCart";
 
 export const SelectedInstrument = ({ instrument, brand, category }) => {
   // orders.find(order => order.userId === logginUser.id && order.isCart)
@@ -12,10 +11,12 @@ export const SelectedInstrument = ({ instrument, brand, category }) => {
     <div>
       <ul>
         <div></div>
-        <li>{brand.name} {instrument.name}</li>
+        <li>
+          {brand.name} {instrument.name}
+        </li>
         <li>Price: {`$ ${instrument.price} `}</li>
         <br />
-        <AddToCart />
+        <AddToCart instrument={instrument} />
         <div></div>
         <br />
         Click to Return To

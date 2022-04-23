@@ -8,15 +8,17 @@ export const Instruments = ({ instruments, brands, categories }) => {
       <ul>
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
-          const category = categories.find(category=> category.id === instrument.categoryId) || {}
-          console.log(category)
+          const category =
+            categories.find(
+              (category) => category.id === instrument.categoryId
+            ) || {};
           return (
             <div key={instrument.id}>
               <Link to="/brands/">{brand.name}</Link>-
               <Link to={`/instruments/${instrument.id}`}>
                 {instrument.name}
               </Link>
-               - {category.name}
+              - {category.name}
               <img id="detailPage" src={`/public/photos/${instrument.image}`} />
             </div>
           );
