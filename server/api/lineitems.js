@@ -13,6 +13,15 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const lineItem = await Lineitem.create(req.body);
+    res.status(201).send(lineItem);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 router.put("/:id", async (req, res, next) => {
   try {
     const lineitem = await Lineitem.findOne({
@@ -25,16 +34,4 @@ router.put("/:id", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
-
-router.post('/', async(req,res,next) => {
-  try{
-    const lineItem = await Lineitem.create(req.body);
-    res.status(201).send(lineItem)
-
-  }
-  catch(ex) {
-    next(ex)
-  }
-})
-;
+});
