@@ -1,21 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import AddToCart from "./AddToCart"
+
 
 export const SelectedInstrument = ({ instrument, brand, category }) => {
   // orders.find(order => order.userId === logginUser.id && order.isCart)
   // lineitem ( instrument.id, order.id, quantity )
+
   return (
     <div>
       <ul>
+        <div></div>
+        <li>{brand.name} {instrument.name}</li>
+        <li>Price: {`$ ${instrument.price} `}</li>
+        <br />
+        <AddToCart />
+        <div></div>
+        <br />
+        Click to Return To
+        <Link to={`/categories/${category.id}`}>{category.name}'s</Link>
         <div>
-          <img id="detailPage" src={`/public/photos/${instrument.image}`} />
-        </div>
-        <li>{instrument.name}</li>
-        <li>{`$ ${instrument.price} `}</li>
-        <Link to={`/categories/${category.id}`}>{category.name}</Link>
-        <div>
+          <br />
+          Click to Return To
           <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+          <div></div>
+          <br />
+          <img id="detailPage" src={`/public/photos/${instrument.image}`} />
         </div>
       </ul>
     </div>
