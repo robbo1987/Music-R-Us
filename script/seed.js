@@ -18,16 +18,23 @@ async function seed() {
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
   ]);
-
-  const [Fender, Gibson, PRS, Jackson, Steinway, Yamaha] = await Promise.all(
-    ["Fender", "Gibson", "PRS", "Jackson", "Steinway", "Yamaha"].map(
-      (brand) => {
+  //added 'Knilling' as violin brand (seemed popular)
+  const [Fender, Gibson, PRS, Jackson, Steinway, Yamaha, Knilling] =
+    await Promise.all(
+      [
+        "Fender",
+        "Gibson",
+        "PRS",
+        "Jackson",
+        "Steinway",
+        "Yamaha",
+        "Knilling",
+      ].map((brand) => {
         return Brand.create({ name: brand });
-      }
-    )
-  );
-
-  const [Guitar, Piano, Bass, Violin] = await Promise.all(
+      })
+    );
+  //added 'keyboard', as it was taking in the violin key
+  const [Guitar, Piano, Bass, Keyboard, Violin] = await Promise.all(
     ["Guitar", "Piano", "Bass", "Keyboard", "Violin"].map((category) => {
       return Category.create({ name: category });
     })
@@ -282,6 +289,43 @@ async function seed() {
       price: 999,
       brandId: Yamaha.id,
       image: "av10.jpg",
+    }),
+    // added a violins & keyboards
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "YEV105 Electric Violin",
+      price: 745,
+      brandId: Yamaha.id,
+      image: "electricViolin.webp",
+      description:
+        "The Yamaha YEV105 offers a sublime combination of organic beauty and transcendent playability. Five layers comprised of maple, mahogany, and spruce yield a gorgeous natural sound, while an oil-finished walnut frame enhances its looks, strength, and resonance. A high-output passive bridge pickup captures every ounce of the YEV105’s natural tone, meticulously reproducing the instrument’s dynamic response and highlighting the subtle nuances of your bowing.",
+    }),
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "YSV104 Electric Violin",
+      price: 846,
+      brandId: Yamaha.id,
+      image: "YSV104BRO-medium.jpg.auto.webp",
+      description:
+        "The YSV104 Silent Series Violin reproduces the body resonance, sound, and ambience of an acoustic violin, thanks to Yamaha’s SRT (Studio Response Technology). This electric violin’s innovative design not only offers a state-of-the-art look, it also provides a feel that makes switching over from a traditional acoustic violin effortless. Its streamlined control box includes an aux input for play-along practice and onboard reverb to enhance your playing enjoyment. The Yamaha YSV104 is ideal for anyone who wants to practice quietly without sacrificing natural acoustic tone.",
+    }),
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "86F Nicolo Gabrieli Maestro",
+      price: 4949,
+      brandId: Knilling.id,
+      image: "KnNGMVln44-medium.jpg.auto.webp",
+      description:
+        "The Knilling 86F Nicolo Gabrieli Maestro Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
+      categoryId: Keyboard.id,
+      name: "P-125 88-key Weighted Action Digital Piano",
+      price: 700,
+      brandId: Yamaha.id,
+      image: "P125BK-medium.jpg.auto.webp",
+      description:
+        "Built around the sound of the world-famous Yamaha CFIIIS concert grand piano, the clear and melodic sound of the Yamaha P-125 digital piano is instantly recognizable to any seasoned pianist. Your fingers will feel right at home on the P-125’s Graded Hammer Standard action, which is heavier in the low keys and lighter in the high keys, emulating the dynamic feel of hammers on real acoustic piano strings",
     }),
   ]);
 
