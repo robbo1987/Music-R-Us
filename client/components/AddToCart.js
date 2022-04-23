@@ -6,30 +6,24 @@ class AddToCart extends React.Component {
   constructor() {
     super();
     this.state = {
-      quantity: 100,
-      orderId: 10,
-      instrumentId: 10,
+      quantity: 0,
+      orderId: '',
+      instrumentId: '',
     };
   }
 
   render() {
-    
+    const { quantity, orderId, instrumentId } = this.state;
+    const item = { quantity, orderId, instrumentId };
     return (
       <div>
         <button
           onClick={() => {
-            
-            this.props.setCart( 
-              this.state.quantity,
-              this.state.orderId,
-              this.state.instrumentId
-            );
+            this.props.setCart(item);
           }}
         >
-          
           Add to Cart
         </button>
-        console.log(this.state, "state")
       </div>
     );
   }
@@ -37,8 +31,8 @@ class AddToCart extends React.Component {
 
 export default connect(null, (dispatch) => {
   return {
-    setCart: (quantity,orderId,instrumentId) => {
-      dispatch(createLineItem(quantity,orderId,instrumentId));
+    setCart: (item) => {
+      dispatch(createLineItem(item));
     },
   };
 })(AddToCart);
