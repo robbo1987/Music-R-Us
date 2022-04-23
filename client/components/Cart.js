@@ -69,6 +69,7 @@ export class Cart extends Component {
                 <button onClick={() => Increase(item)}>+</button>
                 <br></br>
                 {`Subtotal: $${item.quantity * item.instrument.price}`}
+                <br></br>
                 <button onClick={() => deleteLineitem(item)}>Remove</button>
               </li>
             );
