@@ -6,12 +6,22 @@ export class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // if this.props.cart exists, set cart to it with cartItems key else set to {}
+      /* this.state.cart looks like this 
+        {
+          id: it's own id,
+          isCart: true,
+          userId: auth.id (logged in user id)
+          cartItems: [this.props.cartitems] --- an array of the cart items passed in the mapState
+        }
+      */
       cart: this.props.cart
         ? { ...this.props.cart, cartItems: [...this.props.cartItems] }
         : {},
     };
   }
   componentDidUpdate(prevProps) {
+    // if prevProps doesn't have cart and this.props.cart exists, set cart to it with cartItems key --- this way it only sets once and doesn't cause an infinite loop
     if (!prevProps.cart && this.props.cart) {
       this.setState({
         cart: { ...this.props.cart, cartItems: [...this.props.cartItems] },
@@ -20,13 +30,12 @@ export class Cart extends Component {
   }
 
   render() {
-    const {
-      cart: { cartItems },
-    } = this.state;
+    const { cart } = this.state;
+    const cartItems = cart.cartItems;
     const { updateOrder, updateLineitem } = this.props;
 
     const Checkout = () => {
-      const order = { ...this.state.cart };
+      const order = { ...cart };
       updateOrder(order);
       order.cartItems.forEach((item) => {
         updateLineitem(item);
@@ -57,7 +66,20 @@ export class Cart extends Component {
 }
 
 const mapState = ({ orders, lineitems, instruments, auth }) => {
+  // search through the logged in User's orders to find the one that is the cart
   const cart = orders.find((order) => order.userId === auth.id && order.isCart);
+  // find all of the cart items associated with the cart and attach and instrument key to them
+  /* cartItem looks like this 
+  {
+    id: it's own id
+    orderId: cart.id
+    instrumentId: some instrument.id,
+    quantity: some number,
+    instrument: {
+      the details of the instrument associated with the cartItem
+    }
+  }
+  */
   const cartItems = lineitems
     .filter((item) => item.orderId === cart?.id)
     .map((item) => {

@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import {createLineItem} from "../store"
+import { createLineItem } from "../store";
 
 class AddToCart extends React.Component {
   constructor() {
     super();
     this.state = {
       quantity: 0,
-      orderId: '',
-      instrumentId: '',
+      orderId: "",
+      instrumentId: "",
     };
   }
 
