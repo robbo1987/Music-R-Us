@@ -30,7 +30,7 @@ export default function (state = [], action) {
   switch (action.type) {
     case SET_LINEITEM:
       return action.lineitems;
-    case SET_LINEITEM:
+    case UPDATE_LINEITEM:
       return state.map((lineitem) =>
         lineitem.id === action.lineitem.id ? action.lineitem : lineitem
       );
