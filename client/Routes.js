@@ -19,12 +19,14 @@ import Cart from "./components/Cart";
  */
 class Routes extends Component {
   componentDidMount() {
+    const cart = window.localStorage.getItem("cart");
+    if (!cart) window.localStorage.setItem("cart", "{}");
+
     this.props.loadInitialData();
   }
 
   render() {
     const { isLoggedIn } = this.props;
-
     return (
       <div>
         {isLoggedIn ? (
