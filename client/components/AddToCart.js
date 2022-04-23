@@ -6,9 +6,9 @@ class AddToCart extends React.Component {
   constructor() {
     super();
     this.state = {
-      quantity: 100,
-      orderId: 10,
-      instrumentId: 10,
+      quantity: 0,
+      orderId: "",
+      instrumentId: "",
     };
   }
 
