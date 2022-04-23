@@ -47,7 +47,6 @@ export class Cart extends Component {
         item.quantity--;
       }
       this.setState({});
-      console.log("state:", this.state);
     };
 
     const Increase = (item) => {
