@@ -2,19 +2,21 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const Instruments = ({ instruments, brands }) => {
+export const Instruments = ({ instruments, brands, categories }) => {
   return (
     <div>
       <ul>
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
+          const category = categories.find(category=> category.id === instrument.categoryId) || {}
+          console.log(category)
           return (
             <div key={instrument.id}>
               <Link to="/brands/">{brand.name}</Link>-
               <Link to={`/instruments/${instrument.id}`}>
                 {instrument.name}
               </Link>
-              -{instrument.category}
+               - {category.name}
               <img id="detailPage" src={`/public/photos/${instrument.image}`} />
             </div>
           );

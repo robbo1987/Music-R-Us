@@ -1,5 +1,8 @@
 body {
   font-family: sans-serif;
+  display:flex;
+  justify-content: space-around;
+  background-color: aquamarine;
 }
 
 a {
@@ -21,8 +24,10 @@ form div {
 }
 
 #detailPage {
-  height: 100px;
-  width: 150px;
+  margin-left: 10px;
+  width: 500px;
+  height: 250px;
+  
 }
 
 #singlePage {
