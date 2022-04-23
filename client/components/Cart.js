@@ -42,6 +42,19 @@ export class Cart extends Component {
       });
     };
 
+    const Decrease = (item) => {
+      if (item.quantity >= 1) {
+        item.quantity--;
+      }
+      this.setState({});
+      console.log("state:", this.state);
+    };
+
+    const Increase = (item) => {
+      item.quantity++;
+      this.setState({});
+    };
+
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
     return (
@@ -52,8 +65,9 @@ export class Cart extends Component {
               <li key={item.id}>
                 {`Instrument: ${item.instrument.name}`}
                 <br></br>
-                {`Quantity:`}
-                {` ${item.quantity}`}
+                {`Quantity:`} <button onClick={() => Decrease(item)}>-</button>
+                {` ${item.quantity} `}{" "}
+                <button onClick={() => Increase(item)}>+</button>
                 <br></br>
                 {`Subtotal: $${item.quantity * item.instrument.price}`}
               </li>
