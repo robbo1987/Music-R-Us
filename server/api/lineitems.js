@@ -1,13 +1,13 @@
 const router = require("express").Router();
 const {
-  models: { Lineitem, Order, User },
+  models: { Lineitem },
 } = require("../db");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    await User.findByToken(req.headers.authorization);
-    res.json(await Lineitem.findAll());
+    const lineItems = await Lineitem.findAll();
+    res.json(lineItems);
   } catch (err) {
     next(err);
   }
