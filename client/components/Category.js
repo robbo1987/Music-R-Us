@@ -15,7 +15,10 @@ export const Category = ({ instruments, brands, category }) => {
           return (
             <div key={instrument.id}>
               <div>
-                <img id="detailPage" src={`/public/photos/${instrument.image}`} />
+                <img
+                  id="detailPage"
+                  src={`/public/photos/${instrument.image}`}
+                />
               </div>
               <div>
                 <Link to={`/instruments/${instrument.id}`}>

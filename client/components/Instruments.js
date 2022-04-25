@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const Instruments = ({ instruments, brands, categories }) => {
+  if (!instruments.length && !brands.length && !categories.length) return null;
   return (
     <div>
       <ul>
@@ -13,7 +14,7 @@ export const Instruments = ({ instruments, brands, categories }) => {
               (category) => category.id === instrument.categoryId
             ) || {};
           return (
-            <div key={instrument.id}>
+            <div>
               <Link to="/brands/">{brand.name}</Link>-
               <Link to={`/instruments/${instrument.id}`}>
                 {instrument.name}

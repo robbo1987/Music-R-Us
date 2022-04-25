@@ -7,8 +7,17 @@ const DELETE_LINEITEM = "DELETE_LINEITEM";
 
 export const setLineitem = () => {
   return async (dispatch) => {
-    const lineitems = (await axios.get("/api/lineitems")).data;
-    dispatch({ type: SET_LINEITEM, lineitems });
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      const lineitems = (
+        await axios.get("/api/lineitems", {
+          headers: {
+            authorization: token,
+          },
+        })
+      ).data;
+      dispatch({ type: SET_LINEITEM, lineitems });
+    }
   };
 };
 

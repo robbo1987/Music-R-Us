@@ -13,8 +13,6 @@ const Category = require("./models/Category");
 
 Brand.hasMany(Instrument);
 Instrument.belongsTo(Brand);
-User.hasMany(Instrument);
-Instrument.belongsTo(User);
 
 Brand.hasMany(Category);
 Category.belongsTo(Brand);
