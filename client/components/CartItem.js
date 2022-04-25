@@ -16,11 +16,9 @@ export class CartItem extends Component {
     const instrument = instruments.find(
       (instrument) => (instrument.id = cartItem.instrumentId)
     );
-    console.log(instrument);
     const Decrease = () => {
       updateLineitem({ ...cartItem, quantity: cartItem.quantity - 1 });
     };
-
     const Increase = () => {
       updateLineitem({ ...cartItem, quantity: cartItem.quantity + 1 });
     };

@@ -14,7 +14,7 @@ export const Instruments = ({ instruments, brands, categories }) => {
               (category) => category.id === instrument.categoryId
             ) || {};
           return (
-            <div>
+            <div key={instrument.name}>
               <Link to="/brands/">{brand.name}</Link>-
               <Link to={`/instruments/${instrument.id}`}>
                 {instrument.name}

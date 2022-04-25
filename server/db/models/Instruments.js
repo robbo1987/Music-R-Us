@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { STRING, ENUM, TEXT, INTEGER } = Sequelize;
+const { STRING, TEXT, INTEGER } = Sequelize;
 const db = require("../db");
 
 const Instrument = db.define("instrument", {

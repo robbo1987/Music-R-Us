@@ -19,13 +19,11 @@ class AddToCart extends React.Component {
       (lineitem) =>
         lineitem.orderId === orderId && lineitem.instrumentId === instrument.id
     );
-
     const Change = (ev) => {
       this.setState({
         [ev.target.name]: ev.target.value,
       });
     };
-
     const Submit = (ev) => {
       ev.preventDefault();
       if (!lineitem) setCart(item);
