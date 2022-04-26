@@ -3,35 +3,22 @@ import { connect } from "react-redux";
 import { deleteLineitem, updateLineitem } from "../store";
 
 export class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 0,
-    };
+  constructor() {
+    super();
   }
 
   render() {
-    const { quantity } = this.state;
     const { instruments, cartItem, deleteLineitem, updateLineitem } =
       this.props;
     const instrument = instruments.find(
       (instrument) => instrument.id === cartItem.instrumentId
     );
 
-    const Change = (ev) => {
-      this.setState({
-        [ev.target.name]: ev.target.value,
-      });
+    const Decrease = () => {
+      updateLineitem({ ...cartItem, quantity: cartItem.quantity - 1 });
     };
-    const Submit = (ev) => {
-      ev.preventDefault();
-      if (!lineitem) setCart(item);
-      else
-        updateLineitem({
-          ...lineitem,
-          quantity: quantity * 1 + lineitem?.quantity,
-        });
-      window.alert(`${quantity} ${instrument.name} added to cart!`);
+    const Increase = () => {
+      updateLineitem({ ...cartItem, quantity: cartItem.quantity + 1 });
     };
 
     if (!instrument) return null;
@@ -40,17 +27,10 @@ export class Cart extends Component {
       <div>
         {`Instrument: ${instrument.name}`}
         <br></br>
-        {`Quantity:`}
-        <form onSubmit={Submit}>
-          <input
-            type="number"
-            name="quantity"
-            min="0"
-            value={quantity}
-            onChange={Change}
-          />
-        </form>
-        {`Subtotal: $${quantity * instrument.price}`}
+        {`Quantity:`} <button onClick={Decrease}>-</button>
+        {` ${cartItem.quantity} `} <button onClick={Increase}>+</button>
+        <br></br>
+        {`Subtotal: $${cartItem.quantity * instrument.price}`}
         <br></br>
         <button onClick={() => deleteLineitem(cartItem)}>Remove</button>
       </div>
