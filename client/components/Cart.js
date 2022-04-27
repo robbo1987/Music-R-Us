@@ -34,12 +34,22 @@ export class Cart extends Component {
 }
 
 const mapState = ({ orders, lineitems, auth }) => {
-  const cart = orders.find((order) => order.userId === auth.id && order.isCart);
-  const cartItems = lineitems.filter((item) => item.orderId === cart?.id);
-  return {
-    cart,
-    cartItems,
-  };
+  if (auth.id) {
+    const cart = orders.find(
+      (order) => order.userId === auth.id && order.isCart
+    );
+    const cartItems = lineitems.filter((item) => item.orderId === cart?.id);
+    return {
+      cart,
+      cartItems,
+    };
+  } else {
+    const cart = JSON.parse(window.localStorage.getItem("cart"));
+    return {
+      cart,
+      cartItems: lineitems,
+    };
+  }
 };
 const mapDispatch = (dispatch) => {
   return {

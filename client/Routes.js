@@ -19,9 +19,13 @@ import Cart from "./components/Cart";
  */
 class Routes extends Component {
   componentDidMount() {
+    // window.localStorage.removeItem("cart");
     const cart = window.localStorage.getItem("cart");
-    if (!cart) window.localStorage.setItem("cart", "{}");
-
+    if (!cart)
+      window.localStorage.setItem(
+        "cart",
+        '{"lineitems": [{"instrumentId": 1, "quantity": 1}]}'
+      );
     this.props.loadInitialData();
   }
 
