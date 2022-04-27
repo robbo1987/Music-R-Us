@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createLineItem, updateLineitem } from "../store";
+import auth from "../store/auth";
 
 class AddToCart extends React.Component {
   constructor(props) {
