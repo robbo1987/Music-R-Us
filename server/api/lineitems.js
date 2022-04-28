@@ -16,6 +16,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const lineItem = await Lineitem.create(req.body);
+    console.log(lineItem);
     res.status(201).send(lineItem);
   } catch (ex) {
     next(ex);

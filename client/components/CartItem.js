@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteLineitem, updateLineitem } from "../store";
+import { Link } from "react-router-dom";
 
 export class Cart extends Component {
   constructor() {
@@ -25,7 +26,8 @@ export class Cart extends Component {
 
     return (
       <div>
-        {`Instrument: ${instrument.name}`}
+        Instrument:
+        <Link to={`/instruments/${instrument.id}`}>{instrument.name}</Link>
         <br></br>
         {`Quantity:`} <button onClick={Decrease}>-</button>
         {` ${cartItem.quantity} `} <button onClick={Increase}>+</button>

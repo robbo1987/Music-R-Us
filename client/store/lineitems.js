@@ -4,10 +4,12 @@ const SET_LINEITEM = "SET_LINEITEM";
 const UPDATE_LINEITEM = "UPDATE_LINEITEM";
 const CREATE_LINEITEM = "CREATE_LINEITEM";
 const DELETE_LINEITEM = "DELETE_LINEITEM";
+const RESET_LINEITEMS = "RESET_LINEITEMS";
+
+const token = window.localStorage.getItem("token");
 
 export const setLineitem = () => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
     if (token) {
       const lineitems = (await axios.get("/api/lineitems")).data;
       dispatch({ type: SET_LINEITEM, lineitems });
@@ -20,7 +22,6 @@ export const setLineitem = () => {
 
 export const updateLineitem = (item) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
     if (token) {
       const lineitem = (
         await axios.put(`/api/lineitems/${item.id}`, item, {
@@ -30,21 +31,69 @@ export const updateLineitem = (item) => {
         })
       ).data;
       dispatch({ type: UPDATE_LINEITEM, lineitem });
+    } else {
+      const cart = JSON.parse(window.localStorage.getItem("cart"));
+      cart.lineitems.map((lineitem) => {
+        if (lineitem.instrumentId === item.instrumentId) {
+          lineitem.quantity = item.quantity;
+        }
+        return lineitem;
+      });
+      window.localStorage.setItem("cart", JSON.stringify(cart));
+
+      dispatch({ type: UPDATE_LINEITEM, lineitem: item });
     }
   };
 };
 
 export const createLineItem = (item) => {
   return async (dispatch) => {
-    const newItem = (await axios.post("/api/lineitems", item)).data;
-    dispatch({ type: CREATE_LINEITEM, newItem });
+    if (token) {
+      const newItem = (await axios.post("/api/lineitems", item)).data;
+      dispatch({ type: CREATE_LINEITEM, newItem });
+    } else {
+      const cart = JSON.parse(window.localStorage.getItem("cart"));
+      cart.lineitems.push(item);
+      window.localStorage.setItem("cart", JSON.stringify(cart));
+
+      dispatch({ type: CREATE_LINEITEM, newItem: item });
+    }
   };
 };
 
 export const deleteLineitem = (item) => {
   return async (dispatch) => {
-    await axios.delete(`/api/lineitems/${item.id}`);
-    dispatch({ type: DELETE_LINEITEM, item });
+    if (token) {
+      await axios.delete(`/api/lineitems/${item.id}`);
+      dispatch({ type: DELETE_LINEITEM, item });
+    } else {
+      const cart = JSON.parse(window.localStorage.getItem("cart"));
+      cart.lineitems.filter(
+        (lineitem) => lineitem.instrumentId !== item.instrumentId
+      );
+      window.localStorage.setItem("cart", JSON.stringify(cart));
+
+      dispatch({ type: DELETE_LINEITEM, item });
+    }
+  };
+};
+
+export const guestCheckout = (cartItems) => {
+  return async (dispatch) => {
+    window.localStorage.removeItem("cart");
+    const lineItems = { lineitems: [] };
+    window.localStorage.setItem("cart", JSON.stringify(lineItems));
+
+    for (let i = 0; i < cartItems.length; i++) {
+      await axios.post("/api/lineitems", cartItems[i]);
+    }
+    dispatch({ type: RESET_LINEITEMS });
+  };
+};
+
+export const resetLineitem = () => {
+  return {
+    type: RESET_LINEITEMS,
   };
 };
 
@@ -54,12 +103,16 @@ export default function (state = [], action) {
       return action.lineitems;
     case UPDATE_LINEITEM:
       return state.map((lineitem) =>
-        lineitem.id === action.lineitem.id ? action.lineitem : lineitem
+        lineitem.instrumentId === action.lineitem.instrumentId
+          ? action.lineitem
+          : lineitem
       );
     case CREATE_LINEITEM:
       return [...state, action.newItem];
     case DELETE_LINEITEM:
       return state.filter((lineitem) => lineitem.id !== action.item.id);
+    case RESET_LINEITEMS:
+      return [];
     default:
       return state;
   }

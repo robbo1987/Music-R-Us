@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout, resetOrders } from "../store";
+import { logout, resetOrders, resetLineitem } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
-
   <div>
     <h1>Music R Us</h1>
     <nav>
@@ -45,7 +44,7 @@ const mapState = (state) => {
     isLoggedIn: !!state.auth.id,
     instruments: state.instruments,
     brands: state.brands,
-    lineitems: state.lineitems
+    lineitems: state.lineitems,
   };
 };
 
@@ -54,6 +53,7 @@ const mapDispatch = (dispatch) => {
     handleClick() {
       dispatch(logout());
       dispatch(resetOrders());
+      dispatch(resetLineitem());
     },
   };
 };
