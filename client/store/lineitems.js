@@ -105,11 +105,16 @@ export default function (state = [], action) {
     case SET_LINEITEM:
       return action.lineitems;
     case UPDATE_LINEITEM:
-      return state.map((lineitem) =>
-        lineitem.instrumentId === action.lineitem.instrumentId
-          ? action.lineitem
-          : lineitem
-      );
+      if (action.lineitem.id) {
+        return state.map((lineitem) =>
+          lineitem.id === action.lineitem.id ? action.lineitem : lineitem
+        );
+      } else
+        return state.map((lineitem) =>
+          lineitem.instrumentId === action.lineitem.instrumentId
+            ? action.lineitem
+            : lineitem
+        );
     case CREATE_LINEITEM:
       return [...state, action.newItem];
     case DELETE_LINEITEM:
