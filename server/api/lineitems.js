@@ -24,11 +24,7 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const lineitem = await Lineitem.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
+    const lineitem = await Lineitem.findByPk(req.params.id);
     await lineitem.update({ quantity: req.body.quantity });
     res.json(lineitem);
   } catch (err) {

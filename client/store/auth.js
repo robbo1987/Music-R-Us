@@ -1,6 +1,6 @@
 import axios from "axios";
 import history from "../history";
-import { setOrders } from "../store";
+import { setOrders, setLineitem } from "../store";
 
 const TOKEN = "token";
 
@@ -37,6 +37,7 @@ export const authenticate =
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
       dispatch(setOrders());
+      dispatch(setLineitem());
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
