@@ -15,18 +15,11 @@ class AddToCart extends React.Component {
     const { createLineItem, instrument, lineitems, orderId, updateLineitem } =
       this.props;
 
-    console.log(instrument);
     const windowLineitem = {
       lineitems: [{ instrumentId: instrument.id, quantity: 1 }],
     };
-    console.log("hello", windowLineitem);
-    window.localStorage.setItem("cart", JSON.stringify(windowLineitem));
 
-    const item = { quantity, orderId, instrumentId: instrument.id };
-    const lineitem = lineitems.find(
-      (lineitem) =>
-        lineitem.orderId === orderId && lineitem.instrumentId === instrument.id
-    );
+    window.localStorage.setItem("cart", JSON.stringify(windowLineitem));
 
     const item = {
       quantity: quantity * 1,
@@ -45,7 +38,6 @@ class AddToCart extends React.Component {
         (lineitem) => lineitem.instrumentId === instrument.id
       );
     }
-
 
     const Change = (ev) => {
       this.setState({
