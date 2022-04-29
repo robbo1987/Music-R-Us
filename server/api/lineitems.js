@@ -1,13 +1,43 @@
-const router = require('express').Router()
-const { models: { Lineitem }} = require('../db')
-module.exports = router
+const router = require("express").Router();
+const {
+  models: { Lineitem },
+} = require("../db");
+module.exports = router;
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const lineItems= await Lineitem.findAll()
-    res.json(lineItems)
+    const lineItems = await Lineitem.findAll();
+    res.json(lineItems);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
+router.post("/", async (req, res, next) => {
+  try {
+    const lineItem = await Lineitem.create(req.body);
+    res.status(201).send(lineItem);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const lineitem = await Lineitem.findByPk(req.params.id);
+    await lineitem.update({ quantity: req.body.quantity });
+    res.json(lineitem);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const lineitem = await Lineitem.findByPk(req.params.id * 1);
+    await lineitem.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
