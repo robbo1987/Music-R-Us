@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createLineItem, updateLineitem } from "../store";
-import auth from "../store/auth";
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -13,13 +12,41 @@ class AddToCart extends React.Component {
 
   render() {
     const { quantity } = this.state;
-    const { setCart, instrument, lineitems, orderId, updateLineitem } =
+    const { createLineItem, instrument, lineitems, orderId, updateLineitem } =
       this.props;
+
+    console.log(instrument);
+    const windowLineitem = {
+      lineitems: [{ instrumentId: instrument.id, quantity: 1 }],
+    };
+    console.log("hello", windowLineitem);
+    window.localStorage.setItem("cart", JSON.stringify(windowLineitem));
+
     const item = { quantity, orderId, instrumentId: instrument.id };
     const lineitem = lineitems.find(
       (lineitem) =>
         lineitem.orderId === orderId && lineitem.instrumentId === instrument.id
     );
+
+    const item = {
+      quantity: quantity * 1,
+      orderId: orderId ? orderId : null,
+      instrumentId: instrument.id,
+    };
+    let lineitem;
+    if (orderId) {
+      lineitem = lineitems.find(
+        (lineitem) =>
+          lineitem.orderId === orderId &&
+          lineitem.instrumentId === instrument.id
+      );
+    } else {
+      lineitem = lineitems.find(
+        (lineitem) => lineitem.instrumentId === instrument.id
+      );
+    }
+
+
     const Change = (ev) => {
       this.setState({
         [ev.target.name]: ev.target.value,
@@ -27,12 +54,13 @@ class AddToCart extends React.Component {
     };
     const Submit = (ev) => {
       ev.preventDefault();
-      if (!lineitem) setCart(item);
-      else
+      if (!lineitem) createLineItem(item);
+      else {
         updateLineitem({
           ...lineitem,
           quantity: quantity * 1 + lineitem?.quantity,
         });
+      }
       window.alert(`${quantity} ${instrument.name} added to cart!`);
     };
 
@@ -63,7 +91,7 @@ const mapState = ({ auth, orders, lineitems }) => {
 
 export default connect(mapState, (dispatch) => {
   return {
-    setCart: (item) => {
+    createLineItem: (item) => {
       dispatch(createLineItem(item));
     },
     updateLineitem: (item) => {
