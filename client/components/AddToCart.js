@@ -21,13 +21,6 @@ class AddToCart extends React.Component {
     };
     console.log("hello", windowLineitem);
     window.localStorage.setItem("cart", JSON.stringify(windowLineitem));
-
-    const item = { quantity, orderId, instrumentId: instrument.id };
-    const lineitem = lineitems.find(
-      (lineitem) =>
-        lineitem.orderId === orderId && lineitem.instrumentId === instrument.id
-    );
-
     const item = {
       quantity: quantity * 1,
       orderId: orderId ? orderId : null,
@@ -45,7 +38,6 @@ class AddToCart extends React.Component {
         (lineitem) => lineitem.instrumentId === instrument.id
       );
     }
-
 
     const Change = (ev) => {
       this.setState({
