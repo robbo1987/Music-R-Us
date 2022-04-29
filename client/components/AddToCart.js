@@ -14,7 +14,7 @@ class AddToCart extends React.Component {
     const { quantity } = this.state;
     const { createLineItem, instrument, lineitems, orderId, updateLineitem } =
       this.props;
-<<<<<<< HEAD
+
     console.log(instrument);
     const windowLineitem = {
       lineitems: [{ instrumentId: instrument.id, quantity: 1 }],
@@ -27,7 +27,7 @@ class AddToCart extends React.Component {
       (lineitem) =>
         lineitem.orderId === orderId && lineitem.instrumentId === instrument.id
     );
-=======
+
     const item = {
       quantity: quantity * 1,
       orderId: orderId ? orderId : null,
@@ -46,7 +46,7 @@ class AddToCart extends React.Component {
       );
     }
 
->>>>>>> a1330215f0307edfb8d7b666f02149aeffd0a447
+
     const Change = (ev) => {
       this.setState({
         [ev.target.name]: ev.target.value,
