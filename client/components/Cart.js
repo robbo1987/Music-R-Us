@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateOrder, updateLineitem } from "../store";
+import { updateOrder, updateLineitem, guestCheckout } from "../store";
 import CartItem from "./CartItem";
 
 export class Cart extends Component {
@@ -9,13 +9,18 @@ export class Cart extends Component {
   }
 
   render() {
-    const { cart, cartItems, updateOrder, updateLineitem } = this.props;
+    const { cart, cartItems, updateOrder, updateLineitem, guestCheckout } =
+      this.props;
 
     const Checkout = () => {
-      updateOrder(cart);
-      cartItems.forEach((item) => {
-        updateLineitem(item);
-      });
+      if (cart.id) {
+        updateOrder(cart);
+        cartItems.forEach((item) => {
+          updateLineitem(item);
+        });
+      } else {
+        guestCheckout(cartItems);
+      }
     };
 
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
@@ -24,7 +29,7 @@ export class Cart extends Component {
       <div>
         <ul>
           {cartItems.map((cartItem) => {
-            return <CartItem cartItem={cartItem} key={cartItem.id} />;
+            return <CartItem cartItem={cartItem} key={cartItem.instrumentId} />;
           })}
         </ul>
         <button onClick={Checkout}> Checkout </button>
@@ -58,6 +63,9 @@ const mapDispatch = (dispatch) => {
     },
     updateLineitem: (lineitem) => {
       dispatch(updateLineitem(lineitem));
+    },
+    guestCheckout: (cartItems) => {
+      dispatch(guestCheckout(cartItems));
     },
   };
 };

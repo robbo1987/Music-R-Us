@@ -4,9 +4,10 @@ import history from "../history";
 const SET_ORDERS = "SET_ORDERS";
 const RESET_ORDERS = "RESET_ORDERS";
 
+const token = window.localStorage.getItem("token");
+
 export const setOrders = () => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
     if (token) {
       const orders = (
         await axios.get("/api/orders", {
@@ -22,7 +23,6 @@ export const setOrders = () => {
 
 export const updateOrder = (order) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
     if (token) {
       const orders = (
         await axios.put(`/api/orders/${order.id}`, null, {

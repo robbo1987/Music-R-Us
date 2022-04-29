@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { User, Order },
+  models: { User, Order, Lineitem },
 } = require("../db");
 module.exports = router;
 
@@ -13,6 +13,15 @@ router.get("/", async (req, res, next) => {
       },
     });
     res.json(orders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/", async (req, res, next) => {
+  try {
+    const order = await Order.create();
+    res.json(order);
   } catch (err) {
     next(err);
   }
