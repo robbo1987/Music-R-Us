@@ -15,12 +15,12 @@ class AddToCart extends React.Component {
     const { createLineItem, instrument, lineitems, orderId, updateLineitem } =
       this.props;
 
-    console.log(instrument);
     const windowLineitem = {
       lineitems: [{ instrumentId: instrument.id, quantity: 1 }],
     };
-    console.log("hello", windowLineitem);
+
     window.localStorage.setItem("cart", JSON.stringify(windowLineitem));
+
     const item = {
       quantity: quantity * 1,
       orderId: orderId ? orderId : null,
