@@ -24,6 +24,7 @@ class Routes extends Component {
     const lineItems = { lineitems: [] };
     const cart = window.localStorage.getItem("cart");
     if (!cart) window.localStorage.setItem("cart", JSON.stringify(lineItems));
+
     this.props.loadInitialData();
   }
 
