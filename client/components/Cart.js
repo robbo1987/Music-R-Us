@@ -39,6 +39,7 @@ export class Cart extends Component {
 }
 
 const mapState = ({ orders, lineitems, auth }) => {
+  console.log(auth);
   if (auth.id) {
     const cart = orders.find(
       (order) => order.userId === auth.id && order.isCart
