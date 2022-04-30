@@ -20,8 +20,8 @@ import Cart from "./components/Cart";
 class Routes extends Component {
   componentDidMount() {
     window.localStorage.removeItem("cart");
-    
-    const lineItems = { lineitems: [{ instrumentId: 1, quantity: 1 }] };
+
+    const lineItems = { lineitems: [] };
     const cart = window.localStorage.getItem("cart");
     if (!cart) window.localStorage.setItem("cart", JSON.stringify(lineItems));
     this.props.loadInitialData();
