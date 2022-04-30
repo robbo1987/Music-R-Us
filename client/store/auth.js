@@ -25,7 +25,6 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    console.log(res.data.correctPassword);
     return dispatch(setAuth(res.data));
   }
 };

@@ -7,11 +7,12 @@ import instruments from './instruments'
 import brands from './brands'
 import orders from './orders'
 import lineitems from './lineitems'
+import users from './users'
 
 
 import categories from './categories'
 
-const reducer = combineReducers({ auth, instruments, brands, categories, orders, lineitems})
+const reducer = combineReducers({ auth, instruments, brands, categories, orders, lineitems, users})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -25,4 +26,4 @@ export * from './instruments'
 export * from './categories'
 export * from './orders'
 export * from './lineitems'
-
+export * from './users'

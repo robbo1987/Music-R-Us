@@ -87,7 +87,6 @@ export const guestCheckout = (cartItems) => {
     const order = (await axios.post("/api/orders")).data;
     for (let i = 0; i < cartItems.length; i++) {
       cartItems[i].orderId = order.id;
-      console.log(order.id, cartItems[i].orderId);
       await axios.post("/api/lineitems", cartItems[i]);
     }
     dispatch({ type: RESET_LINEITEMS });

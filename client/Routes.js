@@ -4,7 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me, setCategories } from "./store";
-import { setBrands, setInstruments, setOrders, setLineitem } from "./store";
+import { setBrands, setInstruments, setOrders, setLineitem, setUsers } from "./store";
 import Brands from "./components/Brands";
 import Instruments from "./components/Instruments";
 import Brand from "./components/Brand";
@@ -13,6 +13,7 @@ import Category from "./components/Category";
 import SelectedInstrument from "./components/SelectedInstrument";
 import Orders from "./components/Orders";
 import Cart from "./components/Cart";
+import Profile from "./components/Profile";
 
 /**
  * COMPONENT
@@ -20,7 +21,6 @@ import Cart from "./components/Cart";
 class Routes extends Component {
   componentDidMount() {
     window.localStorage.removeItem("cart");
-    
     const lineItems = { lineitems: [{ instrumentId: 1, quantity: 1 }] };
     const cart = window.localStorage.getItem("cart");
     if (!cart) window.localStorage.setItem("cart", JSON.stringify(lineItems));
@@ -35,6 +35,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" exact component={Home} />
             <Route path="/orders" exact component={Orders} />
+            <Route path="/profile" exact component={Profile} />
           </Switch>
         ) : (
           <Switch>
@@ -77,6 +78,7 @@ const mapDispatch = (dispatch) => {
       dispatch(setInstruments());
       dispatch(setCategories());
       dispatch(setLineitem());
+      dispatch(setUsers());
     },
   };
 };
