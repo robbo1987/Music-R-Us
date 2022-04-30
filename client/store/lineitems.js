@@ -6,10 +6,9 @@ const CREATE_LINEITEM = "CREATE_LINEITEM";
 const DELETE_LINEITEM = "DELETE_LINEITEM";
 const RESET_LINEITEMS = "RESET_LINEITEMS";
 
-const token = window.localStorage.getItem("token");
-
 export const setLineitem = () => {
   return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     if (token) {
       const lineitems = (await axios.get("/api/lineitems")).data;
       dispatch({ type: SET_LINEITEM, lineitems });
@@ -22,6 +21,7 @@ export const setLineitem = () => {
 
 export const updateLineitem = (item) => {
   return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     if (token) {
       const lineitem = (
         await axios.put(`/api/lineitems/${item.id}`, item, {
@@ -48,14 +48,13 @@ export const updateLineitem = (item) => {
 
 export const createLineItem = (item) => {
   return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     if (token) {
       const newItem = (await axios.post("/api/lineitems", item)).data;
       dispatch({ type: CREATE_LINEITEM, newItem });
     } else {
       const cart = JSON.parse(window.localStorage.getItem("cart"));
-      console.log(cart);
       cart.lineitems.push(item);
-      console.log(cart);
 
       window.localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -66,6 +65,7 @@ export const createLineItem = (item) => {
 
 export const deleteLineitem = (item) => {
   return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     if (token) {
       await axios.delete(`/api/lineitems/${item.id}`);
       dispatch({ type: DELETE_LINEITEM, item });

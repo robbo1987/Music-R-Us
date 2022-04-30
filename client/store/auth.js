@@ -35,9 +35,10 @@ export const authenticate =
     try {
       const res = await axios.post(`/auth/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
-      await dispatch(me());
-      await dispatch(setOrders());
-      await dispatch(setLineitem());
+      console.log(window.localStorage.getItem(TOKEN));
+      dispatch(me());
+      dispatch(setOrders());
+      dispatch(setLineitem());
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
