@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { updateProfile } from "../store";
 
 class Profile extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Profile extends Component {
   }
   saveProfile(ev) {
     ev.preventDefault();
-    this.props.updateProfile()
+    this.props.update(this.state.username);
   }
 
   onChange(ev) {
@@ -38,8 +39,8 @@ class Profile extends Component {
 
           <button
             disabled={
-              (username === this.props.auth.username &&
-              address === this.props.auth.address)
+              username === this.props.auth.username &&
+              address === this.props.auth.address
             }
           >
             Save
@@ -51,12 +52,14 @@ class Profile extends Component {
 }
 
 const mapState = (state) => {
-  return state;
+  return {
+    auth: state.auth,
+  };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    updateProfile: (username) => {
+    update: (username) => {
       dispatch(updateProfile(username));
     },
   };
