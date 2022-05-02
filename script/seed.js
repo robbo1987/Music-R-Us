@@ -18,7 +18,7 @@ async function seed() {
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
   ]);
-  //added 'Knilling' as violin brand (seemed popular)
+
   const [Fender, Gibson, PRS, Jackson, Steinway, Yamaha, Knilling] =
     await Promise.all(
       [
@@ -33,7 +33,7 @@ async function seed() {
         return Brand.create({ name: brand });
       })
     );
-  //added 'keyboard', as it was taking in the violin key
+
   const [Guitar, Piano, Bass, Keyboard, Violin] = await Promise.all(
     ["Guitar", "Piano", "Bass", "Keyboard", "Violin"].map((category) => {
       return Category.create({ name: category });
@@ -290,7 +290,7 @@ async function seed() {
       brandId: Yamaha.id,
       image: "av10.jpg",
     }),
-    // added a violins & keyboards
+
     Instrument.create({
       categoryId: Violin.id,
       name: "YEV105 Electric Violin",
@@ -342,23 +342,27 @@ async function seed() {
     Order.create({ userId: 2 }),
   ]);
 
-  const lineitems = await Promise.all([
-    Lineitem.create({ quantity: 2, instrumentId: 1, orderId: 1 }),
-    Lineitem.create({ quantity: 3, instrumentId: 4, orderId: 1 }),
-    Lineitem.create({ quantity: 4, instrumentId: 10, orderId: 1 }),
-    Lineitem.create({ quantity: 1, instrumentId: 2, orderId: 2 }),
-    Lineitem.create({ quantity: 2, instrumentId: 3, orderId: 3 }),
-    Lineitem.create({ quantity: 2, instrumentId: 4, orderId: 4 }),
-    Lineitem.create({ quantity: 1, instrumentId: 5, orderId: 5 }),
-    Lineitem.create({ quantity: 2, instrumentId: 6, orderId: 6 }),
-    Lineitem.create({ quantity: 1, instrumentId: 7, orderId: 7 }),
-    Lineitem.create({ quantity: 2, instrumentId: 8, orderId: 8 }),
-    Lineitem.create({ quantity: 1, instrumentId: 9, orderId: 9 }),
-    Lineitem.create({ quantity: 3, instrumentId: 12, orderId: 6 }),
-    Lineitem.create({ quantity: 4, instrumentId: 16, orderId: 7 }),
-    Lineitem.create({ quantity: 4, instrumentId: 18, orderId: 8 }),
-    Lineitem.create({ quantity: 3, instrumentId: 19, orderId: 9 }),
-  ]);
+  const randomOrderId = (orders) => {
+    return orders[Math.floor(Math.random() * orders.length)].id;
+  };
+  const randomInstrumentId = (instruments) => {
+    return instruments[Math.floor(Math.random() * instruments.length)].id;
+  };
+  const randomQuantity = () => {
+    return Math.ceil(Math.random() * 10);
+  };
+
+  const lineitems = await Promise.all(
+    Array(20)
+      .fill("")
+      .map((__) => {
+        return Lineitem.create({
+          quantity: randomQuantity(),
+          instrumentId: randomInstrumentId(instruments),
+          orderId: randomOrderId(orders),
+        });
+      })
+  );
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);

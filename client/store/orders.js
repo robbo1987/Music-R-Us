@@ -15,7 +15,6 @@ export const setOrders = () => {
           },
         })
       ).data;
-      console.log(orders);
       dispatch({ type: SET_ORDERS, orders });
     }
   };
