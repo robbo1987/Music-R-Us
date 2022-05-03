@@ -15,7 +15,7 @@ export const updateInventory = (instrument) => {
   return async (dispatch) => {
     console.log(instrument);
     const updatedInventory = (
-      await axios.put(`/api/instruments/${instrument.id}`, instrument)
+      await axios.put(`/api/instruments/${instrument.instrumentId}`, instrument)
     ).data;
     dispatch({ type: UPDATE_INVENTORY, updatedInventory });
   };

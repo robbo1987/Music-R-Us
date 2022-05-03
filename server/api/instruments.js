@@ -13,13 +13,22 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.put ('/instruments/:id', async (req,res,next) => {
-  try{
-    const instrument = await Instrument.findByPk(req.params.id)
-    await instrument.update( {inventory: req.body.inventory})
-    res.json(instrument)
+router.get("/:id", async (req, res, next) => {
+  try {
+    const instrument = await Instrument.findByPk(req.params.id);
+    res.json(instrument);
+  } catch (ex) {
+    next(ex);
   }
-  catch(err) {
-    next(err)
+});
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const instrument = await Instrument.findByPk(req.params.id);
+    console.log(instrument);
+    //await instrument.update( {inventory: req.body.inventory})
+    //res.json(instrument)
+  } catch (err) {
+    next(err);
   }
-})
+});
