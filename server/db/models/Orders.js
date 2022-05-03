@@ -1,11 +1,16 @@
 const Sequelize = require("sequelize");
-const { BOOLEAN, VIRTUAL } = Sequelize;
+const { BOOLEAN, VIRTUAL, UUID, UUIDV4 } = Sequelize;
 const db = require("../db");
 
 const Lineitem = require("./Lineitem");
 const Instrument = require("./Instruments");
 
 const Order = db.define("order", {
+  id: {
+    type: UUID,
+    defaultValue: UUIDV4,
+    primaryKey: true,
+  },
   isCart: {
     type: BOOLEAN,
     defaultValue: false,

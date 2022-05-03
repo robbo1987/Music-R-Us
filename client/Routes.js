@@ -20,11 +20,9 @@ import Profile from "./components/Profile";
  */
 class Routes extends Component {
   componentDidMount() {
-    window.localStorage.removeItem("cart");
-
-    const lineItems = { lineitems: [] };
     const cart = window.localStorage.getItem("cart");
-    if (!cart) window.localStorage.setItem("cart", JSON.stringify(lineItems));
+    if (!cart)
+      window.localStorage.setItem("cart", JSON.stringify({ lineitems: [] }));
 
     this.props.loadInitialData();
   }

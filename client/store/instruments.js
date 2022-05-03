@@ -1,20 +1,37 @@
-import axios from 'axios'
-import history from '../history'
+import axios from "axios";
+import history from "../history";
 
-const SET_INSTRUMENTS = 'SET_INSTRUMENTS'
+const SET_INSTRUMENTS = "SET_INSTRUMENTS";
+const UPDATE_INVENTORY = "UPDATE_INVENTORY";
 
 export const setInstruments = () => {
-  return async dispatch =>{
-    const instruments = (await axios.get('/api/instruments')).data
-    dispatch({type: SET_INSTRUMENTS, instruments})
-  }
-}
+  return async (dispatch) => {
+    const instruments = (await axios.get("/api/instruments")).data;
+    dispatch({ type: SET_INSTRUMENTS, instruments });
+  };
+};
 
-export default function(state = [], action) {
+export const updateInventory = (instrument) => {
+  return async (dispatch) => {
+    console.log(instrument);
+    const updatedInventory = (
+      await axios.put(`/api/instruments/${instrument.instrumentId}`, instrument)
+    ).data;
+    dispatch({ type: UPDATE_INVENTORY, updatedInventory });
+  };
+};
+
+export default function (state = [], action) {
   switch (action.type) {
     case SET_INSTRUMENTS:
-      return action.instruments
+      return action.instruments;
+    case UPDATE_INVENTORY:
+      return state.map((instrument) => {
+        if (instrument.id === action.updatedInventory.id) {
+          return action.updatedInventory;
+        } else return instrument;
+      });
     default:
-      return state
+      return state;
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createLineItem, updateLineitem } from "../store";
+import { createLineItem, updateLineitem, updateInventory } from "../store";
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class AddToCart extends React.Component {
 
   render() {
     const { quantity } = this.state;
-    const { createLineItem, instrument, lineitems, orderId, updateLineitem } =
+    const { createLineItem, instrument, lineitems, orderId, updateLineitem, updateInventory } =
       this.props;
 
     const item = {
@@ -20,6 +20,15 @@ class AddToCart extends React.Component {
       orderId: orderId ? orderId : null,
       instrumentId: instrument.id,
     };
+
+    const updatedInventory = {
+      instrumentId: instrument.id,
+      inventory: instrument.inventory - (quantity *1)
+    }
+
+     
+
+
     let lineitem;
     if (orderId) {
       lineitem = lineitems.find(
@@ -40,6 +49,11 @@ class AddToCart extends React.Component {
     };
     const Submit = (ev) => {
       ev.preventDefault();
+
+      console.log(updatedInventory);
+
+      updateInventory(updatedInventory)
+
       if (!lineitem) createLineItem(item);
       else {
         updateLineitem({
@@ -83,5 +97,8 @@ export default connect(mapState, (dispatch) => {
     updateLineitem: (item) => {
       dispatch(updateLineitem(item));
     },
+    updateInventory: (instrument) => {
+      dispatch(updateInventory(instrument))
+    }
   };
 })(AddToCart);
