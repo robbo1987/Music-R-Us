@@ -13,6 +13,7 @@ import Category from "./components/Category";
 import SelectedInstrument from "./components/SelectedInstrument";
 import Orders from "./components/Orders";
 import Cart from "./components/Cart";
+import Profile from "./components/Profile";
 
 /**
  * COMPONENT
@@ -34,6 +35,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" exact component={Home} />
             <Route path="/orders" exact component={Orders} />
+            <Route path="/profile" exact component={Profile} />
           </Switch>
         ) : (
           <Switch>

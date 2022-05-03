@@ -34,3 +34,13 @@ router.get("/me", async (req, res, next) => {
     next(ex);
   }
 });
+
+router.put("/me", async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+    user.update({ username: req.body.username });
+    res.send(user);
+  } catch (ex) {
+    next(ex);
+  }
+});
