@@ -10,21 +10,25 @@ export const SelectedInstrument = ({ instrument, brand, category }) => {
   return (
     <div>
       <ul>
-        <div></div>
+        
         <li>
           {brand.name} {instrument.name}
         </li>
+        < br />
         <li>Price: {`$ ${instrument.price} `}</li>
         <br />
+
+        <li> Inventory: {instrument.inventory}</li>
+        <br />
         <AddToCart instrument={instrument} />
-        <div></div>
+       
         <br />
         Click to Return To
-        <Link to={`/categories/${category.id}`}>{category.name}'s</Link>
+        <Link to={`/categories/${category.id}`}> {category.name}'s</Link>
         <div>
           <br />
           Click to Return To
-          <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+          <Link to={`/brands/${brand.id}`}> {brand.name}</Link>
           <div></div>
           <br />
           <img id="detailPage" src={`/public/photos/${instrument.image}`} />
