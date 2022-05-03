@@ -36,7 +36,11 @@ export class Cart extends Component {
       <div>
         <ul>
           {cartItems.map((cartItem) => {
-            return <CartItem cartItem={cartItem} key={cartItem.instrumentId} />;
+            return cartItem.id ? (
+              <CartItem cartItem={cartItem} key={cartItem.id} />
+            ) : (
+              <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
+            );
           })}
         </ul>
         {auth.id ? <button onClick={Checkout}> Checkout</button> : null}
@@ -52,7 +56,6 @@ export class Cart extends Component {
 }
 
 const mapState = ({ orders, lineitems, auth }) => {
-  console.log(auth);
   if (auth.id) {
     const cart = orders.find(
       (order) => order.userId === auth.id && order.isCart

@@ -8,7 +8,6 @@ export const setOrders = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
-      console.log("here");
       const orders = (
         await axios.get("/api/orders", {
           headers: {
@@ -16,7 +15,6 @@ export const setOrders = () => {
           },
         })
       ).data;
-      console.log(orders);
       dispatch({ type: SET_ORDERS, orders });
     }
   };
