@@ -25,6 +25,12 @@ export default function (state = [], action) {
   switch (action.type) {
     case SET_INSTRUMENTS:
       return action.instruments;
+    case UPDATE_INVENTORY:
+      return state.map((instrument) => {
+        if (instrument.id === action.updatedInventory.id) {
+          return action.updatedInventory;
+        } else return instrument;
+      });
     default:
       return state;
   }

@@ -13,14 +13,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
-  try {
-    const instrument = await Instrument.findByPk(req.params.id);
-    res.json(instrument);
-  } catch (ex) {
-    next(ex);
-  }
-});
 
 router.put("/:id", async (req, res, next) => {
   try {
