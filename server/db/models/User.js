@@ -28,7 +28,7 @@ const User = db.define("user", {
     },
     defaultValue: "jianing@jianing.com",
   },
-  address: {
+  streetAddress: {
     type: STRING,
     allowNull: false,
     defaultValue: "121 Johnson Lane",

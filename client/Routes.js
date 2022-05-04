@@ -14,6 +14,7 @@ import SelectedInstrument from "./components/SelectedInstrument";
 import Orders from "./components/Orders";
 import Cart from "./components/Cart";
 import Profile from "./components/Profile";
+import CheckoutPage from "./components/CheckoutPage";
 
 /**
  * COMPONENT
@@ -52,6 +53,7 @@ class Routes extends Component {
           <Route path="/brands/:id" exact component={Brand} />
           <Route path="/instruments/:id" exact component={SelectedInstrument} />
           <Route path="/cart" exact component={Cart} />
+          <Route path="/checkoutpage" exact component={CheckoutPage} />
         </Switch>
       </div>
     );
