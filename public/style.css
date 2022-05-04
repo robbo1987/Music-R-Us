@@ -29,6 +29,10 @@ form div {
   height: 250px;
   
 }
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+}
 
 #singlePage {
   height: 500px;

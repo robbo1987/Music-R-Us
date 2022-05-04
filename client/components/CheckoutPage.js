@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { updateOrder, updateLineitem, guestCheckout } from "../store";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import UserDetailsForm from "./UserDetailsForm";
 
-export class Cart extends Component {
+export class CheckoutPage extends Component {
   constructor() {
     super();
   }
@@ -12,44 +13,45 @@ export class Cart extends Component {
   render() {
     const {
       auth,
-      //cart,
+      cart,
       cartItems,
-      // updateOrder,
-      // updateLineitem,
+      updateOrder,
+      updateLineitem,
+      guestCheckout,
     } = this.props;
 
-    // const Checkout = () => {
-    //   if (cart.id) {
-    //     updateOrder(cart);
-    //     cartItems.forEach((item) => {
-    //       updateLineitem(item);
-    //     });
-    //   } else {
-    //     guestCheckout(cartItems);
-    //   }
-    // };
+    const Checkout = () => {
+      if (cart.id) {
+        updateOrder(cart);
+        cartItems.forEach((item) => {
+          updateLineitem(item);
+        });
+      } else {
+        guestCheckout(cartItems);
+      }
+    };
     console.log("auth", auth);
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
     return (
       <div>
         <ul>
-          {cartItems.map((cartItem) => {
+          {/* {cartItems.map((cartItem) => {
             return cartItem.id ? (
               <CartItem cartItem={cartItem} key={cartItem.id} />
             ) : (
               <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
             );
-          })}
+          })} */}
         </ul>
-        {/* {auth.id ? <button onClick={Checkout}> Checkout</button> : null}
+        <UserDetailsForm />
+        {auth.id ? <button onClick={Checkout}> Checkout</button> : null}
         {!auth.id ? (
           <>
             <button onClick={Checkout}> Checkout As Guest </button>{" "}
             <Link to="/signup">Sign Up</Link>{" "}
           </>
-        ) : null} */}
-        <Link to="/checkoutpage">Proceed to Checkout</Link>
+        ) : null}
       </div>
     );
   }
@@ -75,18 +77,18 @@ const mapState = ({ orders, lineitems, auth }) => {
     };
   }
 };
-// const mapDispatch = (dispatch) => {
-//   return {
-//     updateOrder: (order) => {
-//       dispatch(updateOrder(order));
-//     },
-//     updateLineitem: (lineitem) => {
-//       dispatch(updateLineitem(lineitem));
-//     },
-//     guestCheckout: (cartItems) => {
-//       dispatch(guestCheckout(cartItems));
-//     },
-//   };
-// };
+const mapDispatch = (dispatch) => {
+  return {
+    updateOrder: (order) => {
+      dispatch(updateOrder(order));
+    },
+    updateLineitem: (lineitem) => {
+      dispatch(updateLineitem(lineitem));
+    },
+    guestCheckout: (cartItems) => {
+      dispatch(guestCheckout(cartItems));
+    },
+  };
+};
 
-export default connect(mapState)(Cart);
+export default connect(mapState, mapDispatch)(CheckoutPage);

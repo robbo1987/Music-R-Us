@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { BOOLEAN, VIRTUAL, UUID, UUIDV4 } = Sequelize;
+const { BOOLEAN, VIRTUAL, STRING, UUID, UUIDV4 } = Sequelize;
 const db = require("../db");
 
 const Lineitem = require("./Lineitem");
@@ -14,6 +14,34 @@ const Order = db.define("order", {
   isCart: {
     type: BOOLEAN,
     defaultValue: false,
+  },
+  name: {
+    type: STRING,
+    defaultValue: "jianing@jianing.com",
+  },
+  email: {
+    type: STRING,
+    defaultValue: "jianing@jianing.com",
+  },
+  streetAddress: {
+    type: STRING,
+    defaultValue: "121 Johnson Lane",
+  },
+  city: {
+    type: STRING,
+    defaultValue: "Brooklyn",
+  },
+  state: {
+    type: STRING,
+    defaultValue: "New York",
+  },
+  zip: {
+    type: Sequelize.INTEGER,
+    defaultValue: 11235,
+  },
+  phone: {
+    type: STRING,
+    defaultValue: "917-111-1234",
   },
   total: {
     type: VIRTUAL,
