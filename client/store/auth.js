@@ -44,27 +44,30 @@ export const authenticate =
   };
 
 export const updateProfile = (user) => {
-  return async dispatch => {
-  const token = window.localStorage.getItem(TOKEN);
-  console.log(token)
-  console.log('user',user)
-  const updatedUser = (await axios.put('/auth/me',user, {
-    headers: {
-      authorization: token,
-    }
-  })).data
-  console.log(updatedUser)
-  // const profile = await axios.put(
-  //   "/auth/me",
-  //   { username, },
-  //   {
-  //     headers: {
-  //       authorization: token,
-  //     },
-  //   }
-  // );
-  // return dispatch(setAuth(profile.data));
-}}
+  return async (dispatch) => {
+    const token = window.localStorage.getItem(TOKEN);
+    console.log(token);
+    console.log("user", user);
+    const updatedUser = (
+      await axios.put("/auth/me", user, {
+        headers: {
+          authorization: token,
+        },
+      })
+    ).data;
+    console.log(updatedUser);
+    // const profile = await axios.put(
+    //   "/auth/me",
+    //   { username, },
+    //   {
+    //     headers: {
+    //       authorization: token,
+    //     },
+    //   }
+    // );
+    // return dispatch(setAuth(profile.data));
+  };
+};
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
