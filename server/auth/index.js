@@ -40,8 +40,7 @@ router.put("/me", async (req, res, next) => {
     const user = await User.findByToken(req.headers.authorization);
     console.log(user)
     const updatedUser = (await user.update(req.body))
-    console.log('hi', updatedUser)
-    //res.send(user);
+    res.send(updatedUser);
   } catch (ex) {
     next(ex);
   }
