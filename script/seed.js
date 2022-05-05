@@ -36,9 +36,10 @@ async function seed() {
 
   const [Guitar, Piano, Bass, Keyboard, Violin] = await Promise.all(
     ["Guitar", "Piano", "Bass", "Keyboard", "Violin"].map((category) => {
-      return Category.create({ name: category });
+      return Category.create({ name: category, image: category + ".jpeg" });
     })
   );
+
   const instruments = await Promise.all([
     Instrument.create({
       categoryId: Guitar.id,

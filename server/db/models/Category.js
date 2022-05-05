@@ -10,6 +10,10 @@ const Category = db.define("category", {
       notEmpty: true,
     },
   },
+  image: {
+    type: STRING,
+    defaultValue: "stockImage.png",
+  },
 });
 
 module.exports = Category;
