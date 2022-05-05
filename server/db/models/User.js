@@ -10,63 +10,33 @@ const SALT_ROUNDS = 5;
 const User = db.define("user", {
   username: {
     type: STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    
   },
   password: {
     type: STRING,
   },
   email: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      isEmail: true,
-      notEmpty: true,
-    },
-    defaultValue: "jianing@jianing.com",
+   
   },
   streetAddress: {
     type: STRING,
-    allowNull: false,
-    defaultValue: "121 Johnson Lane",
-    validate: {
-      notEmpty: true,
-    },
+    
   },
   city: {
     type: STRING,
-    allowNull: false,
-    defaultValue: "Brooklyn",
-    validate: {
-      notEmpty: true,
-    },
+    
   },
   state: {
     type: STRING,
-    allowNull: false,
-    defaultValue: "New York",
-    validate: {
-      notEmpty: true,
-    },
+    
   },
   zip: {
     type: Sequelize.INTEGER,
-    defaultValue: 11235,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+   
   },
   phone: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-    defaultValue: "917-111-1234",
   },
   isAdmin: {
     type: BOOLEAN,

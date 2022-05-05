@@ -5,14 +5,15 @@ import { connect } from "react-redux";
  * COMPONENT
  */
 export const Home = (props) => {
-  const { username, email, city, state, zip, address, phone } = props;
+  
+  const { username, email, city, state, zip, streetAddress, phone } = props;
 
   return (
     <div>
       <h3>Welcome, {username}</h3>
       <h3>Your email address is {email}</h3>
       <h3>
-        Your Address is {address} {city} {state} {zip}
+        Your Address is {streetAddress} {city} {state} {zip}
       </h3>
       <h3>Your phone number is {phone}</h3>
     </div>
@@ -29,7 +30,7 @@ const mapState = (state) => {
     zip: state.auth.zip,
     city: state.auth.city,
     state: state.auth.state,
-    address: state.auth.streetAddress,
+    streetAddress: state.auth.streetAddress,
     phone: state.auth.phone,
   };
 };
