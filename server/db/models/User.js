@@ -3,7 +3,7 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
-const STRING = Sequelize.STRING;
+const { BOOLEAN, STRING } = require("sequelize");
 
 const SALT_ROUNDS = 5;
 
@@ -17,7 +17,6 @@ const User = db.define("user", {
   },
   email: {
     type: STRING,
-    
    
   },
   streetAddress: {
@@ -38,8 +37,12 @@ const User = db.define("user", {
   },
   phone: {
     type: STRING,
-    
-}});
+  },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+});
 
 module.exports = User;
 

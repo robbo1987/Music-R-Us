@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout, resetOrders, resetLineitem } from "../store";
+import AdminControl from "./AdminControl";
 
-const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
+const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isAdmin }) => (
   <div>
     <h1>Music R Us</h1>
     <nav>
@@ -17,6 +18,7 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => (
           <Link to="/cart">Cart</Link>
           <Link to="/orders">Orders</Link>
           <Link to="/profile">Profile</Link>
+          {isAdmin && <AdminControl />}
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -46,6 +48,7 @@ const mapState = (state) => {
     instruments: state.instruments,
     brands: state.brands,
     lineitems: state.lineitems,
+    isAdmin: state.auth.isAdmin,
   };
 };
 
