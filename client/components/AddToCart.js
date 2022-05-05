@@ -12,8 +12,14 @@ class AddToCart extends React.Component {
 
   render() {
     const { quantity } = this.state;
-    const { createLineItem, instrument, lineitems, orderId, updateLineitem, updateInventory } =
-      this.props;
+    const {
+      createLineItem,
+      instrument,
+      lineitems,
+      orderId,
+      updateLineitem,
+      updateInventory,
+    } = this.props;
 
     const item = {
       quantity: quantity * 1,
@@ -23,11 +29,8 @@ class AddToCart extends React.Component {
 
     const updatedInventory = {
       instrumentId: instrument.id,
-      inventory: instrument.inventory - (quantity *1)
-    }
-
-     
-
+      inventory: instrument.inventory - quantity * 1,
+    };
 
     let lineitem;
     if (orderId) {
@@ -50,9 +53,7 @@ class AddToCart extends React.Component {
     const Submit = (ev) => {
       ev.preventDefault();
 
-      console.log(updatedInventory);
-
-      updateInventory(updatedInventory)
+      updateInventory(updatedInventory);
 
       if (!lineitem) createLineItem(item);
       else {
@@ -98,7 +99,7 @@ export default connect(mapState, (dispatch) => {
       dispatch(updateLineitem(item));
     },
     updateInventory: (instrument) => {
-      dispatch(updateInventory(instrument))
-    }
+      dispatch(updateInventory(instrument));
+    },
   };
 })(AddToCart);

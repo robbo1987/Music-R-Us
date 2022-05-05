@@ -17,6 +17,10 @@ async function seed() {
   const users = await Promise.all([
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
+    User.create({ username: "jianing", password: "123", isAdmin: true }),
+    User.create({ username: "angel", password: "123", isAdmin: true }),
+    User.create({ username: "robert", password: "123", isAdmin: true }),
+    User.create({ username: "bharadwaj", password: "123", isAdmin: true }),
   ]);
 
   const [Fender, Gibson, PRS, Jackson, Steinway, Yamaha, Knilling] =
@@ -340,6 +344,10 @@ async function seed() {
     Order.create({ userId: 2 }),
     Order.create({ userId: 2 }),
     Order.create({ userId: 2 }),
+    Order.create({ userId: 3, isCart: true }),
+    Order.create({ userId: 4, isCart: true }),
+    Order.create({ userId: 5, isCart: true }),
+    Order.create({ userId: 6, isCart: true }),
   ]);
 
   const randomOrderId = (orders) => {

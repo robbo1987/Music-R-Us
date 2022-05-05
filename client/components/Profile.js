@@ -5,7 +5,6 @@ import { updateProfile } from "../store";
 class Profile extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       username: this.props.auth.username,
       address: this.props.auth.address,

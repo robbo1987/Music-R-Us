@@ -3,6 +3,7 @@ import history from "../history";
 
 const SET_INSTRUMENTS = "SET_INSTRUMENTS";
 const UPDATE_INVENTORY = "UPDATE_INVENTORY";
+const DELETE_INSTRUMENT = "DELETE_INSTRUMENT";
 
 export const setInstruments = () => {
   return async (dispatch) => {
@@ -13,11 +14,22 @@ export const setInstruments = () => {
 
 export const updateInventory = (instrument) => {
   return async (dispatch) => {
-    console.log(instrument);
     const updatedInventory = (
       await axios.put(`/api/instruments/${instrument.instrumentId}`, instrument)
     ).data;
     dispatch({ type: UPDATE_INVENTORY, updatedInventory });
+  };
+};
+
+export const deleteInstrument = (id) => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
+    await axios.delete(`/api/instruments/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    dispatch({ type: DELETE_INSTRUMENT, id });
   };
 };
 
@@ -31,6 +43,8 @@ export default function (state = [], action) {
           return action.updatedInventory;
         } else return instrument;
       });
+    case DELETE_INSTRUMENT:
+      return state.filter((instrument) => instrument.id !== action.id);
     default:
       return state;
   }

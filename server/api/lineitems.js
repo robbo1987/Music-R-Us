@@ -24,7 +24,6 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-
     if (req.params.id === "localcart") {
       //get localcart from req.body and token from req.headers
       const localcart = req.body.localcart;

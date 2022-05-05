@@ -6,7 +6,6 @@ import { connect } from "react-redux";
  */
 export const Home = (props) => {
   const { username, email, city, state, zip, address, phone } = props;
-  console.log(email);
 
   return (
     <div>
