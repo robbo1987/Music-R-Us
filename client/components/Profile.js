@@ -8,7 +8,11 @@ class Profile extends Component {
     this.state = {
       username: this.props.auth.username,
       streetAddress: this.props.auth.streetAddress,
-      email: this.props.auth.email
+      email: this.props.auth.email,
+      city:this.props.auth.city,
+      state:this.props.auth.city,
+      zip:this.props.auth.zip,
+      phone:this.props.auth.phone
     };
    
     this.saveProfile = this.saveProfile.bind(this);
@@ -21,7 +25,7 @@ class Profile extends Component {
 
 
   render() {
-    const { username, streetAddress,email } = this.state;
+    const { username, streetAddress,email,city,state,zip,phone } = this.state;
     const { saveProfile } = this;
     return (
       <div>
@@ -32,6 +36,14 @@ class Profile extends Component {
 
           <label>Address:</label>
           <input name="streetAddress" value={streetAddress} onChange={ev => this.setState({streetAddress : ev.target.value})}></input>
+          <label>City:</label>
+          <input name="streetAddress" value={city} onChange={ev => this.setState({city : ev.target.value})}></input>
+          <label>State:</label>
+          <input name="streetAddress" value={state} onChange={ev => this.setState({state : ev.target.value})}></input>
+          <label>Zip:</label>
+          <input name="streetAddress" value={zip} onChange={ev => this.setState({zip : ev.target.value})}></input>
+          <label>Phone:</label>
+          <input name="streetAddress" value={phone} onChange={ev => this.setState({phone : ev.target.value})}></input>
           <label>Email:</label>
           <input name="email" value={email} onChange={ev => this.setState({email : ev.target.value})}></input>
 
