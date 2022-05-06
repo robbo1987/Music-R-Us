@@ -56,7 +56,8 @@ class Routes extends Component {
         <Switch>
           <Route path="/categories" exact component={Categories} />
           <Route path="/brands" exact component={Brands} />
-          <Route path="/instruments" exact component={Instruments} />
+          <Route path="/instruments" component={Instruments} />
+          <Route path="/instruments/ascnd:name" component={Instruments} />
           <Route path="/categories/:id" exact component={Category} />
           <Route path="/brands/:id" exact component={Brand} />
           <Route path="/instruments/:id" exact component={SelectedInstrument} />
