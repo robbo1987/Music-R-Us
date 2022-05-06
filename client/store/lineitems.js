@@ -95,7 +95,7 @@ export const deleteLineitem = (item) => {
       dispatch({ type: DELETE_LINEITEM, item });
     } else {
       const cart = JSON.parse(window.localStorage.getItem("cart"));
-      cart.lineitems.filter(
+      cart.lineitems = cart.lineitems.filter(
         (lineitem) => lineitem.instrumentId !== item.instrumentId
       );
       window.localStorage.setItem("cart", JSON.stringify(cart));
@@ -144,7 +144,12 @@ export default function (state = [], action) {
     case CREATE_LINEITEM:
       return [...state, action.newItem];
     case DELETE_LINEITEM:
-      return state.filter((lineitem) => lineitem.id !== action.item.id);
+      if (action.lineitem) {
+        return state.filter((lineitem) => lineitem.id !== action.item.id);
+      } else
+        return state.filter(
+          (lineitem) => lineitem.instrumentId !== action.item.instrumentId
+        );
     case RESET_LINEITEMS:
       return [];
     default:
