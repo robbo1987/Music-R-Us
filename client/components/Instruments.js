@@ -31,12 +31,13 @@ export const Instruments = ({ instruments, brands, categories }) => {
               </CardActionArea>
               <CardContent>
                 <Typography>
-                  {"Instrument:"}{" "}
+                  {"Instrument Name:"}{" "}
                   <Link to={`/instruments/${instrument.id}`}>
                     {instrument.name}
                   </Link>
                   <br></br>
-                  {"Brand:"} <Link to="/brands/">{brand.name}</Link>
+                  {"Brand:"}{" "}
+                  <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
                   <br></br>
                   {" Category:"}
                   {category.name}
