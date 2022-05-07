@@ -20,26 +20,24 @@ export const Brand = ({ instruments, brand, categories }) => {
       <ul>
         {instrumentsList.map((instrument) => {
           return (
-            <Card>
-              <div key={instrument.id}>
-                <Link to={`/instruments/${instrument.id}`}>
-                  <CardMedia
-                    component="img"
-                    image={`/public/photos/${instrument.image}`}
-                  ></CardMedia>
-                </Link>
-                <CardContent>
-                  <Typography>
-                    {"Instrument Name:"}{" "}
-                    <Link to={`/instruments/${instrument.id}`}>
-                      {instrument.name}
-                    </Link>
-                    <br></br>
-                    {"Brand:"}{" "}
-                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-                  </Typography>
-                </CardContent>
-              </div>
+            <Card key={instrument.id}>
+              <Link to={`/instruments/${instrument.id}`}>
+                <CardMedia
+                  component="img"
+                  image={`/public/photos/${instrument.image}`}
+                ></CardMedia>
+              </Link>
+              <CardContent>
+                <Typography>
+                  {"Instrument Name:"}{" "}
+                  <Link to={`/instruments/${instrument.id}`}>
+                    {instrument.name}
+                  </Link>
+                  <br></br>
+                  {"Brand:"}{" "}
+                  <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                </Typography>
+              </CardContent>
             </Card>
           );
         })}

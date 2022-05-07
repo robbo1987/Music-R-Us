@@ -20,17 +20,18 @@ export const Categories = ({ categories }) => {
         {categories.map((category) => {
           return (
             <Grid
+              key={category.id}
               item
               container
               justifyContent="space-around"
-              alignContent="center"
+              aligncontent="center"
               xs={12}
               sm={6}
               md={4}
             >
               <Card
                 sx={{ maxWidth: 250, height: 350 }}
-                alignContent="space-around"
+                aligncontent="space-around"
               >
                 <Link key={category.id} to={`/categories/${category.id}`}>
                   <CardActionArea>

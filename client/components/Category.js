@@ -22,26 +22,24 @@ export const Category = ({ instruments, brands, category }) => {
         {instrumentsList.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           return (
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={4} key={instrument.id}>
               <Card sx={{ maxWidth: 300, height: 350 }}>
-                <div key={instrument.id}>
-                  <div>
-                    {/* <CardMedia 
+                <div>
+                  {/* <CardMedia 
                     COMPONENT = "img"
                     image= /> */}
-                    <img
-                      id="detailPage"
-                      src={`/public/photos/${instrument.image}`}
-                    />
-                  </div>
-                  <div>
-                    <Link to={`/instruments/${instrument.id}`}>
-                      {instrument.name}
-                    </Link>
-                  </div>
-                  <div>
-                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-                  </div>
+                  <img
+                    id="detailPage"
+                    src={`/public/photos/${instrument.image}`}
+                  />
+                </div>
+                <div>
+                  <Link to={`/instruments/${instrument.id}`}>
+                    {instrument.name}
+                  </Link>
+                </div>
+                <div>
+                  <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
                 </div>
               </Card>
             </Grid>

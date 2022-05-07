@@ -12,14 +12,12 @@ import { CardActionArea } from "@mui/material";
 
 export const SelectedInstrument = ({ instrument, brand, category }) => {
   return (
-
     <Container>
       <Card>
         <ul>
           <li>
             {brand.name} {instrument.name}
           </li>
-
           <br />
           <li>Price: {`$ ${instrument.price} `}</li>
           <br />
