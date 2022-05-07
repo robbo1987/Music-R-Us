@@ -3,8 +3,16 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me, setCategories } from "./store";
-import { setBrands, setInstruments, setOrders, setLineitem } from "./store";
+import {
+  me,
+  setCategories,
+  setBrands,
+  setInstruments,
+  setOrders,
+  setLineitem,
+  setUsers,
+  setAllOrders,
+} from "./store";
 import Brands from "./components/Brands";
 import Instruments from "./components/Instruments";
 import Brand from "./components/Brand";
@@ -16,6 +24,9 @@ import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import CheckoutPage from "./components/CheckoutPage";
 import UpdateInstruments from "./components/UpdateInstruments";
+
+import AllUsersAdmin from "./components/AllUsers-Admin";
+import AllOrdersAdmin from "./components/AllOrders-Admin";
 
 /**
  * COMPONENT
@@ -39,11 +50,21 @@ class Routes extends Component {
             <Route path="/orders" exact component={Orders} />
             <Route path="/profile" exact component={Profile} />
             {isAdmin && (
-              <Route
-                path="/AdminControl/updateinstruments"
-                exact
-                component={UpdateInstruments}
-              />
+
+              <Switch>
+                <Route
+                  path="/AdminControl/updateinstruments"
+                  component={UpdateInstruments}
+                />
+                <Route
+                  path="/AdminControl/allusers"
+                  component={AllUsersAdmin}
+                />
+                <Route
+                  path="/AdminControl/allorders"
+                  component={AllOrdersAdmin}
+                />
+              </Switch>
             )}
           </Switch>
         ) : (
@@ -91,6 +112,11 @@ const mapDispatch = (dispatch) => {
       dispatch(setInstruments());
       dispatch(setCategories());
       dispatch(setLineitem());
+    },
+
+    setUsers() {
+      dispatch(setUsers());
+      dispatch(setAllOrders());
     },
   };
 };

@@ -15,6 +15,7 @@ class AllUsers extends Component {
             <tr>
               <th> User Name </th>
               <th> User Email </th>
+              <th> User Since </th>
               <th> Admin? </th>
               <th> Banned? </th>
               <th> Ban/Unban </th>
@@ -24,6 +25,7 @@ class AllUsers extends Component {
                 <tr key={user.id}>
                   <th>{user.username}</th>
                   <th>{user.email}</th>
+                  <th>{user.createdAt.slice(0, 10)}</th>
                   <th>{user.isAdmin ? "Yes" : "No"}</th>
                   <th>{user.isBanned ? "Yes" : "No"} </th>
                   <th>
