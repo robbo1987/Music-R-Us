@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { Container, Box, Grid } from "@mui/material";
 
 export class Cart extends Component {
   constructor() {
@@ -9,22 +10,35 @@ export class Cart extends Component {
   }
 
   render() {
-    const { cartItems } = this.props;
+    const {
+      auth,
+      cartItems,
+    } = this.props;
+
 
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
     return (
-      <div>
-        <ul>
-          {cartItems.map((cartItem) => {
-            return cartItem.id ? (
-              <CartItem cartItem={cartItem} key={cartItem.id} />
-            ) : (
-              <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
-            );
-          })}
-        </ul>
-        <Link to="/checkoutpage">Proceed to Checkout</Link>
-      </div>
+
+      <Container>
+        <Box
+          sx={{
+            height: "100vh",
+          }}
+        >
+          <Grid item container direction="column">
+            {cartItems.map((cartItem) => {
+              return cartItem.id ? (
+                <CartItem cartItem={cartItem} key={cartItem.id} />
+              ) : (
+                <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
+              );
+            })}
+
+            <Link to="/checkoutpage">Proceed to Checkout</Link>
+          </Grid>
+        </Box>
+      </Container>
+
     );
   }
 }

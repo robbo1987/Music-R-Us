@@ -53,6 +53,7 @@ class AddToCart extends React.Component {
     const Submit = (ev) => {
       ev.preventDefault();
 
+
       updateInventory(updatedInventory);
 
       if (!lineitem) createLineItem(item);
@@ -62,6 +63,7 @@ class AddToCart extends React.Component {
           quantity: quantity * 1 + lineitem?.quantity,
         });
       }
+
       window.alert(`${quantity} ${instrument.name} added to cart!`);
     };
 

@@ -1,6 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
 export const Brand = ({ instruments, brand, categories }) => {
   const instrumentsList = instruments.filter(
@@ -8,28 +15,36 @@ export const Brand = ({ instruments, brand, categories }) => {
   );
   if (!brand) return null;
   return (
-    <div>
+    <Container>
       <h1>{brand.name} Instruments</h1>
       <ul>
         {instrumentsList.map((instrument) => {
           return (
-            <div key={instrument.id}>
-              <div>
-                <img id="detailPage" src={`/public/photos/${instrument.image}`} />
-              </div>
-              <div>
+            <Card>
+              <div key={instrument.id}>
                 <Link to={`/instruments/${instrument.id}`}>
-                  {instrument.name}
+                  <CardMedia
+                    component="img"
+                    image={`/public/photos/${instrument.image}`}
+                  ></CardMedia>
                 </Link>
+                <CardContent>
+                  <Typography>
+                    {"Instrument Name:"}{" "}
+                    <Link to={`/instruments/${instrument.id}`}>
+                      {instrument.name}
+                    </Link>
+                    <br></br>
+                    {"Brand:"}{" "}
+                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                  </Typography>
+                </CardContent>
               </div>
-              <div>
-                <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-              </div>
-            </div>
+            </Card>
           );
         })}
       </ul>
-    </div>
+    </Container>
   );
 };
 
