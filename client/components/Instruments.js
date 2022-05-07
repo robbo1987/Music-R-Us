@@ -9,6 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
+
 export const Instruments = ({
   instruments,
   brands,
@@ -37,6 +38,7 @@ export const Instruments = ({
           <option value="AscPrice">Sort Ascending By Price</option>
           <option value="DescPrice">Sort Descending By Price</option>
         </select>
+
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           const category =
@@ -45,17 +47,18 @@ export const Instruments = ({
             ) || {};
           return (
             <Grid
+              key={instrument.id}
               item
               container
               justifyContent="space-around"
-              alignContent="center"
+              aligncontent="center"
               xs={12}
               sm={6}
               md={4}
             >
               <Card
                 sx={{ maxWidth: 250, height: 350 }}
-                alignContent="space-around"
+                aligncontent="space-around"
               >
                 <CardActionArea>
                   <Link to={`/instruments/${instrument.id}`}>

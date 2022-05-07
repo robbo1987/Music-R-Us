@@ -21,10 +21,11 @@ export const Categories = ({ categories }) => {
         {categories.map((category) => {
           return (
             <Grid
+              key={category.id}
               item
               container
               justifyContent="space-around"
-              alignContent="center"
+              aligncontent="center"
               xs={12}
               sm={6}
               md={4}
