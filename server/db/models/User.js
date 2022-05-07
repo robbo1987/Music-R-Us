@@ -9,35 +9,33 @@ const SALT_ROUNDS = 5;
 const User = db.define("user", {
   username: {
     type: STRING,
-    
   },
   password: {
     type: STRING,
   },
   email: {
     type: STRING,
-   
   },
   streetAddress: {
     type: STRING,
-    
   },
   city: {
     type: STRING,
-    
   },
   state: {
     type: STRING,
-    
   },
   zip: {
     type: Sequelize.INTEGER,
-   
   },
   phone: {
     type: STRING,
   },
   isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+  isBanned: {
     type: BOOLEAN,
     defaultValue: false,
   },

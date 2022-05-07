@@ -14,7 +14,7 @@ const AdminControl = () => {
         <option value="">AdminControl</option>
         <option value="updateinstruments">Update Instruments</option>
         <option value="brands">See All Orders</option>
-        <option value="cart">See All Users</option>
+        <option value="allusers">See All Users</option>
       </select>
     </>
   );

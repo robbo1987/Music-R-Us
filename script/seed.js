@@ -5,15 +5,10 @@ const {
   models: { User, Instrument, Category, Brand, Lineitem, Order },
 } = require("../server/db");
 
-/**
- * seed - this function clears the database, updates tables to
- *      match the models, and populates the database.
- */
 async function seed() {
-  await db.sync({ force: true }); // clears db and matches models to tables
+  await db.sync({ force: true });
   console.log("db synced!");
 
-  // Creating Users
   const users = await Promise.all([
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),

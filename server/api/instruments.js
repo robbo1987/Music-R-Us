@@ -4,10 +4,12 @@ const {
 } = require("../db");
 module.exports = router;
 
-const isLoggedIn = async (req, res, next) => {
+const isAdmin = async (req, res, next) => {
   try {
     req.user = await User.findByToken(req.headers.authorization);
-    next();
+    if (req.user.isAdmin) {
+      next();
+    } else throw new Error();
   } catch (err) {
     next(err);
   }
@@ -33,7 +35,7 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", isLoggedIn, async (req, res, next) => {
+router.delete("/:id", isAdmin, async (req, res, next) => {
   try {
     const instrument = await Instrument.findByPk(req.params.id);
     await instrument.destroy();
