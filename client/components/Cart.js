@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import { Container, Box, Grid } from "@mui/material";
+import { Container, Box, Grid } from "@material-ui/core";
 
 export class Cart extends Component {
   constructor() {
@@ -10,15 +10,10 @@ export class Cart extends Component {
   }
 
   render() {
-    const {
-      auth,
-      cartItems,
-    } = this.props;
-
+    const { auth, cartItems } = this.props;
 
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
     return (
-
       <Container>
         <Box
           sx={{
@@ -38,7 +33,6 @@ export class Cart extends Component {
           </Grid>
         </Box>
       </Container>
-
     );
   }
 }
