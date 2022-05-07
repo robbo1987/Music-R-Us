@@ -12,7 +12,7 @@ import { CardActionArea } from "@mui/material";
 export const Instruments = ({ instruments, brands, categories }) => {
   return (
     <Container>
-      <ul>
+      <Grid container spacing={4}>
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           const category =
@@ -20,33 +20,47 @@ export const Instruments = ({ instruments, brands, categories }) => {
               (category) => category.id === instrument.categoryId
             ) || {};
           return (
-            <Card>
-              <CardActionArea>
-                <Link to={`/instruments/${instrument.id}`}>
-                  <CardMedia
-                    component="img"
-                    image={`/public/photos/${instrument.image}`}
-                  ></CardMedia>
-                </Link>
-              </CardActionArea>
-              <CardContent>
-                <Typography>
-                  {"Instrument Name:"}{" "}
+            <Grid
+              item
+              container
+              justifyContent="space-around"
+              alignContent="center"
+              xs={12}
+              sm={6}
+              md={4}
+            >
+              <Card
+                sx={{ maxWidth: 250, height: 350 }}
+                alignContent="space-around"
+              >
+                <CardActionArea>
                   <Link to={`/instruments/${instrument.id}`}>
-                    {instrument.name}
+                    <CardMedia
+                      component="img"
+                      image={`/public/photos/${instrument.image}`}
+                      height="225"
+                    />
                   </Link>
-                  <br></br>
-                  {"Brand:"}{" "}
-                  <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-                  <br></br>
-                  {" Category:"}
-                  {category.name}
-                </Typography>
-              </CardContent>
-            </Card>
+                </CardActionArea>
+                <CardContent>
+                  <Typography>
+                    {"Instrument Name:"}{" "}
+                    <Link to={`/instruments/${instrument.id}`}>
+                      {instrument.name}
+                    </Link>
+                    <br></br>
+                    {"Brand:"}{" "}
+                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                    <br></br>
+                    {" Category:"}
+                    {category.name}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
           );
         })}
-      </ul>
+      </Grid>
     </Container>
   );
 };

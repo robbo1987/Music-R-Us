@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createLineItem, updateLineitem, updateInventory } from "../store";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -66,11 +64,6 @@ class AddToCart extends React.Component {
           quantity: quantity * 1 + lineitem?.quantity,
         });
       }
-      <Stack sx={{ width: "100%" }} spacing={2}>
-        <Alert severity="success">
-          `${quantity} ${instrument.name} added to cart!`
-        </Alert>
-      </Stack>;
 
       window.alert(`${quantity} ${instrument.name} added to cart!`);
     };

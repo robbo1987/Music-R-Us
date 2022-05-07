@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { updateOrder, updateLineitem, guestCheckout } from "../store";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { Container, Box, Grid } from "@mui/material";
 
 export class Cart extends Component {
   constructor() {
@@ -12,45 +13,32 @@ export class Cart extends Component {
   render() {
     const {
       auth,
-      //cart,
+
       cartItems,
-      // updateOrder,
-      // updateLineitem,
     } = this.props;
 
-    // const Checkout = () => {
-    //   if (cart.id) {
-    //     updateOrder(cart);
-    //     cartItems.forEach((item) => {
-    //       updateLineitem(item);
-    //     });
-    //   } else {
-    //     guestCheckout(cartItems);
-    //   }
-    // };
-    console.log("auth", auth);
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
     return (
-      <div>
-        <ul>
-          {cartItems.map((cartItem) => {
-            return cartItem.id ? (
-              <CartItem cartItem={cartItem} key={cartItem.id} />
-            ) : (
-              <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
-            );
-          })}
-        </ul>
-        {/* {auth.id ? <button onClick={Checkout}> Checkout</button> : null}
-        {!auth.id ? (
-          <>
-            <button onClick={Checkout}> Checkout As Guest </button>{" "}
-            <Link to="/signup">Sign Up</Link>{" "}
-          </>
-        ) : null} */}
-        <Link to="/checkoutpage">Proceed to Checkout</Link>
-      </div>
+      <Container>
+        <Box
+          sx={{
+            height: "100vh",
+          }}
+        >
+          <Grid item container direction="column">
+            {cartItems.map((cartItem) => {
+              return cartItem.id ? (
+                <CartItem cartItem={cartItem} key={cartItem.id} />
+              ) : (
+                <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
+              );
+            })}
+
+            <Link to="/checkoutpage">Proceed to Checkout</Link>
+          </Grid>
+        </Box>
+      </Container>
     );
   }
 }

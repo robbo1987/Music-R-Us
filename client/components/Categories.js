@@ -11,29 +11,39 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import { maxHeight } from "@mui/system";
 
 export const Categories = ({ categories }) => {
   return (
     <Container>
-      <Grid
-        container
-        spacing={3}
-        justifyContent="space-between"
-        alignItems="center"
-      >
+      <Grid container spacing={4}>
         {categories.map((category) => {
           return (
-            <Link key={category.id} to={`/categories/${category.id}`}>
-              <Card>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    image={`/public/photos/default/${category.image}`}
-                  />
-                  <CardContent>{category.name}</CardContent>
-                </CardActionArea>
+            <Grid
+              item
+              container
+              justifyContent="space-around"
+              alignContent="center"
+              xs={12}
+              sm={6}
+              md={4}
+            >
+              <Card
+                sx={{ maxWidth: 250, height: 350 }}
+                alignContent="space-around"
+              >
+                <Link key={category.id} to={`/categories/${category.id}`}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      image={`/public/photos/default/${category.image}`}
+                      height="300"
+                    />
+                    <CardContent>{category.name}</CardContent>
+                  </CardActionArea>
+                </Link>
               </Card>
-            </Link>
+            </Grid>
           );
         })}
       </Grid>

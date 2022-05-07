@@ -25,7 +25,18 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => {
           {isLoggedIn ? (
             <Toolbar disableGutters>
               {/* The navbar will show these links after you log in */}
-              <MusicNoteIcon />
+              <Link to={`/categories/`}>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                >
+                  Music R Us
+                  <MusicNoteIcon />
+                </Typography>
+              </Link>
+
               <MenuItem>
                 <Link to="/home">
                   <Typography textAlign="center">Home</Typography>
@@ -66,7 +77,17 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments }) => {
           ) : (
             <Toolbar>
               {/* The navbar will show these links before you log in */}
-              <MusicNoteIcon />
+              <Link to={`/categories/`}>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                >
+                  Music R Us
+                  <MusicNoteIcon />
+                </Typography>
+              </Link>
               <MenuItem>
                 <Link to="/login">
                   <Typography textAlign="center">Login</Typography>
