@@ -53,7 +53,6 @@ class AddToCart extends React.Component {
     const Submit = (ev) => {
       ev.preventDefault();
 
-      console.log(updatedInventory);
 
       updateInventory(updatedInventory);
 

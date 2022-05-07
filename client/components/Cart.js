@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateOrder, updateLineitem, guestCheckout } from "../store";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { Container, Box, Grid } from "@mui/material";
@@ -13,13 +12,13 @@ export class Cart extends Component {
   render() {
     const {
       auth,
-
       cartItems,
     } = this.props;
 
-    if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
+    if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
     return (
+
       <Container>
         <Box
           sx={{
@@ -39,6 +38,7 @@ export class Cart extends Component {
           </Grid>
         </Box>
       </Container>
+
     );
   }
 }
@@ -63,18 +63,5 @@ const mapState = ({ orders, lineitems, auth }) => {
     };
   }
 };
-// const mapDispatch = (dispatch) => {
-//   return {
-//     updateOrder: (order) => {
-//       dispatch(updateOrder(order));
-//     },
-//     updateLineitem: (lineitem) => {
-//       dispatch(updateLineitem(lineitem));
-//     },
-//     guestCheckout: (cartItems) => {
-//       dispatch(guestCheckout(cartItems));
-//     },
-//   };
-// };
 
 export default connect(mapState)(Cart);

@@ -11,16 +11,15 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
 export const SelectedInstrument = ({ instrument, brand, category }) => {
-  // orders.find(order => order.userId === logginUser.id && order.isCart)
-  // lineitem ( instrument.id, order.id, quantity )
-
   return (
+
     <Container>
       <Card>
         <ul>
           <li>
             {brand.name} {instrument.name}
           </li>
+
           <br />
           <li>Price: {`$ ${instrument.price} `}</li>
           <br />

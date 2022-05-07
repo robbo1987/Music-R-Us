@@ -10,9 +10,12 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
 export const Instruments = ({ instruments, brands, categories }) => {
+  
   return (
+
     <Container>
       <Grid container spacing={4}>
+
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           const category =
