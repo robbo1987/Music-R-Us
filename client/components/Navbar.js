@@ -26,41 +26,127 @@ const Navbar = ({
   isBanned,
 }) => (
   <div>
-    <h1>Music R Us</h1>
     {isBanned ? (
       <h1>Your Account is banned! Shame! Shame! Shame!</h1>
     ) : (
-      <nav>
-        {isLoggedIn ? (
-          <div>
-            <Link to="/home">Home</Link>
-            <Link to="/instruments">Instruments ({instruments.length})</Link>
-            <Link to="/brands">Shop By Brands ({brands.length})</Link>
-            <Link to="/categories">Shop By Categories</Link>
-            <Link to="/cart">Cart</Link>
-            <Link to="/orders">Orders</Link>
-            <Link to="/profile">Profile</Link>
-            {isAdmin && <AdminControl />}
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-          </div>
-        ) : (
-          <div>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/instruments">Instruments ({instruments.length})</Link>
-            <Link to="/brands">Shop By Brands ({brands.length})</Link>
-            <Link to="/categories">Shop By Categories</Link>
-            <Link to="/cart">Cart</Link>
-          </div>
-        )}
-      </nav>
+      <Container>
+        <AppBar position="fixed">
+          <Container maxWidth="xl">
+            {isLoggedIn ? (
+              <Toolbar disableGutters>
+                <Link to="/home">
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                  >
+                    Music R Us
+                    <MusicNoteIcon />
+                  </Typography>
+                </Link>
+                <MenuItem>
+                  <Link to="/home">
+                    <Typography textAlign="center">Home</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/instruments">
+                    <Typography textAlign="center">
+                      Instruments ({instruments.length})
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/brands">
+                    <Typography textAlign="center"></Typography>Shop By Brands (
+                    {brands.length})
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/categories">
+                    <Typography textAlign="center">
+                      Shop By Categories
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/cart">
+                    <Typography textAlign="center">Cart</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/orders">
+                    <Typography textAlign="center">Orders</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/profile">
+                    <Typography textAlign="center">Profile</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>{isAdmin && <AdminControl />}</MenuItem>
+                <MenuItem>
+                  <a href="#" onClick={handleClick}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </a>
+                </MenuItem>
+              </Toolbar>
+            ) : (
+              <Toolbar disableGutters>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                >
+                  Music R Us
+                  <MusicNoteIcon />
+                </Typography>
+                <MenuItem>
+                  <Link to="/login">
+                    <Typography textAlign="center">Login</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/signup">
+                    <Typography textAlign="center">Sign Up</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/instruments">
+                    <Typography textAlign="center">
+                      Instruments ({instruments.length})
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/brands">
+                    <Typography textAlign="center"></Typography>Shop By Brands (
+                    {brands.length})
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/categories">
+                    <Typography textAlign="center">
+                      Shop By Categories
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/cart">
+                    <Typography textAlign="center">Cart</Typography>
+                  </Link>
+                </MenuItem>
+              </Toolbar>
+            )}
+          </Container>
+        </AppBar>
+      </Container>
     )}
     <hr />
   </div>
 );
-
 
 const mapState = (state) => {
   return {
