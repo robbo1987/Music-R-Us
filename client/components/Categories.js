@@ -30,7 +30,7 @@ export const Categories = ({ categories }) => {
             >
               <Card
                 sx={{ maxWidth: 250, height: 350 }}
-                alignContent="space-around"
+                aligncontent="space-around"
               >
                 <Link key={category.id} to={`/categories/${category.id}`}>
                   <CardActionArea>
