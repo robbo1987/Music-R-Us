@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const Instruments = ({ instruments, brands, categories }) => {
+  
   return (
     <div>
+   
+
       <ul>
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
