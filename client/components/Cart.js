@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import { Container, Box, Grid } from "@material-ui/core";
+import { Container, Box, Grid } from "@mui/material";
 
 export class Cart extends Component {
   constructor() {
