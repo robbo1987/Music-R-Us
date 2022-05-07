@@ -53,5 +53,5 @@ const mapState = ({ instruments, brands, categories }, otherProps) => {
     brands.find((brand) => brand.id === otherProps.match.params.id * 1) || {};
   return { instruments, brand, categories };
 };
-
+//MUI 5 updates
 export default connect(mapState)(Brand);
