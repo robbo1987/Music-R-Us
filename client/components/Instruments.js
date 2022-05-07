@@ -2,17 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const Instruments = ({ instruments, brands, categories, history }) => {
-  console.log(history);
+export const Instruments = ({ instruments, brands, categories }) => {
+  
   return (
     <div>
-      <label for="sort">Sort by:</label>
-      <select name="Sort" onClick={() => history.push('/instruments/ascnd:name')}>
-        <option value="Ascending by Name">Ascending by Name</option>
-        <option value="Descending by Name">Descending by Name</option>
-        <option value="Ascending by Price">Ascending by Price</option>
-        <option value="Descending by Price">Descending by Price</option>
-      </select>
+   
 
       <ul>
         {instruments.map((instrument) => {
