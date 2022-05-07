@@ -35,14 +35,15 @@ async function seed() {
 
   const [Guitar, Piano, Bass, Keyboard, Violin] = await Promise.all(
     ["Guitar", "Piano", "Bass", "Keyboard", "Violin"].map((category) => {
-      return Category.create({ name: category });
+      return Category.create({ name: category, image: category + ".jpeg" });
     })
   );
+
   const instruments = await Promise.all([
     Instrument.create({
       categoryId: Guitar.id,
       name: "American Pro II Stratocaster",
-      price: 999,
+      price: 1999,
       brandId: Fender.id,
       image: "strat1.jpg",
       description:
@@ -51,7 +52,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Telecaster",
-      price: 999,
+      price: 2999,
       brandId: Fender.id,
       image: "telecaster1.jpg",
       description:
@@ -60,7 +61,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul Standard",
-      price: 999,
+      price: 3999,
       brandId: Gibson.id,
       image: "lesPaul1.jpg",
       description:
@@ -69,7 +70,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul Custom",
-      price: 999,
+      price: 4999,
       brandId: Gibson.id,
       image: "lesPaulCustom.jpg",
       description:
@@ -78,7 +79,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul 1960 Reissue ",
-      price: 999,
+      price: 5999,
       brandId: Gibson.id,
       image: "lesPaul60.jpg",
       description:
@@ -87,7 +88,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Les Paul Classic",
-      price: 999,
+      price: 4999,
       brandId: Gibson.id,
       image: "lesPaulClassic.jpg",
       description:
@@ -97,7 +98,7 @@ async function seed() {
       categoryId: Guitar.id,
       category: "Guitar",
       name: "Custom-24",
-      price: 999,
+      price: 3999,
       brandId: PRS.id,
       image: "prsCu24.jpg",
       description:
@@ -106,7 +107,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Custom-22",
-      price: 999,
+      price: 12999,
       brandId: PRS.id,
       image: "prsCu22.jpg",
       description:
@@ -115,15 +116,16 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Soloist",
-      price: 999,
+      price: 7999,
       brandId: Jackson.id,
+      image: "jacksonSoloist.jpg",
       description:
         "The Jackson Pro Series Soloist SL2Q MAH electric guitar is a modern rock-and-metal player’s dream. Its oiled maple neck and all-duty compound-radius ebony fingerboard will give you the freedom to explore new heights and plumb new depths of high-gain glory. Onboard Seymour Duncan Distortion pickups kick out smoking-hot midrange clarity, as well as lower-end growl and bite. And a Floyd Rose 1000 double-locking tremolo equips the Soloist SL2Q MAH with some serious dive-bombing potential. Topped with eye-catching gold hardware, the Jackson Pro Soloist SL2Q MAH is as gig-ready as they come. Guitarists here at Music-R-Us love the sound and feel of the Jackson Pro Soloist SL2Q MAH, and we’re confident that discerning players from all genres will too.",
     }),
     Instrument.create({
       categoryId: Piano.id,
       name: "Baby-Grand",
-      price: 999,
+      price: 9199,
       brandId: Steinway.id,
       image: "babygrand.jpg",
       desscription:
@@ -132,7 +134,7 @@ async function seed() {
     Instrument.create({
       categoryId: Bass.id,
       name: "Jazz-Bass",
-      price: 999,
+      price: 1999,
       brandId: Fender.id,
       image: "jazzBass.jpg",
       description:
@@ -141,7 +143,7 @@ async function seed() {
     Instrument.create({
       categoryId: Bass.id,
       name: "P-Bass",
-      price: 999,
+      price: 599,
       brandId: Fender.id,
       image: "pBass.jpg",
       description:
@@ -150,7 +152,7 @@ async function seed() {
     Instrument.create({
       categoryId: Bass.id,
       name: "SG STANDARD BASS",
-      price: 999,
+      price: 9599,
       brandId: Gibson.id,
       image: "sgBass.jpg",
       description:
@@ -159,7 +161,7 @@ async function seed() {
     Instrument.create({
       categoryId: Bass.id,
       name: "Thunderbird Bass",
-      price: 999,
+      price: 1999,
       brandId: Gibson.id,
       image: "tBass.jpg",
       description:
@@ -168,7 +170,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "Model D",
-      price: 999,
+      price: 799,
       brandId: Steinway.id,
       image: "modelD.jpg",
       description:
@@ -177,7 +179,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "Model B",
-      price: 999,
+      price: 21999,
       brandId: Steinway.id,
       image: "modelB.jpg",
       description:
@@ -186,7 +188,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "Model A",
-      price: 999,
+      price: 91299,
       brandId: Steinway.id,
       image: "modelA.jpg",
       description:
@@ -195,7 +197,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "Model O",
-      price: 999,
+      price: 31999,
       brandId: Steinway.id,
       image: "modelO.jpg",
       description:
@@ -204,7 +206,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "Model M",
-      price: 999,
+      price: 12999,
       brandId: Steinway.id,
       image: "modelM.jpg",
       description:
@@ -213,7 +215,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "Model S",
-      price: 999,
+      price: 312999,
       brandId: Steinway.id,
       image: "modelS.jpg",
       description:
@@ -222,7 +224,7 @@ async function seed() {
     Instrument.create({
       categoryId: Piano.id,
       name: "SPIRIO",
-      price: 999,
+      price: 44999,
       brandId: Steinway.id,
       image: "spirio.jpg",
       description:
@@ -240,7 +242,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Pro Series Rhandy Rhoads",
-      price: 999,
+      price: 1999,
       brandId: Jackson.id,
       image: "RR.jpg",
       description:
@@ -249,7 +251,7 @@ async function seed() {
     Instrument.create({
       categoryId: Guitar.id,
       name: "Pro Series King V",
-      price: 999,
+      price: 2999,
       brandId: Jackson.id,
       image: "kingV.jpg",
       description:
@@ -267,7 +269,7 @@ async function seed() {
     Instrument.create({
       categoryId: Bass.id,
       name: "X Series",
-      price: 999,
+      price: 12999,
       brandId: Jackson.id,
       image: "x.jpg",
       description:
@@ -293,18 +295,18 @@ async function seed() {
     Instrument.create({
       categoryId: Violin.id,
       name: "YEV105 Electric Violin",
-      price: 745,
+      price: 1745,
       brandId: Yamaha.id,
-      image: "electricViolin.webp",
+      image: "yamahaViolin2.jpg",
       description:
         "The Yamaha YEV105 offers a sublime combination of organic beauty and transcendent playability. Five layers comprised of maple, mahogany, and spruce yield a gorgeous natural sound, while an oil-finished walnut frame enhances its looks, strength, and resonance. A high-output passive bridge pickup captures every ounce of the YEV105’s natural tone, meticulously reproducing the instrument’s dynamic response and highlighting the subtle nuances of your bowing.",
     }),
     Instrument.create({
       categoryId: Violin.id,
       name: "YSV104 Electric Violin",
-      price: 846,
+      price: 12846,
       brandId: Yamaha.id,
-      image: "YSV104BRO-medium.jpg.auto.webp",
+      image: "yamahaViolin1.jpg",
       description:
         "The YSV104 Silent Series Violin reproduces the body resonance, sound, and ambience of an acoustic violin, thanks to Yamaha’s SRT (Studio Response Technology). This electric violin’s innovative design not only offers a state-of-the-art look, it also provides a feel that makes switching over from a traditional acoustic violin effortless. Its streamlined control box includes an aux input for play-along practice and onboard reverb to enhance your playing enjoyment. The Yamaha YSV104 is ideal for anyone who wants to practice quietly without sacrificing natural acoustic tone.",
     }),
@@ -313,16 +315,16 @@ async function seed() {
       name: "86F Nicolo Gabrieli Maestro",
       price: 4949,
       brandId: Knilling.id,
-      image: "KnNGMVln44-medium.jpg.auto.webp",
+      image: "yamahaViolin3.jpeg",
       description:
         "The Knilling 86F Nicolo Gabrieli Maestro Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
     }),
     Instrument.create({
       categoryId: Keyboard.id,
       name: "P-125 88-key Weighted Action Digital Piano",
-      price: 700,
+      price: 7000,
       brandId: Yamaha.id,
-      image: "P125BK-medium.jpg.auto.webp",
+      image: "keyboard1.jpg",
       description:
         "Built around the sound of the world-famous Yamaha CFIIIS concert grand piano, the clear and melodic sound of the Yamaha P-125 digital piano is instantly recognizable to any seasoned pianist. Your fingers will feel right at home on the P-125’s Graded Hammer Standard action, which is heavier in the low keys and lighter in the high keys, emulating the dynamic feel of hammers on real acoustic piano strings",
     }),

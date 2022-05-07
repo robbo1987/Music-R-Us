@@ -1,17 +1,15 @@
-const router = require("express").Router();
-const {
-  models: { Lineitem, User, Order },
-} = require("../db");
-module.exports = router;
+const router = require('express').Router()
+const { models: { Lineitem }} = require('../db')
+module.exports = router
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const lineitems = await Lineitem.findAll();
-    res.json(lineitems);
+    const lineItems= await Lineitem.findAll()
+    res.json(lineItems)
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 router.post("/", async (req, res, next) => {
   try {
@@ -86,3 +84,4 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+

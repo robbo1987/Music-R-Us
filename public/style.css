@@ -2,7 +2,7 @@ body {
   font-family: sans-serif;
   display:flex;
   justify-content: space-around;
-  background-color: aquamarine;
+  background-color: #f7f7f7;
 }
 
 a {
@@ -23,12 +23,12 @@ form div {
   display: inline-block;
 }
 
-#detailPage {
+/* #detailPage {
   margin-left: 10px;
   width: 500px;
   height: 250px;
   
-}
+} */
 .side-by-side {
   display: flex;
   flex-direction: row;
@@ -38,9 +38,9 @@ form div {
   height: 500px;
   width: 1400px;
 }
-
+/* 
 .ctgyLink, .brandLink {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-}
+} */
