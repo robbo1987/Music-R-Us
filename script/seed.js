@@ -122,7 +122,7 @@ async function seed() {
       name: "Soloist",
       price: 7999,
       brandId: Jackson.id,
-      image:"jacksonSoloist.jpg",
+      image: "jacksonSoloist.jpg",
       description:
         "The Jackson Pro Series Soloist SL2Q MAH electric guitar is a modern rock-and-metal player’s dream. Its oiled maple neck and all-duty compound-radius ebony fingerboard will give you the freedom to explore new heights and plumb new depths of high-gain glory. Onboard Seymour Duncan Distortion pickups kick out smoking-hot midrange clarity, as well as lower-end growl and bite. And a Floyd Rose 1000 double-locking tremolo equips the Soloist SL2Q MAH with some serious dive-bombing potential. Topped with eye-catching gold hardware, the Jackson Pro Soloist SL2Q MAH is as gig-ready as they come. Guitarists here at Music-R-Us love the sound and feel of the Jackson Pro Soloist SL2Q MAH, and we’re confident that discerning players from all genres will too.",
     }),
