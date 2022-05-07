@@ -10,7 +10,7 @@ export class Cart extends Component {
   }
 
   render() {
-    const { auth, cartItems } = this.props;
+    const { cartItems, instruments } = this.props;
 
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
     return (
