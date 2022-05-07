@@ -39,7 +39,7 @@ form div {
   width: 1400px;
 }
 
-.ctgyLink, .brandLink {
+.ctgyLink, .brandLink, .pagination {
   display: flex;
   justify-content: space-around;
   flex-direction: row;

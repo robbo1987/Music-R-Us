@@ -15,8 +15,13 @@ const isLoggedIn = async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const instruments = await Instrument.findAll();
-    res.json(instruments);
+    const { pageNumber, itemsPerPage } = req.query;
+
+    const instruments = await Instrument.findAndCountAll({
+      limit: itemsPerPage,
+      offset: (pageNumber - 1) * itemsPerPage,
+    });
+    res.send(instruments);
   } catch (err) {
     next(err);
   }

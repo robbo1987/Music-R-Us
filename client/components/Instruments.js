@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
 export const Instruments = ({ instruments, brands, categories }) => {
   return (
@@ -24,6 +25,7 @@ export const Instruments = ({ instruments, brands, categories }) => {
           );
         })}
       </ul>
+      <Pagination />
     </div>
   );
 };
