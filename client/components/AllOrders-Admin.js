@@ -22,7 +22,8 @@ class AllOrders extends Component {
                         <br></br>
                         Quantity: {lineitem.quantity}
                         <br></br>
-                        Price: {lineitem.instrument.price}
+                        Subtotal:{" "}
+                        {lineitem.instrument.price * lineitem.quantity}
                       </div>
                     );
                   })}
@@ -43,8 +44,5 @@ const mapState = ({ orders }) => {
     orders,
   };
 };
-const mapDispatch = (dispatch) => {
-  return {};
-};
 
-export default connect(mapState, mapDispatch)(AllOrders);
+export default connect(mapState)(AllOrders);

@@ -43,7 +43,7 @@ class Routes extends Component {
       !this.props.isBanned
     ) {
       this.props.loadUpdate();
-      if (this.props.isAdmin) this.props.AdminLoad();
+      if (this.props.isAdmin) this.props.setUsers();
     }
   }
 
@@ -115,7 +115,7 @@ const mapDispatch = (dispatch) => {
       dispatch(setOrders());
       dispatch(setLineitem());
     },
-    AdminLoad() {
+    setUsers() {
       dispatch(setUsers());
       dispatch(setAllOrders());
     },
