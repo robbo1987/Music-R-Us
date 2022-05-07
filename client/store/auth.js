@@ -3,22 +3,12 @@ import history from "../history";
 import { setOrders, setLineitem } from "../store";
 
 const TOKEN = "token";
-
-/**
- * ACTION TYPES
- */
 const SET_AUTH = "SET_AUTH";
-const UPDATE_AUTH = "UPDATE_AUTH"
+const UPDATE_AUTH = "UPDATE_AUTH";
 
-/**
- * ACTION CREATORS
- */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
-const updateAuth = updatedUser => ({type: UPDATE_AUTH, updatedUser})
+const updateAuth = (updatedUser) => ({ type: UPDATE_AUTH, updatedUser });
 
-/**
- * THUNK CREATORS
- */
 export const me = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN);
   if (token) {
@@ -27,7 +17,6 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    console.log(res.data.correctPassword);
     return dispatch(setAuth(res.data));
   }
 };
@@ -48,8 +37,6 @@ export const authenticate =
 export const updateProfile = (user) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
-    console.log(token);
-    console.log("user", user);
     const updatedUser = (
       await axios.put("/auth/me", user, {
         headers: {
@@ -57,7 +44,7 @@ export const updateProfile = (user) => {
         },
       })
     ).data;
-    return dispatch(updateAuth(updatedUser))
+    return dispatch(updateAuth(updatedUser));
     // const profile = await axios.put(
     //   "/auth/me",
     //   { username, },
@@ -80,9 +67,6 @@ export const logout = () => {
   };
 };
 
-/**
- * REDUCER
- */
 export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:

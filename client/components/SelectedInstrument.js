@@ -4,24 +4,18 @@ import { Link } from "react-router-dom";
 import AddToCart from "./AddToCart";
 
 export const SelectedInstrument = ({ instrument, brand, category }) => {
-  // orders.find(order => order.userId === logginUser.id && order.isCart)
-  // lineitem ( instrument.id, order.id, quantity )
-
   return (
     <div>
       <ul>
-        
         <li>
           {brand.name} {instrument.name}
         </li>
-        < br />
+        <br />
         <li>Price: {`$ ${instrument.price} `}</li>
         <br />
-
         <li> Inventory: {instrument.inventory}</li>
         <br />
         <AddToCart instrument={instrument} />
-       
         <br />
         Click to Return To
         <Link to={`/categories/${category.id}`}> {category.name}'s</Link>

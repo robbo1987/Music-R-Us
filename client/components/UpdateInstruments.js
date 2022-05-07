@@ -13,22 +13,22 @@ class UpdateInstruments extends Component {
         <table>
           <tbody>
             <tr>
-              <th> Remove Instrument </th>
               <th> Instrument Name </th>
               <th> Instrument Price </th>
               <th> Instrument Inventory </th>
+              <th> Remove Instrument </th>
             </tr>
             {instruments.map((instrument) => {
               return (
                 <tr key={instrument.id}>
+                  <th>{instrument.name}</th>
+                  <th>{instrument.price}</th>
+                  <th>{instrument.inventory}</th>
                   <th>
                     <button onClick={() => deleteInstrument(instrument.id)}>
                       X
                     </button>
                   </th>
-                  <th>{instrument.name}</th>
-                  <th>{instrument.price}</th>
-                  <th>{instrument.inventory}</th>
                 </tr>
               );
             })}
