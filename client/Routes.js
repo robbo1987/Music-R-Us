@@ -11,6 +11,7 @@ import {
   setOrders,
   setLineitem,
   setUsers,
+  setAllOrders,
 } from "./store";
 import Brands from "./components/Brands";
 import Instruments from "./components/Instruments";
@@ -24,6 +25,7 @@ import Profile from "./components/Profile";
 import CheckoutPage from "./components/CheckoutPage";
 import UpdateInstruments from "./components/UpdateInstruments";
 import AllUsersAdmin from "./components/AllUsers-Admin";
+import AllOrdersAdmin from "./components/AllOrders-Admin";
 
 class Routes extends Component {
   componentDidMount() {
@@ -63,6 +65,10 @@ class Routes extends Component {
                 <Route
                   path="/AdminControl/allusers"
                   component={AllUsersAdmin}
+                />
+                <Route
+                  path="/AdminControl/allorders"
+                  component={AllOrdersAdmin}
                 />
               </Switch>
             )}
@@ -111,6 +117,7 @@ const mapDispatch = (dispatch) => {
     },
     setUsers() {
       dispatch(setUsers());
+      dispatch(setAllOrders());
     },
   };
 };

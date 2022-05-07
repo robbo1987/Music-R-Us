@@ -1,8 +1,19 @@
 const router = require("express").Router();
 const {
-  models: { User, Order },
+  models: { User, Order, Lineitem, Instrument },
 } = require("../db");
 module.exports = router;
+
+const isAdmin = async (req, res, next) => {
+  try {
+    req.user = await User.findByToken(req.headers.authorization);
+    if (req.user.isAdmin) {
+      next();
+    } else throw new Error();
+  } catch (err) {
+    next(err);
+  }
+};
 
 router.get("/", async (req, res, next) => {
   try {
@@ -10,6 +21,23 @@ router.get("/", async (req, res, next) => {
     const orders = await Order.findAll({
       where: {
         userId: user.id,
+      },
+    });
+    res.json(orders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/admin", isAdmin, async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      where: {
+        isCart: false,
+      },
+      include: {
+        model: Lineitem,
+        include: Instrument,
       },
     });
     res.json(orders);

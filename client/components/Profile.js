@@ -6,13 +6,15 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: this.props.auth.username,
-      streetAddress: this.props.auth.streetAddress,
-      email: this.props.auth.email,
-      city: this.props.auth.city,
-      state: this.props.auth.city,
-      zip: this.props.auth.zip,
-      phone: this.props.auth.phone,
+      username: this.props.auth.username ? this.props.auth.username : "",
+      streetAddress: this.props.auth.streetAddress
+        ? this.props.auth.streetAddress
+        : "",
+      email: this.props.auth.email ? this.props.auth.email : "",
+      city: this.props.auth.city ? this.props.auth.city : "",
+      state: this.props.auth.city ? this.props.auth.city : "",
+      zip: this.props.auth.zip ? this.props.auth.zip : "",
+      phone: this.props.auth.phone ? this.props.auth.phone : "",
     };
 
     this.saveProfile = this.saveProfile.bind(this);
@@ -58,6 +60,7 @@ class Profile extends Component {
           <label>Zip:</label>
           <input
             name="zip"
+            type="number"
             value={zip}
             onChange={(ev) => this.setState({ zip: ev.target.value })}
           ></input>
@@ -74,7 +77,19 @@ class Profile extends Component {
             onChange={(ev) => this.setState({ email: ev.target.value })}
           ></input>
 
-          <button disabled={username === this.props.auth.username}>Save</button>
+          <button
+            disabled={
+              username === this.props.auth.username &&
+              streetAddress === (this.props.auth.streetAddress || "") &&
+              email === (this.props.auth.email || "") &&
+              city === (this.props.auth.city || "") &&
+              state === (this.props.auth.city || "") &&
+              zip === (this.props.auth.zip || "") &&
+              phone === (this.props.auth.phone || "")
+            }
+          >
+            Update
+          </button>
         </form>
       </div>
     );
