@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import React from "react";
 
 import Navbar from "./components/Navbar";
@@ -5,10 +6,12 @@ import Routes from "./Routes";
 
 const App = () => {
   return (
-    <div>
+    <Container>
       <Navbar />
-      <Routes />
-    </div>
+      <div style={{ marginTop: 100 }}>
+        <Routes />
+      </div>
+    </Container>
   );
 };
 
