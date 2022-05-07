@@ -10,15 +10,10 @@ export class Cart extends Component {
   }
 
   render() {
-    const {
-      auth,
-      cartItems,
-    } = this.props;
-
+    const { cartItems, instruments } = this.props;
 
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
     return (
-
       <Container>
         <Box
           sx={{
@@ -33,33 +28,36 @@ export class Cart extends Component {
                 <CartItem cartItem={cartItem} key={cartItem.instrumentId} />
               );
             })}
-
+            Order Total:{" "}
+              {cartItems.reduce((acc, item) => {
+                const instrument = instruments.find(
+                  (instrument) => instrument.id === item.instrumentId
+                );
+                return acc + item.quantity * instrument.price;
+              }, 0)}
             <Link to="/checkoutpage">Proceed to Checkout</Link>
           </Grid>
         </Box>
       </Container>
-
     );
   }
 }
 
-const mapState = ({ orders, lineitems, auth }) => {
+const mapState = ({ orders, lineitems, auth, instruments }) => {
   if (auth.id) {
     const cart = orders.find(
       (order) => order.userId === auth.id && order.isCart
     );
     const cartItems = lineitems.filter((item) => item.orderId === cart?.id);
     return {
-      auth,
-      cart,
       cartItems,
+      instruments,
     };
   } else {
     const cart = JSON.parse(window.localStorage.getItem("cart"));
     return {
-      auth,
-      cart,
       cartItems: lineitems,
+      instruments,
     };
   }
 };

@@ -9,10 +9,36 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-export const Instruments = ({ instruments, brands, categories }) => {
+
+export const Instruments = ({
+  instruments,
+  brands,
+  categories,
+  history,
+  match,
+}) => {
+  console.log(match);
   return (
     <Container>
       <Grid container spacing={4}>
+        <select
+          value={match.params.sort}
+          name="sort"
+          onChange={(ev) =>
+            history.push(
+              ev.target.value
+                ? `/instruments/sort/${ev.target.value}`
+                : "/instruments"
+            )
+          }
+        >
+          <option value=""> Sort By </option>
+          <option value="AscName">Sort Ascending By Name</option>
+          <option value="DescName">Sort Decending By Name</option>
+          <option value="AscPrice">Sort Ascending By Price</option>
+          <option value="DescPrice">Sort Descending By Price</option>
+        </select>
+
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           const category =
@@ -66,6 +92,27 @@ export const Instruments = ({ instruments, brands, categories }) => {
   );
 };
 
-const mapState = (state) => state;
-
+const mapState = (state, history) => {
+  const sort = history.match.params.sort;
+  if (sort === "AscName") {
+    state.instruments.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  if (sort === "DescName") {
+    state.instruments.sort((a, b) => b.name.localeCompare(a.name));
+  }
+  if (sort === "AscPrice") {
+    state.instruments.sort((a, b) => a.price - b.price);
+  }
+  if (sort === "DescPrice") {
+    state.instruments.sort((a, b) => b.price - a.price);
+  }
+  if (sort === "") {
+    state.instruments = state.instruments;
+  }
+  return {
+    brands: state.brands,
+    categories: state.categories,
+    instruments: state.instruments,
+  };
+};
 export default connect(mapState)(Instruments);

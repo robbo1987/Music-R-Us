@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { maxHeight } from "@mui/system";
 
+
 export const Category = ({ instruments, brands, category }) => {
   const instrumentsList =
     instruments.filter((instrument) => instrument.categoryId === category.id) ||

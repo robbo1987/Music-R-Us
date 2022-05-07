@@ -10,6 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
+
 export const SelectedInstrument = ({ instrument, brand, category }) => {
   return (
     <Container>
