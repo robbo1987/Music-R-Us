@@ -15,7 +15,8 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const user = await User.create(req.body);
+    const body = { ...req.body, isAdmin: false };
+    const user = await User.create(body);
     await Order.create({ userId: user.id, isCart: true });
     res.send({ token: await user.generateToken() });
   } catch (err) {
@@ -38,7 +39,6 @@ router.get("/me", async (req, res, next) => {
 router.put("/me", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
-    console.log(user);
     const updatedUser = await user.update({
       username: req.body.username,
       streetAddress: req.body.streetAddress,

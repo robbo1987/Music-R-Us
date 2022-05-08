@@ -45,11 +45,6 @@ const Navbar = ({
                 </Typography>
               </Link>
               <MenuItem>
-                <Link to="/home">
-                  <Typography textAlign="center">Home</Typography>
-                </Link>
-              </MenuItem>
-              <MenuItem>
                 <Link to="/instruments">
                   <Typography textAlign="center">
                     Instruments ({instruments.length})

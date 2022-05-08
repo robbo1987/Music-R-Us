@@ -8,7 +8,7 @@ class CheckoutPage extends Component {
     super();
     this.state = {
       name: "",
-      address: "",
+      streetAddress: "",
       city: "",
       state: "",
       zip: "",
@@ -16,7 +16,6 @@ class CheckoutPage extends Component {
       phone: "",
     };
     this.onChange = this.onChange.bind(this);
-    this.onSave = this.onSave.bind(this);
     this.sameAsUser = this.sameAsUser.bind(this);
   }
   onChange(ev) {
@@ -24,16 +23,12 @@ class CheckoutPage extends Component {
       [ev.target.name]: ev.target.value,
     });
   }
-  async onSave(ev) {
-    ev.preventDefault();
-    //const user = this.state;
-  }
 
   sameAsUser() {
     const { auth } = this.props;
     this.setState({
       name: auth.username,
-      address: auth.streetAddress,
+      streetAddress: auth.streetAddress,
       city: auth.city,
       state: auth.state,
       zip: auth.zip,
@@ -51,11 +46,17 @@ class CheckoutPage extends Component {
       updateLineitem,
       guestCheckout,
     } = this.props;
-    const { name, address, city, state, zip, email, phone } = this.state;
-    const { onChange, sameAsUser, onSave } = this;
-    const Checkout = () => {
+    const { name, streetAddress, city, state, zip, email, phone } = this.state;
+    const { onChange, sameAsUser } = this;
+    const disabledButton =
+      !name || !streetAddress || !city || !state || !zip || !email || !phone;
+
+    const Checkout = (ev) => {
+      ev.preventDefault();
       if (cart.id) {
-        updateOrder(cart);
+        const order = { ...cart, ...this.state };
+        console.log(order);
+        updateOrder(order);
         cartItems.forEach((item) => {
           updateLineitem(item);
         });
@@ -63,7 +64,7 @@ class CheckoutPage extends Component {
         guestCheckout(cartItems);
       }
     };
-    console.log("auth", auth);
+
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
     return (
@@ -71,12 +72,16 @@ class CheckoutPage extends Component {
         <h1>Shipping Info</h1>
         {auth.id ? <button onClick={sameAsUser}>Same As User</button> : null}
 
-        <form onSubmit={onSave}>
+        <form onSubmit={Checkout}>
           <label htmlFor="name">Name:</label>
           <input name="name" value={name} onChange={onChange} />
           <div className="side-by-side">
-            <label htmlFor="address">Street Address:</label>
-            <input name="address" value={address} onChange={onChange} />
+            <label htmlFor="streetAddress">Street Address:</label>
+            <input
+              name="streetAddress"
+              value={streetAddress}
+              onChange={onChange}
+            />
             <label htmlFor="city">City:</label>
             <input name="city" value={city} onChange={onChange} />
           </div>
@@ -84,7 +89,7 @@ class CheckoutPage extends Component {
             <label htmlFor="state">State:</label>
             <input name="state" value={state} onChange={onChange} />
             <label htmlFor="zip">Zip:</label>
-            <input name="zip" value={zip} onChange={onChange} />
+            <input type="number" name="zip" value={zip} onChange={onChange} />
           </div>
           <div className="side-by-side">
             <label htmlFor="email">Email:</label>
@@ -92,16 +97,14 @@ class CheckoutPage extends Component {
             <label htmlFor="phone">Phone:</label>
             <input name="phone" value={phone} onChange={onChange} />
           </div>
-
-          <button>save</button>
+          {auth.id ? <button disabled={disabledButton}>Checkout</button> : null}
+          {!auth.id ? (
+            <>
+              <button disabled={disabledButton}>Checkout As Guest </button>{" "}
+              <Link to="/signup">Sign Up</Link>{" "}
+            </>
+          ) : null}
         </form>
-        {auth.id ? <button onClick={Checkout}> Checkout</button> : null}
-        {!auth.id ? (
-          <>
-            <button onClick={Checkout}> Checkout As Guest </button>{" "}
-            <Link to="/signup">Sign Up</Link>{" "}
-          </>
-        ) : null}
       </div>
     );
   }

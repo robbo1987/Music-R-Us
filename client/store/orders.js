@@ -42,7 +42,7 @@ export const updateOrder = (order) => {
     const token = window.localStorage.getItem("token");
     if (token) {
       const orders = (
-        await axios.put(`/api/orders/${order.id}`, null, {
+        await axios.put(`/api/orders/${order.id}`, order, {
           headers: {
             authorization: token,
           },

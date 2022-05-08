@@ -6,7 +6,6 @@ class AllOrders extends Component {
     super();
   }
   render() {
-    console.log("test");
     const { orders } = this.props;
     return (
       <>

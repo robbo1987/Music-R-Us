@@ -24,13 +24,9 @@ import Cart from "./components/Cart";
 import Profile from "./components/Profile";
 import CheckoutPage from "./components/CheckoutPage";
 import UpdateInstruments from "./components/UpdateInstruments";
-
 import AllUsersAdmin from "./components/AllUsers-Admin";
 import AllOrdersAdmin from "./components/AllOrders-Admin";
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     const cart = window.localStorage.getItem("cart");
@@ -50,7 +46,6 @@ class Routes extends Component {
             <Route path="/orders" exact component={Orders} />
             <Route path="/profile" exact component={Profile} />
             {isAdmin && (
-
               <Switch>
                 <Route
                   path="/AdminControl/updateinstruments"
@@ -75,7 +70,6 @@ class Routes extends Component {
           </Switch>
         )}
         <Switch>
-          
           <Route path="/categories/:id" exact component={Category} />
           <Route path="/categories" exact component={Categories} />
           <Route path="/brands/:id" exact component={Brand} />
@@ -91,13 +85,8 @@ class Routes extends Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-    // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
     isAdmin: state.auth.isAdmin,
   };
@@ -114,14 +103,11 @@ const mapDispatch = (dispatch) => {
       dispatch(setLineitem());
     },
 
-    setUsers() {
+    adminLoad() {
       dispatch(setUsers());
       dispatch(setAllOrders());
     },
   };
 };
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes));
-

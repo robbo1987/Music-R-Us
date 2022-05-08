@@ -12,12 +12,10 @@ export const Orders = ({ orders, lineitems, instruments }) => {
             <li key={order.id}>
               <div>
                 <h2>Order ID: {order.id}</h2>
-                {/* find the line items associated to order */}
                 <ul>
                   {lineitems
                     .filter((lineitem) => {
                       return lineitem.orderId === order.id;
-                      // map through the line items to see what the instruments are
                     })
                     .map((lineitem) => {
                       const instrument = instruments.find(
