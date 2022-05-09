@@ -50,7 +50,6 @@ export const Categories = ({ categories }) => {
     </Container>
 
     // <div className="ctgyLink">
-
     // </div>
   );
 };
