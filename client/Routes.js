@@ -86,7 +86,7 @@ class Routes extends Component {
           <Route path="/brands/:id" exact component={Brand} />
           <Route path="/brands" exact component={Brands} />
           <Route path="/instruments/sort/:sort" component={Instruments} />
-          <Route path="/instruments/:id" exact component={SelectedInstrument} />
+          <Route path="/instruments/:id"  exact component={SelectedInstrument} />
           <Route path="/instruments" component={Instruments} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkoutpage" exact component={CheckoutPage} />
