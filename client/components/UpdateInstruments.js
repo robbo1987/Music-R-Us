@@ -31,7 +31,7 @@ const UpdateInstruments = (props) => {
               <TableCell component="th" scope="row">
                 {instrument.name}
               </TableCell>
-              <TableCell align="right">{instrument.price}</TableCell>
+              <TableCell align="right">{`$${instrument.price}`}</TableCell>
               <TableCell align="right">{instrument.inventory}</TableCell>
               <TableCell align="right">
                 <button onClick={() => deleteInstrument(instrument.id)}>
