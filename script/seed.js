@@ -389,7 +389,7 @@ async function seed() {
     }),
     Instrument.create({
       categoryId: Keyboard.id,
-      name: "P-125 88-key Weighted Action Digital Piano",
+      name: "P-125 Digital Piano",
       price: 7000,
       brandId: Yamaha.id,
       image: "keyboard1.jpg",
