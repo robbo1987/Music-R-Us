@@ -219,7 +219,7 @@ async function seed() {
     }),
     Instrument.create({
       categoryId: Bass.id,
-      name: "SG STANDARD BASS",
+      name: "SG Standard Bass",
       price: 9599,
       brandId: Gibson.id,
       image: "sgBass.jpg",
@@ -365,7 +365,7 @@ async function seed() {
       name: "YEV105 Electric Violin",
       price: 1745,
       brandId: Yamaha.id,
-      image: "yamahaViolin2.jpg",
+      image: "yamahaViolin4.jpg",
       description:
         "The Yamaha YEV105 offers a sublime combination of organic beauty and transcendent playability. Five layers comprised of maple, mahogany, and spruce yield a gorgeous natural sound, while an oil-finished walnut frame enhances its looks, strength, and resonance. A high-output passive bridge pickup captures every ounce of the YEV105’s natural tone, meticulously reproducing the instrument’s dynamic response and highlighting the subtle nuances of your bowing.",
     }),
@@ -395,6 +395,15 @@ async function seed() {
       image: "keyboard1.jpg",
       description:
         "Built around the sound of the world-famous Yamaha CFIIIS concert grand piano, the clear and melodic sound of the Yamaha P-125 digital piano is instantly recognizable to any seasoned pianist. Your fingers will feel right at home on the P-125’s Graded Hammer Standard action, which is heavier in the low keys and lighter in the high keys, emulating the dynamic feel of hammers on real acoustic piano strings",
+    }),
+    Instrument.create({
+      categoryId: Keyboard.id,
+      name: "Roland K-25m Portable Keyboard",
+      price: 5000,
+      brandId: Yamaha.id,
+      image: "keyboard2.jpg",
+      description:
+        "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
     }),
   ]);
 
