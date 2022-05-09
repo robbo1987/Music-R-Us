@@ -13,7 +13,6 @@ export const setInstruments = (pageNumber = 1, itemsPerPage = 10) => {
         itemsPerPage,
       },
     });
-    console.log(instruments)
     dispatch({ type: SET_INSTRUMENTS, instruments: instruments.rows });
   };
 };

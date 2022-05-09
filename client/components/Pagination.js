@@ -5,31 +5,28 @@ import { setInstruments } from "../store/instruments";
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       pageNumber: 1,
       itemsPerPage: 10,
-      instruments: this.props.instruments,
     };
-    console.log(this.state);
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
   }
 
-  // componentDidUpdate(_, prevState) {
-  //   if (prevState.pageNumber !== this.state.pageNumber) {
-  //     this.props.setInstruments(this.state.pageNumber, this.state.itemsPerPage);
-  //   }
-  // }
+  componentDidUpdate(_, prevState) {
+    if (prevState.pageNumber !== this.state.pageNumber) {
+      this.props.setInstruments(this.state.pageNumber, this.state.itemsPerPage);
+    }
+  }
+
   previousPage = () => {
     if (this.state.pageNumber === 1) return;
     this.setState({ pageNumber: this.state.pageNumber - 1 });
-    this.props.setInstruments(this.state.pageNumber -1, this.state.itemsPerPage);
   };
 
   nextPage = () => {
+    if (this.props.instruments.length < this.state.itemsPerPage) return;
     this.setState({ pageNumber: this.state.pageNumber + 1 });
-    this.props.setInstruments(this.state.pageNumber + 1, this.state.itemsPerPage);
   };
 
   render() {
@@ -45,7 +42,7 @@ class Pagination extends React.Component {
   }
 }
 
-//destructured instruments from state
+// destructured instruments from state
 const mapState = ({ instruments }) => {
   return { instruments };
 };
