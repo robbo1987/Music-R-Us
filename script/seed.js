@@ -60,10 +60,30 @@ async function seed() {
       phone: "555-9513",
       email: "weird-email@gmail.com",
     }),
-    User.create({ username: "jianing", password: "123", isAdmin: true }),
-    User.create({ username: "angel", password: "123", isAdmin: true }),
-    User.create({ username: "robert", password: "123", isAdmin: true }),
-    User.create({ username: "bharadwaj", password: "123", isAdmin: true }),
+    User.create({
+      username: "jianing",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
+    User.create({
+      username: "angel",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
+    User.create({
+      username: "robert",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
+    User.create({
+      username: "bharadwaj",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
   ]);
 
   const [Fender, Gibson, PRS, Jackson, Steinway, Yamaha, Knilling] =

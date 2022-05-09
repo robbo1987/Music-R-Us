@@ -8,7 +8,6 @@ import brands from "./brands";
 import orders from "./orders";
 import lineitems from "./lineitems";
 import users from "./users";
-
 import categories from "./categories";
 
 const reducer = combineReducers({

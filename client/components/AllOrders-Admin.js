@@ -1,47 +1,42 @@
-import React, { Component } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Row from "./AllOrders-rows";
 
-class AllOrders extends Component {
-  constructor() {
-    super();
-  }
-  render() {
-    const { orders } = this.props;
-    return (
-      <>
-        <ul>
-          {orders
-            .filter((order) => order.lineitems)
-            .map((order) => {
-              return (
-                <li key={order.id}>
-                  {order.lineitems.map((lineitem) => {
-                    return (
-                      <div key={lineitem.id}>
-                        Name: {lineitem.instrument.name}
-                        <br></br>
-                        Quantity: {lineitem.quantity}
-                        <br></br>
-                        Subtotal:{" "}
-                        {lineitem.instrument.price * lineitem.quantity}
-                      </div>
-                    );
-                  })}
-                  Order Total:{" "}
-                  {order.lineitems.reduce((acc, item) => {
-                    return acc + item.quantity * item.instrument.price;
-                  }, 0)}
-                </li>
-              );
-            })}
-        </ul>
-      </>
-    );
-  }
-}
+const AllOrders = ({ orders }) => {
+  return (
+    <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Purchaser name</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Order Date</TableCell>
+            <TableCell align="right">Order Id</TableCell>
+            <TableCell align="right">Order Total</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {orders.map((order) => (
+            <Row key={order.id} order={order} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
+
 const mapState = ({ orders }) => {
+  const allOrders = orders.filter((orders) => orders.lineitems?.length);
   return {
-    orders,
+    orders: allOrders,
   };
 };
 

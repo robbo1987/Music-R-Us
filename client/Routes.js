@@ -36,11 +36,22 @@ class Routes extends Component {
     this.props.loadInitialData();
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      !prevProps.isLoggedIn &&
+      this.props.isLoggedIn &&
+      !this.props.isBanned
+    ) {
+      this.props.loadUpdate();
+      if (this.props.isAdmin) this.props.setUsers();
+    }
+  }
+
   render() {
-    const { isLoggedIn, isAdmin } = this.props;
+    const { isLoggedIn, isAdmin, isBanned } = this.props;
     return (
       <div>
-        {isLoggedIn ? (
+        {isLoggedIn && !isBanned ? (
           <Switch>
             <Route path="/home" exact component={Home} />
             <Route path="/orders" exact component={Orders} />
@@ -70,13 +81,12 @@ class Routes extends Component {
           </Switch>
         )}
         <Switch>
-          <Route path="/categories/:id" exact component={Category} />
           <Route path="/categories" exact component={Categories} />
-          <Route path="/brands/:id" exact component={Brand} />
           <Route path="/brands" exact component={Brands} />
-          <Route path="/instruments/sort/:sort" component={Instruments} />
+          <Route path="/instruments" exact component={Instruments} />
+          <Route path="/categories/:id" exact component={Category} />
+          <Route path="/brands/:id" exact component={Brand} />
           <Route path="/instruments/:id" exact component={SelectedInstrument} />
-          <Route path="/instruments" component={Instruments} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkoutpage" exact component={CheckoutPage} />
         </Switch>
@@ -89,6 +99,7 @@ const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
     isAdmin: state.auth.isAdmin,
+    isBanned: state.auth.isBanned,
   };
 };
 
@@ -96,14 +107,15 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());
-      dispatch(setOrders());
       dispatch(setBrands());
       dispatch(setInstruments());
       dispatch(setCategories());
+    },
+    loadUpdate() {
+      dispatch(setOrders());
       dispatch(setLineitem());
     },
-
-    adminLoad() {
+    setUsers() {
       dispatch(setUsers());
       dispatch(setAllOrders());
     },
