@@ -14,6 +14,7 @@ export const Brands = ({ brands }) => {
         {brands.map((brand) => {
           return (
             <Grid
+              key={brand.id}
               item
               container
               justifyContent="space-around"
@@ -22,7 +23,7 @@ export const Brands = ({ brands }) => {
               sm={6}
               md={4}
             >
-              <Link key={brand.id} to={`/brands/${brand.id}`}>
+              <Link to={`/brands/${brand.id}`}>
                 <Card
                   sx={{ width: 200, height: 100 }}
                   aligncontent="space-around"

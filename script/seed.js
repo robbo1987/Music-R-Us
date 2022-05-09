@@ -10,12 +10,80 @@ async function seed() {
   console.log("db synced!");
 
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
-    User.create({ username: "murphy", password: "123" }),
-    User.create({ username: "jianing", password: "123", isAdmin: true }),
-    User.create({ username: "angel", password: "123", isAdmin: true }),
-    User.create({ username: "robert", password: "123", isAdmin: true }),
-    User.create({ username: "bharadwaj", password: "123", isAdmin: true }),
+    User.create({
+      username: "cody",
+      password: "123",
+      streetAddress: "123 Fake Street",
+      city: "Springfield",
+      state: "Oregon",
+      zip: 94461,
+      phone: "455-5555",
+      email: "fake-email@gmail.com",
+    }),
+    User.create({
+      username: "murphy",
+      password: "123",
+      streetAddress: "456 Real Drive",
+      city: "Ordinary City",
+      state: "Utah",
+      zip: 65416,
+      phone: "555-5665",
+      email: "real-email@gmail.com",
+    }),
+    User.create({
+      username: "susan",
+      password: "123",
+      streetAddress: "789 Real Street",
+      city: "Strange City",
+      state: "Ohio",
+      zip: 51655,
+      phone: "555-5669",
+      email: "real-email43@gmail.com",
+    }),
+    User.create({
+      username: "stanley",
+      password: "123",
+      streetAddress: "345 Text Street",
+      city: "Ohoy",
+      state: "Maine",
+      zip: 12346,
+      phone: "555-5615",
+      email: "remasdasdail@gmail.com",
+    }),
+    User.create({
+      username: "tigger",
+      password: "123",
+      streetAddress: "183 Why Here",
+      city: "Weird Town",
+      state: "New Jersey",
+      zip: 54616,
+      phone: "555-9513",
+      email: "weird-email@gmail.com",
+    }),
+    User.create({
+      username: "jianing",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
+    User.create({
+      username: "angel",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
+    User.create({
+      username: "robert",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
+    User.create({
+      username: "bharadwaj",
+      password: "123",
+      isAdmin: true,
+      email: "Admin@MusicRUs.com",
+    }),
   ]);
 
   const [Fender, Gibson, PRS, Jackson, Steinway, Yamaha, Knilling] =
@@ -342,9 +410,39 @@ async function seed() {
     Order.create({ userId: 2 }),
     Order.create({ userId: 2 }),
     Order.create({ userId: 3, isCart: true }),
+    Order.create({ userId: 3 }),
+    Order.create({ userId: 3 }),
+    Order.create({ userId: 3 }),
     Order.create({ userId: 4, isCart: true }),
+    Order.create({ userId: 4 }),
+    Order.create({ userId: 4 }),
+    Order.create({ userId: 4 }),
+    Order.create({ userId: 4 }),
     Order.create({ userId: 5, isCart: true }),
+    Order.create({ userId: 5 }),
+    Order.create({ userId: 5 }),
+    Order.create({ userId: 5 }),
+    Order.create({ userId: 5 }),
     Order.create({ userId: 6, isCart: true }),
+    Order.create({ userId: 6 }),
+    Order.create({ userId: 6 }),
+    Order.create({ userId: 6 }),
+    Order.create({ userId: 6 }),
+    Order.create({ userId: 7, isCart: true }),
+    Order.create({ userId: 7 }),
+    Order.create({ userId: 7 }),
+    Order.create({ userId: 7 }),
+    Order.create({ userId: 7 }),
+    Order.create({ userId: 8, isCart: true }),
+    Order.create({ userId: 8 }),
+    Order.create({ userId: 8 }),
+    Order.create({ userId: 8 }),
+    Order.create({ userId: 8 }),
+    Order.create({ userId: 9, isCart: true }),
+    Order.create({ userId: 9 }),
+    Order.create({ userId: 9 }),
+    Order.create({ userId: 9 }),
+    Order.create({ userId: 9 }),
   ]);
 
   const randomOrderId = (orders) => {
@@ -358,7 +456,7 @@ async function seed() {
   };
 
   const lineitems = await Promise.all(
-    Array(20)
+    Array(100)
       .fill("")
       .map((__) => {
         return Lineitem.create({
@@ -379,11 +477,6 @@ async function seed() {
   };
 }
 
-/*
- We've separated the `seed` function from the `runSeed` function.
- This way we can isolate the error handling and exit trapping.
- The `seed` function is concerned only with modifying the database.
-*/
 async function runSeed() {
   console.log("seeding...");
   try {
@@ -398,14 +491,8 @@ async function runSeed() {
   }
 }
 
-/*
-  Execute the `seed` function, IF we ran this module directly (`node seed`).
-  `Async` functions always return a promise, so we can use `catch` to handle
-  any errors that might occur inside of `seed`.
-*/
 if (module === require.main) {
   runSeed();
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;

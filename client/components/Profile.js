@@ -12,7 +12,7 @@ class Profile extends Component {
         : "",
       email: this.props.auth.email ? this.props.auth.email : "",
       city: this.props.auth.city ? this.props.auth.city : "",
-      state: this.props.auth.city ? this.props.auth.city : "",
+      state: this.props.auth.state ? this.props.auth.state : "",
       zip: this.props.auth.zip ? this.props.auth.zip : "",
       phone: this.props.auth.phone ? this.props.auth.phone : "",
     };

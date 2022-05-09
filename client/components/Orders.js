@@ -1,49 +1,42 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Row from "./Orders-rows";
 
-export const Orders = ({ orders, lineitems, instruments }) => {
-  if (!orders.length) return <div>No Orders</div>;
+const Orders = ({ orders }) => {
   return (
-    <div>
-      <h1>Orders</h1>
-      <ul>
-        {orders.map((order) => {
-          return (
-            <li key={order.id}>
-              <div>
-                <h2>Order ID: {order.id}</h2>
-                {/* find the line items associated to order */}
-                <ul>
-                  {lineitems
-                    .filter((lineitem) => {
-                      return lineitem.orderId === order.id;
-                      // map through the line items to see what the instruments are
-                    })
-                    .map((lineitem) => {
-                      const instrument = instruments.find(
-                        (instrument) => instrument.id === lineitem.instrumentId
-                      );
-                      return (
-                        <li key={lineitem.id}>
-                          name: {instrument?.name}
-                          <br></br>
-                          quantity: {lineitem.quantity}
-                          <br></br>
-                          price: {instrument?.price * lineitem.quantity}
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Purchaser name</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Order Date</TableCell>
+            <TableCell align="right">Order Id</TableCell>
+            <TableCell align="right">Order Total</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {orders.map((order) => (
+            <Row key={order.id} order={order} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
-const mapState = ({ orders, lineitems, instruments }) => {
+const mapState = ({ orders, lineitems, instruments, auth }) => {
+  if (auth.isAdmin) {
+    orders = orders.filter((order) => order.userId === auth.id);
+  }
   const ordersWithoutCart = orders.filter((order) => !order.isCart);
 
   return {

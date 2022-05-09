@@ -9,7 +9,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-
 export const Instruments = ({
   instruments,
   brands,
@@ -17,7 +16,6 @@ export const Instruments = ({
   history,
   match,
 }) => {
-  console.log(match);
   return (
     <Container>
       <Grid container spacing={4}>
@@ -77,7 +75,7 @@ export const Instruments = ({
                     </Link>
                     <br></br>
                     {"Brand:"}{" "}
-                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                    <Link to={`/brands/${brand?.id}`}>{brand?.name}</Link>
                     <br></br>
                     {" Category:"}
                     {category.name}

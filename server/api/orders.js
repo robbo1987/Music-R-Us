@@ -64,7 +64,7 @@ router.put("/:id", async (req, res, next) => {
         userId: user.id,
       },
     });
-    await order.update({ isCart: false });
+    await order.update({ ...req.body, isCart: false });
     await Order.create({ userId: user.id, isCart: true });
     res.json(
       await Order.findAll({
