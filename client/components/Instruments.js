@@ -92,21 +92,21 @@ export const Instruments = ({
 
 const mapState = (state, history) => {
   const sort = history.match.params.sort;
+  
   if (sort === "AscName") {
     state.instruments.sort((a, b) => a.name.localeCompare(b.name));
   }
-  if (sort === "DescName") {
+  else if (sort === "DescName") {
     state.instruments.sort((a, b) => b.name.localeCompare(a.name));
   }
-  if (sort === "AscPrice") {
+  else if (sort === "AscPrice") {
     state.instruments.sort((a, b) => a.price - b.price);
   }
-  if (sort === "DescPrice") {
+  else if (sort === "DescPrice") {
     state.instruments.sort((a, b) => b.price - a.price);
   }
-  if (sort === "") {
-    state.instruments = state.instruments;
-  }
+  else state.instruments
+
   return {
     brands: state.brands,
     categories: state.categories,
