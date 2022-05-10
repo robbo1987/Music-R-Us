@@ -66,7 +66,7 @@ const AuthForm = (props) => {
       {
         loginData ? (
           <div>
-            <h3>You logged in as {loginData.email}</h3>
+            <h3>Welcome {loginData.given_name} {loginData.family_name}! You logged in as {loginData.email}</h3>
             <button onClick={handleLogout}>Logout</button>
           </div>
 

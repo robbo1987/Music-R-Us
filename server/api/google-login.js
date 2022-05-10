@@ -22,10 +22,10 @@ router.post('/', async(req,res) => {
 
   console.log(ticket)
 
-  const { name, email, picture} = ticket.getPayload();
-  upsert(users, {name,email,picture})
+  const { given_name, family_name, email, picture} = ticket.getPayload();
+  upsert(users, {given_name,family_name,email,picture})
   res.status(201);
-  res.json({name,email,picture})
+  res.json({given_name,family_name,email,picture})
 })
 
 
