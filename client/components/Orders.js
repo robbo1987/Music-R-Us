@@ -35,7 +35,9 @@ const Orders = ({ orders }) => {
 
 const mapState = ({ orders, lineitems, instruments, auth }) => {
   if (auth.isAdmin) {
-    orders = orders.filter((order) => order.userId === auth.id);
+    orders = orders.filter(
+      (order) => order.userId === auth.id && !order.lineitems
+    );
   }
   const ordersWithoutCart = orders.filter((order) => !order.isCart);
 
