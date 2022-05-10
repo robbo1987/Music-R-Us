@@ -1,12 +1,10 @@
 const router = require("express").Router();
 
 
-
-
 const dotenv = require('dotenv');
 const {OAuth2Client} = require('google-auth-library');
 dotenv.config()
-const client = new OAuth2Client(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+const client = new OAuth2Client('662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com')
 const users = [];
 
 function upsert(array,item) {
@@ -15,7 +13,7 @@ function upsert(array,item) {
   else array.push(item)
 }
 
-router.post('/api/google-login', async(req,res) => {
+router.post('/', async(req,res) => {
   const {token} = req.body;
   const ticket = await client.verifyIdToken({
     idToken : token,
@@ -27,3 +25,16 @@ router.post('/api/google-login', async(req,res) => {
   res.status(201);
   res.json({name,email,picture})
 })
+
+
+router.get("/", (req, res, next) => {
+  try {
+    res.send('hello world')
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;
+
+
