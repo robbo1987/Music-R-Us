@@ -1,9 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store";
+import { GoogleLogin} from 'react-google-login';
+import { useState } from "react";
+
+
+ 
 
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
+
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem('loginData')
+    ? JSON.parse(localStorage.getItem('loginData'))
+    : null
+  )
+  const handleFailure = result => {
+    alert(result)
+  }
+
+  const handleLogin = async googleData => {
+    const res = await fetch('/api/google-login', {
+      method: "POST",
+      body: JSON.stringify({
+        token:googleData.tokenId, 
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await res.json();
+    setLoginData(data);
+    localStorage.setItem('loginData', JSON.stringify(data))
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('loginData');
+    setLoginData(null)
+  }
 
   return (
     <div>
@@ -25,6 +60,26 @@ const AuthForm = (props) => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+      <h1> LOGIN WITH GOOGLE</h1>
+      {
+        loginData ? (
+          <div>
+            <h3>You logged in as {loginData.email}</h3>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+
+        ) :
+        <GoogleLogin 
+        clientId={'662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com'}
+        buttonText='Log in with GOOGLE'
+        onSuccess={handleLogin}
+        onFailure={handleFailure}
+        cookiePolicy={"single_host_origin"}
+        />
+
+      }
+ 
+      
     </div>
   );
 };
