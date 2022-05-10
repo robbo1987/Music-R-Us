@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateOrder, updateLineitem, guestCheckout } from "../store";
+import { updateCart } from "../store";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class CheckoutPage extends Component {
   constructor() {
@@ -37,33 +38,23 @@ class CheckoutPage extends Component {
     });
   }
 
+  checkout = async (ev) => {
+    ev.preventDefault();
+    const { cart, cartItems, updateCart } = this.props;
+    const url = (await axios.post("/api/stripe/checkout", { cartItems })).data;
+    if (cart.id) {
+      const updatedCart = { ...cart, ...this.state };
+      updateCart(updatedCart);
+    }
+    window.location = url;
+  };
+
   render() {
-    const {
-      auth,
-      cart,
-      cartItems,
-      updateOrder,
-      updateLineitem,
-      guestCheckout,
-    } = this.props;
+    const { auth, cartItems } = this.props;
     const { name, streetAddress, city, state, zip, email, phone } = this.state;
-    const { onChange, sameAsUser } = this;
+    const { onChange, sameAsUser, checkout } = this;
     const disabledButton =
       !name || !streetAddress || !city || !state || !zip || !email || !phone;
-
-    const Checkout = (ev) => {
-      ev.preventDefault();
-      if (cart.id) {
-        const order = { ...cart, ...this.state };
-        console.log(order);
-        updateOrder(order);
-        cartItems.forEach((item) => {
-          updateLineitem(item);
-        });
-      } else {
-        guestCheckout(cartItems);
-      }
-    };
 
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
@@ -72,7 +63,7 @@ class CheckoutPage extends Component {
         <h1>Shipping Info</h1>
         {auth.id ? <button onClick={sameAsUser}>Same As User</button> : null}
 
-        <form onSubmit={Checkout}>
+        <form onSubmit={checkout}>
           <label htmlFor="name">Name:</label>
           <input name="name" value={name} onChange={onChange} />
           <div className="side-by-side">
@@ -132,14 +123,8 @@ const mapState = ({ orders, lineitems, auth }) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    updateOrder: (order) => {
-      dispatch(updateOrder(order));
-    },
-    updateLineitem: (lineitem) => {
-      dispatch(updateLineitem(lineitem));
-    },
-    guestCheckout: (cartItems) => {
-      dispatch(guestCheckout(cartItems));
+    updateCart: (cart) => {
+      dispatch(updateCart(cart));
     },
   };
 };
