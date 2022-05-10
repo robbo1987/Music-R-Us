@@ -97,7 +97,7 @@ async function seed() {
         "Yamaha",
         "Knilling",
       ].map((brand) => {
-        return Brand.create({ name: brand });
+        return Brand.create({ name: brand, image: brand + ".jpeg" });
       })
     );
 
