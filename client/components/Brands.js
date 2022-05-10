@@ -6,6 +6,8 @@ import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Typography } from "@mui/material";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActionArea } from "@mui/material";
 
 export const Brands = ({ brands }) => {
   return (
@@ -23,16 +25,23 @@ export const Brands = ({ brands }) => {
               sm={6}
               md={4}
             >
-              <Link to={`/brands/${brand.id}`}>
-                <Card
-                  sx={{ width: 200, height: 100 }}
-                  aligncontent="space-around"
-                >
-                  <CardContent>
-                    <Typography>{brand.name}</Typography>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card
+                sx={{ width: 250, height: 350 }}
+                aligncontent="space-around"
+              >
+                <Link to={`/brands/${brand.id}`}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      image={`/public/photos/default/${brand.image}`}
+                      height="300"
+                    />
+                    <CardContent>
+                      <Typography>{brand.name}</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Link>
+              </Card>
             </Grid>
           );
         })}

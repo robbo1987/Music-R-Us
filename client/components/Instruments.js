@@ -48,14 +48,14 @@ export const Instruments = ({
               key={instrument.id}
               item
               container
-              justifyContent="space-around"
+              justifycontent="space-around"
               aligncontent="center"
               xs={12}
               sm={6}
               md={4}
             >
               <Card
-                sx={{ maxWidth: 250, height: 350 }}
+                sx={{ width: 250, height: 350 }}
                 aligncontent="space-around"
               >
                 <CardActionArea>
