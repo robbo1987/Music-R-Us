@@ -20,6 +20,7 @@ const AuthForm = (props) => {
   }
 
   const handleLogin = async googleData => {
+    console.log(googleData)
     const res = await fetch('/api/google-login', {
       method: "POST",
       body: JSON.stringify({
@@ -33,6 +34,7 @@ const AuthForm = (props) => {
     const data = await res.json();
     setLoginData(data);
     localStorage.setItem('loginData', JSON.stringify(data))
+    console.log(data)
   }
 
   const handleLogout = () => {

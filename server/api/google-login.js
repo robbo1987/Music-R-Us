@@ -17,8 +17,10 @@ router.post('/', async(req,res) => {
   const {token} = req.body;
   const ticket = await client.verifyIdToken({
     idToken : token,
-    audience: process.env.CLIENT_ID
+    audience: '662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com'
   })
+
+  console.log(ticket)
 
   const { name, email, picture} = ticket.getPayload();
   upsert(users, {name,email,picture})
