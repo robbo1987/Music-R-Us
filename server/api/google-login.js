@@ -6,14 +6,15 @@ const {
 const dotenv = require('dotenv');
 const {OAuth2Client} = require('google-auth-library');
 dotenv.config()
-const client = new OAuth2Client('662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com')
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+const googlePW = process.env.GOOGLE_PW
 
 router.post('/', async(req,res) => {
   const token = req.body.token.xc.id_token;
 
   const ticket = await client.verifyIdToken({
     idToken : token,
-    audience: '662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com' 
+    audience: process.env.GOOGLE_CLIENT_ID
   })
 
   const { given_name, family_name, email} = ticket.getPayload();
@@ -23,7 +24,7 @@ router.post('/', async(req,res) => {
   }})
 
   if(!user) {
-    const newUser= await User.create({googleId: req.body.token.googleId, username: given_name, email:email, password: "123"})
+    const newUser= await User.create({googleId: req.body.token.googleId, username: given_name, email:email, password: googlePW})
     res.json(newUser)
   }
   else res.send(user)

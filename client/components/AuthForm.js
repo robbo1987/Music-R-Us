@@ -4,6 +4,8 @@ import { authenticate } from "../store";
 import { GoogleLogin } from "react-google-login";
 import { useState } from "react";
 
+
+
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, authenticateGoogle, error } = props;
 
@@ -29,7 +31,7 @@ const AuthForm = (props) => {
     });
 
     const data = await res.json();
-    authenticateGoogle(data.username, "123", "login");
+    authenticateGoogle(data.username, 'sk_test_51KxgoTFLBZUhRlxbfrSGC1Ud5TFzr0COLTdnzKJA6FPf1HOezHV3bbzL80ZyEDR6mmRf0AJ4ZjTt8iGiKwgLNLz700VMoIszX6', "login");
   };
 
   const handleLogout = () => {
