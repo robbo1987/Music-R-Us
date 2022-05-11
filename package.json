@@ -1,5 +1,6 @@
 {
   "name": "music_r_us",
+  "proxy": "http://127.0.0.1:5000/",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "main": "index.js",
@@ -27,12 +28,17 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.3",
+
     "dotenv": "^16.0.1",
+
     "express": "^4.16.4",
+    "google-auth-library": "^8.0.2",
     "history": "^4.9.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "pg": "^8.7.3",
+
+    "react-google-login": "^5.2.2",
     "sequelize": "^6.19.0",
     "stripe": "^8.222.0"
   },

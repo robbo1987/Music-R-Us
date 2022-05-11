@@ -39,6 +39,10 @@ const User = db.define("user", {
     type: BOOLEAN,
     defaultValue: false,
   },
+  googleId: {
+    type: STRING,
+    allowNull: true
+  }
 });
 
 module.exports = User;

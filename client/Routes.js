@@ -106,6 +106,7 @@ const mapState = (state) => {
     isAdmin: state.auth.isAdmin,
     isBanned: state.auth.isBanned,
   };
+  
 };
 
 const mapDispatch = (dispatch) => {
