@@ -77,3 +77,19 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.put("/cart/:id", async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+    const order = await Order.findOne({
+      where: {
+        id: req.params.id,
+        userId: user.id,
+      },
+    });
+    const updatedCart = await order.update({ ...req.body });
+    res.json(updatedCart);
+  } catch (err) {
+    next(err);
+  }
+});

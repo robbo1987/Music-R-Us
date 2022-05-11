@@ -26,6 +26,8 @@ import CheckoutPage from "./components/CheckoutPage";
 import UpdateInstruments from "./components/UpdateInstruments";
 import AllUsersAdmin from "./components/AllUsers-Admin";
 import AllOrdersAdmin from "./components/AllOrders-Admin";
+import OrderSucess from "./components/OrderSucess";
+import Settings from "./components/Settings";
 
 class Routes extends Component {
   componentDidMount() {
@@ -56,6 +58,7 @@ class Routes extends Component {
             <Route path="/home" exact component={Home} />
             <Route path="/orders" exact component={Orders} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/settings" component={Settings} />
             {isAdmin && (
               <Switch>
                 <Route
@@ -81,14 +84,16 @@ class Routes extends Component {
           </Switch>
         )}
         <Switch>
-          <Route path="/categories" exact component={Categories} />
-          <Route path="/brands" exact component={Brands} />
-          <Route path="/instruments" exact component={Instruments} />
           <Route path="/categories/:id" exact component={Category} />
+          <Route path="/categories" exact component={Categories} />
           <Route path="/brands/:id" exact component={Brand} />
+          <Route path="/brands" exact component={Brands} />
+          <Route path="/instruments/sort/:sort" component={Instruments} />
           <Route path="/instruments/:id" exact component={SelectedInstrument} />
+          <Route path="/instruments" component={Instruments} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkoutpage" exact component={CheckoutPage} />
+          <Route path="/ordersuccess" exact component={OrderSucess} />;
         </Switch>
       </div>
     );

@@ -1,9 +1,9 @@
 import axios from "axios";
-import history from "../history";
 
 const SET_ORDERS = "SET_ORDERS";
 const RESET_ORDERS = "RESET_ORDERS";
 const SET_ALLORDERS = "SET_ALLORDERS";
+const UPDATE_CART = "UPDATE_CART";
 
 export const setOrders = () => {
   return async (dispatch) => {
@@ -49,7 +49,22 @@ export const updateOrder = (order) => {
         })
       ).data;
       dispatch({ type: SET_ORDERS, orders });
-      history.push("/orders");
+    }
+  };
+};
+
+export const updateCart = (cart) => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      const updatedCart = (
+        await axios.put(`/api/orders/cart/${cart.id}`, cart, {
+          headers: {
+            authorization: token,
+          },
+        })
+      ).data;
+      dispatch({ type: UPDATE_CART, updatedCart });
     }
   };
 };
@@ -68,6 +83,10 @@ export default function (state = [], action) {
       return [...state, ...action.orders];
     case RESET_ORDERS:
       return [];
+    case UPDATE_CART:
+      return state.map((order) =>
+        order.id === action.updatedCart.id ? action.updatedCart : order
+      );
     default:
       return state;
   }

@@ -15,16 +15,9 @@ import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout, resetOrders, resetLineitem } from "../store";
-import AdminControl from "./AdminControl";
+import Settings from "./Settings";
 
-const Navbar = ({
-  handleClick,
-  isLoggedIn,
-  brands,
-  instruments,
-  isAdmin,
-  isBanned,
-}) => (
+const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => (
   <Container>
     {isBanned ? (
       <h1>Your Account is banned! Shame! Shame! Shame!</h1>
@@ -32,7 +25,14 @@ const Navbar = ({
       <AppBar position="fixed">
         <Container maxWidth="xl">
           {isLoggedIn ? (
-            <Toolbar disableGutters>
+            <Toolbar
+              disableGutters
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <Link to="/home">
                 <Typography
                   variant="h6"
@@ -68,16 +68,12 @@ const Navbar = ({
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/orders">
-                  <Typography textAlign="center">Orders</Typography>
-                </Link>
+                <a href="#">
+                  <Typography textAlign="center">
+                    <Settings />
+                  </Typography>
+                </a>
               </MenuItem>
-              <MenuItem>
-                <Link to="/profile">
-                  <Typography textAlign="center">Profile</Typography>
-                </Link>
-              </MenuItem>
-              <MenuItem>{isAdmin && <AdminControl />}</MenuItem>
               <MenuItem>
                 <a href="#" onClick={handleClick}>
                   <Typography textAlign="center">Logout</Typography>
@@ -85,7 +81,14 @@ const Navbar = ({
               </MenuItem>
             </Toolbar>
           ) : (
-            <Toolbar disableGutters>
+            <Toolbar
+              disableGutters
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <Typography
                 variant="h6"
                 noWrap
@@ -142,7 +145,6 @@ const mapState = (state) => {
     instruments: state.instruments,
     brands: state.brands,
     lineitems: state.lineitems,
-    isAdmin: state.auth.isAdmin,
     isBanned: state.auth.isBanned,
   };
 };

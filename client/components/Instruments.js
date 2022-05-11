@@ -26,7 +26,7 @@ export const Instruments = ({
             history.push(
               ev.target.value
                 ? `/instruments/sort/${ev.target.value}`
-                : "/instruments"
+                : "/instruments/sort/noFilter"
             )
           }
         >
@@ -92,21 +92,22 @@ export const Instruments = ({
 
 const mapState = (state, history) => {
   const sort = history.match.params.sort;
+  
   if (sort === "AscName") {
     state.instruments.sort((a, b) => a.name.localeCompare(b.name));
   }
   if (sort === "DescName") {
     state.instruments.sort((a, b) => b.name.localeCompare(a.name));
   }
-  if (sort === "AscPrice") {
+   if (sort === "AscPrice") {
     state.instruments.sort((a, b) => a.price - b.price);
   }
-  if (sort === "DescPrice") {
+   if (sort === "DescPrice") {
     state.instruments.sort((a, b) => b.price - a.price);
   }
-  if (sort === "") {
-    state.instruments = state.instruments;
-  }
+  
+ 
+
   return {
     brands: state.brands,
     categories: state.categories,
