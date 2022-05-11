@@ -17,31 +17,47 @@ export const Brand = ({ instruments, brand, categories }) => {
   return (
     <Container>
       <h1>{brand.name} Instruments</h1>
-      <ul>
+      <Grid container spacing={4}>
         {instrumentsList.map((instrument) => {
           return (
-            <Card key={instrument.id}>
-              <Link to={`/instruments/${instrument.id}`}>
-                <CardMedia
-                  component="img"
-                  image={`/public/photos/${instrument.image}`}
-                ></CardMedia>
-              </Link>
-              <CardContent>
-                <Typography>
-                  {"Instrument Name:"}{" "}
-                  <Link to={`/instruments/${instrument.id}`}>
-                    {instrument.name}
-                  </Link>
-                  <br></br>
-                  {"Brand:"}{" "}
-                  <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-                </Typography>
-              </CardContent>
-            </Card>
+            <Grid
+              key={instrument.id}
+              item
+              container
+              justifyContent="space-around"
+              aligncontent="center"
+              xs={12}
+              sm={6}
+              md={4}
+            >
+              <Card
+                key={instrument.id}
+                sx={{ width: 250, height: 350 }}
+                aligncontent="space-around"
+              >
+                <Link to={`/instruments/${instrument.id}`}>
+                  <CardMedia
+                    component="img"
+                    image={`/public/photos/${instrument.image}`}
+                    height="225"
+                  />
+                </Link>
+                <CardContent>
+                  <Typography>
+                    {"Instrument Name:"}{" "}
+                    <Link to={`/instruments/${instrument.id}`}>
+                      {instrument.name}
+                    </Link>
+                    <br></br>
+                    {"Brand:"}{" "}
+                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
           );
         })}
-      </ul>
+      </Grid>
     </Container>
   );
 };
