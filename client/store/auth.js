@@ -26,7 +26,6 @@ export const authenticate =
     try {
       const res = await axios.post(`/auth/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
-      console.log(res.data.token)
       dispatch(me());
       dispatch(setOrders());
       dispatch(setLineitem());

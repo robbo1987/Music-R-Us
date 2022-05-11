@@ -1,45 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store";
-import { GoogleLogin} from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
 import { useState } from "react";
-
-
- 
 
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, authenticateGoogle, error } = props;
 
   const [loginData, setLoginData] = useState(
-    localStorage.getItem('loginData')
-    ? JSON.parse(localStorage.getItem('loginData'))
-    : null
-  )
-  const handleFailure = result => {
-    alert(result)
-  }
+    localStorage.getItem("loginData")
+      ? JSON.parse(localStorage.getItem("loginData"))
+      : null
+  );
+  const handleFailure = (result) => {
+    alert(result);
+  };
 
-  const handleLogin = async googleData => {
-    console.log(googleData) 
-    const res = await fetch('/api/google-login', {
+  const handleLogin = async (googleData) => {
+    console.log(googleData);
+    const res = await fetch("/api/google-login", {
       method: "POST",
       body: JSON.stringify({
-        token:googleData, 
+        token: googleData,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    })
+    });
 
     const data = await res.json();
-    console.log(data)
-    (authenticateGoogle(data.username, data.password, "login"))
-  }
+    authenticateGoogle(data.username, "123", "login");
+  };
 
   const handleLogout = () => {
-    localStorage.removeItem('loginData');
-    setLoginData(null)
-  }
+    localStorage.removeItem("loginData");
+    setLoginData(null);
+  };
 
   return (
     <div>
@@ -62,25 +58,25 @@ const AuthForm = (props) => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <h1> LOGIN WITH GOOGLE</h1>
-      {
-        loginData ? (
-          <div>
-            <h3>Welcome {loginData.given_name} {loginData.family_name}! You logged in as {loginData.email}</h3>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
-
-        ) :
-        <GoogleLogin 
-        clientId={'662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com'}
-        buttonText='Log in with GOOGLE'
-        onSuccess={handleLogin}
-        onFailure={handleFailure}
-        cookiePolicy={"single_host_origin"}
+      {loginData ? (
+        <div>
+          <h3>
+            Welcome {loginData.given_name} {loginData.family_name}! You logged
+            in as {loginData.email}
+          </h3>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <GoogleLogin
+          clientId={
+            "662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com"
+          }
+          buttonText="Log in with GOOGLE"
+          onSuccess={handleLogin}
+          onFailure={handleFailure}
+          cookiePolicy={"single_host_origin"}
         />
-
-      }
- 
-      
+      )}
     </div>
   );
 };
@@ -110,8 +106,9 @@ const mapDispatch = (dispatch) => {
       const password = evt.target.password.value;
       dispatch(authenticate(username, password, formName));
     },
-    authenticateGoogle:(username,password,formName) => { 
-      dispatch(authenticate(username,password,formName))}
+    authenticateGoogle: (username, password, formName) => {
+      dispatch(authenticate(username, password, formName));
+    },
   };
 };
 

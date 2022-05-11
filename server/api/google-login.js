@@ -24,7 +24,6 @@ router.post('/', async(req,res) => {
 
   if(!user) {
     const newUser= await User.create({googleId: req.body.token.googleId, username: given_name, email:email, password: "123"})
-    console.log(newUser)
     res.json(newUser)
   }
   else res.send(user)
