@@ -8,7 +8,7 @@ import { useState } from "react";
  
 
 const AuthForm = (props) => {
-  const { name, displayName, handleSubmit, error } = props;
+  const { name, displayName, handleSubmit, authenticateGoogle, error } = props;
 
   const [loginData, setLoginData] = useState(
     localStorage.getItem('loginData')
@@ -32,7 +32,8 @@ const AuthForm = (props) => {
     })
 
     const data = await res.json();
-    dispatch(authenticate(data.username, data.password, "login"))
+    console.log(data)
+    (authenticateGoogle(data.username, data.password, "login"))
   }
 
   const handleLogout = () => {
@@ -109,6 +110,8 @@ const mapDispatch = (dispatch) => {
       const password = evt.target.password.value;
       dispatch(authenticate(username, password, formName));
     },
+    authenticateGoogle:(username,password,formName) => { 
+      dispatch(authenticate(username,password,formName))}
   };
 };
 
