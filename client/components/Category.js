@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { maxHeight } from "@mui/system";
 
-
 export const Category = ({ instruments, brands, category }) => {
   const instrumentsList =
     instruments.filter((instrument) => instrument.categoryId === category.id) ||
@@ -24,24 +23,25 @@ export const Category = ({ instruments, brands, category }) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           return (
             <Grid item xs={12} sm={6} md={4} key={instrument.id}>
-              <Card sx={{ maxWidth: 300, height: 350 }}>
-                <div>
-                  {/* <CardMedia 
-                    COMPONENT = "img"
-                    image= /> */}
-                  <img
-                    id="detailPage"
-                    src={`/public/photos/${instrument.image}`}
+              <Card sx={{ maxWidth: 250, height: 350 }}>
+                <Link to={`/instruments/${instrument.id}`}>
+                  <CardMedia
+                    component="img"
+                    image={`/public/photos/${instrument.image}`}
+                    height="250"
                   />
-                </div>
-                <div>
-                  <Link to={`/instruments/${instrument.id}`}>
-                    {instrument.name}
-                  </Link>
-                </div>
-                <div>
-                  <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
-                </div>
+                </Link>
+                <CardContent>
+                  <Typography>
+                    {"Instrument Name:"}{" "}
+                    <Link to={`/instruments/${instrument.id}`}>
+                      {instrument.name}
+                    </Link>
+                    <br></br>
+                    {"Brand:"}{" "}
+                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
           );

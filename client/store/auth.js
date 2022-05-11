@@ -29,6 +29,8 @@ export const authenticate =
       dispatch(me());
       dispatch(setOrders());
       dispatch(setLineitem());
+
+      history.push("/home");
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
@@ -45,16 +47,6 @@ export const updateProfile = (user) => {
       })
     ).data;
     return dispatch(updateAuth(updatedUser));
-    // const profile = await axios.put(
-    //   "/auth/me",
-    //   { username, },
-    //   {
-    //     headers: {
-    //       authorization: token,
-    //     },
-    //   }
-    // );
-    // return dispatch(setAuth(profile.data));
   };
 };
 
