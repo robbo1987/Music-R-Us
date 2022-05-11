@@ -4,6 +4,9 @@ import { authenticate } from "../store";
 import { GoogleLogin } from "react-google-login";
 import { useState } from "react";
 
+require('dotenv').config()
+const googlePW = process.env.STRIPE_PRIVATE_KEY
+
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, authenticateGoogle, error } = props;
 
@@ -29,7 +32,7 @@ const AuthForm = (props) => {
     });
 
     const data = await res.json();
-    authenticateGoogle(data.username, "123", "login");
+    authenticateGoogle(data.username, googlePW, "login");
   };
 
   const handleLogout = () => {
