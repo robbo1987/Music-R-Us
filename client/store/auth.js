@@ -5,15 +5,12 @@ import { setOrders, setLineitem } from "../store";
 const TOKEN = "token";
 const SET_AUTH = "SET_AUTH";
 const UPDATE_AUTH = "UPDATE_AUTH";
-const LOGIN_DATA = 'loginData'
 
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 const updateAuth = (updatedUser) => ({ type: UPDATE_AUTH, updatedUser });
 
 export const me = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN);
-  const loginData = window.localStorage.getItem(LOGIN_DATA)
-  console.log('hello',loginData)
   if (token) {
     const res = await axios.get("/auth/me", {
       headers: {
@@ -29,6 +26,7 @@ export const authenticate =
     try {
       const res = await axios.post(`/auth/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
+      console.log(res.data.token)
       dispatch(me());
       dispatch(setOrders());
       dispatch(setLineitem());
