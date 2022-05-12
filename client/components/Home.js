@@ -1,22 +1,29 @@
+import { Box, CardMedia, Paper } from "@mui/material";
 import React from "react";
 import { connect } from "react-redux";
 
 /**
  * COMPONENT
  */
+
 export const Home = (props) => {
-  
-  const { username, email, city, state, zip, streetAddress, phone } = props;
+  const { username } = props;
+
+  let welcome;
+
+  if (username) {
+    welcome = `Welcome ${username}`;
+  } else {
+    welcome = `Welcome to Music R Us`;
+  }
 
   return (
-    <div>
-      <h3>Welcome, {username}</h3>
-      <h3>Your email address is {email}</h3>
-      <h3>
-        Your Address is {streetAddress} {city} {state} {zip}
-      </h3>
-      <h3>Your phone number is {phone}</h3>
-    </div>
+    <Box sx={{ height: "100vh", width: "1000px" }}>
+      <h3>{welcome}</h3>
+      <Paper elevation={0}>
+        <CardMedia component="img" image={`/public/photos/default/Home.jpeg`} />
+      </Paper>
+    </Box>
   );
 };
 
@@ -26,12 +33,6 @@ export const Home = (props) => {
 const mapState = (state) => {
   return {
     username: state.auth.username,
-    email: state.auth.email,
-    zip: state.auth.zip,
-    city: state.auth.city,
-    state: state.auth.state,
-    streetAddress: state.auth.streetAddress,
-    phone: state.auth.phone,
   };
 };
 

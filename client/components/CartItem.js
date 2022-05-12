@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteLineitem, updateLineitem } from "../store";
 import { Link } from "react-router-dom";
-import Container from "@mui/material/Container";
-import { Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 export class Cart extends Component {
   constructor() {

@@ -28,6 +28,7 @@ import AllUsersAdmin from "./components/AllUsers-Admin";
 import AllOrdersAdmin from "./components/AllOrders-Admin";
 import OrderSucess from "./components/OrderSucess";
 import Settings from "./components/Settings";
+import { Container } from "@mui/material";
 
 class Routes extends Component {
   componentDidMount() {
@@ -52,7 +53,7 @@ class Routes extends Component {
   render() {
     const { isLoggedIn, isAdmin, isBanned } = this.props;
     return (
-      <div>
+      <Container>
         {isLoggedIn && !isBanned ? (
           <Switch>
             <Route path="/home" exact component={Home} />
@@ -78,7 +79,8 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/home" exact component={Home} />
+            <Route path="/" exact component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
@@ -95,7 +97,7 @@ class Routes extends Component {
           <Route path="/checkoutpage" exact component={CheckoutPage} />
           <Route path="/ordersuccess" exact component={OrderSucess} />;
         </Switch>
-      </div>
+      </Container>
     );
   }
 }
@@ -106,7 +108,6 @@ const mapState = (state) => {
     isAdmin: state.auth.isAdmin,
     isBanned: state.auth.isBanned,
   };
-  
 };
 
 const mapDispatch = (dispatch) => {

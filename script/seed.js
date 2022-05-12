@@ -388,6 +388,33 @@ async function seed() {
         "The Knilling 86F Nicolo Gabrieli Maestro Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
     }),
     Instrument.create({
+      categoryId: Violin.id,
+      name: "110VN Sebastian",
+      price: 3949,
+      brandId: Knilling.id,
+      image: "knilling2img.jpeg",
+      description:
+        "The Knilling 10VN Sebastian Series Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "4K Bucharest",
+      price: 3949,
+      brandId: Knilling.id,
+      image: "knilling2img.jpeg",
+      description:
+        "The Knilling 4K Bucharest Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "Perfection II",
+      price: 3949,
+      brandId: Knilling.id,
+      image: "knilling2img.jpeg",
+      description:
+        "The Knilling Perfection II Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
       categoryId: Keyboard.id,
       name: "P-125 Digital Piano",
       price: 7000,

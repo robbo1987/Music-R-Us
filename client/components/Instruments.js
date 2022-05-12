@@ -8,6 +8,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
 
 export const Instruments = ({
   instruments,
@@ -18,25 +22,36 @@ export const Instruments = ({
 }) => {
   return (
     <Container>
+      <Grid container justifyContent="flex-end">
+        <Box sx={{ p: 1 }}>
+          <FormControl>
+            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+              Sort By
+            </InputLabel>
+            <NativeSelect
+              defaultValue={match.params.sort}
+              inputProps={{
+                name: "age",
+                id: "uncontrolled-native",
+              }}
+              onChange={(ev) =>
+                history.push(
+                  ev.target.value
+                    ? `/instruments/sort/${ev.target.value}`
+                    : "/instruments/sort/noFilter"
+                )
+              }
+            >
+              <option value=""> Sort By </option>
+              <option value="AscName">Sort Ascending By Name</option>
+              <option value="DescName">Sort Decending By Name</option>
+              <option value="AscPrice">Sort Ascending By Price</option>
+              <option value="DescPrice">Sort Descending By Price</option>
+            </NativeSelect>
+          </FormControl>
+        </Box>
+      </Grid>
       <Grid container spacing={4}>
-        <select
-          value={match.params.sort}
-          name="sort"
-          onChange={(ev) =>
-            history.push(
-              ev.target.value
-                ? `/instruments/sort/${ev.target.value}`
-                : "/instruments/sort/noFilter"
-            )
-          }
-        >
-          <option value=""> Sort By </option>
-          <option value="AscName">Sort Ascending By Name</option>
-          <option value="DescName">Sort Decending By Name</option>
-          <option value="AscPrice">Sort Ascending By Price</option>
-          <option value="DescPrice">Sort Descending By Price</option>
-        </select>
-
         {instruments.map((instrument) => {
           const brand = brands.find((brand) => brand.id === instrument.brandId);
           const category =
@@ -92,21 +107,19 @@ export const Instruments = ({
 
 const mapState = (state, history) => {
   const sort = history.match.params.sort;
-  
+
   if (sort === "AscName") {
     state.instruments.sort((a, b) => a.name.localeCompare(b.name));
   }
   if (sort === "DescName") {
     state.instruments.sort((a, b) => b.name.localeCompare(a.name));
   }
-   if (sort === "AscPrice") {
+  if (sort === "AscPrice") {
     state.instruments.sort((a, b) => a.price - b.price);
   }
-   if (sort === "DescPrice") {
+  if (sort === "DescPrice") {
     state.instruments.sort((a, b) => b.price - a.price);
   }
-  
- 
 
   return {
     brands: state.brands,
