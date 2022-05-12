@@ -4,8 +4,9 @@ import { deleteLineitem, updateLineitem } from "../store";
 import { Link } from "react-router-dom";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-
+import Card from "@mui/material/Card";
 export class Cartitem extends Component {
+
   constructor() {
     super();
   }

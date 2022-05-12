@@ -14,6 +14,9 @@ const Category = db.define("category", {
     type: STRING,
     defaultValue: "stockImage.png",
   },
+  sound: {
+    type: STRING,
+  },
 });
 
 module.exports = Category;
