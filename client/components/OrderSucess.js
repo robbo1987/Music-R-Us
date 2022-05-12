@@ -23,11 +23,21 @@ class OrderSuccess extends Component {
   }
 
   render() {
+    const { auth } = this.props;
     return (
-      <div>
-        Thanks for shopping at Music R Us, no refunds sorry!
-        <Link to="/orders">Your Orders</Link>
-      </div>
+      <>
+        <h2>Thanks for shopping at Music R Us, no refunds sorry! </h2>
+        {auth.id && (
+          <Link to="/orders">
+            <h2>Look at your orders?</h2>
+          </Link>
+        )}
+        {!auth.id && (
+          <Link to="/instruments">
+            <h2>Continue Shopping?</h2>
+          </Link>
+        )}
+      </>
     );
   }
 }

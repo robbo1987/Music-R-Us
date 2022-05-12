@@ -8,18 +8,14 @@ const RESET_LINEITEMS = "RESET_LINEITEMS";
 
 export const setLineitem = () => {
   return async (dispatch) => {
-    //get token and localcart from localstorage
     const token = window.localStorage.getItem("token");
     const localcart = JSON.parse(window.localStorage.getItem("cart"));
     if (token) {
-      //set localstorage cart back to empty
       window.localStorage.setItem("cart", JSON.stringify({ lineitems: [] }));
       let lineitems;
-      //if there are no lineitems in the localcart, just get all lineitems from database
       if (!localcart.lineitems.length) {
         lineitems = (await axios.get("/api/lineitems")).data;
       } else {
-        // else call an axios lineitems put call and send all the localcart in the req.body (the url is a put to /api/lineitems/localcart but it will hit our put route at /api/lineitems/:id the parameter is localcart rather than and id)
         lineitems = (
           await axios.put(
             "/api/lineitems/localcart",

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { updateCart } from "../store";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
 class CheckoutPage extends Component {
   constructor() {
@@ -16,16 +19,14 @@ class CheckoutPage extends Component {
       email: "",
       phone: "",
     };
-    this.onChange = this.onChange.bind(this);
-    this.sameAsUser = this.sameAsUser.bind(this);
   }
-  onChange(ev) {
+  onChange = (ev) => {
     this.setState({
       [ev.target.name]: ev.target.value,
     });
-  }
+  };
 
-  sameAsUser() {
+  sameAsUser = () => {
     const { auth } = this.props;
     this.setState({
       name: auth.username,
@@ -36,7 +37,7 @@ class CheckoutPage extends Component {
       email: auth.email,
       phone: auth.phone,
     });
-  }
+  };
 
   checkout = async (ev) => {
     ev.preventDefault();
@@ -59,44 +60,134 @@ class CheckoutPage extends Component {
     if (!cartItems?.length) return <h1>Nothing in Cart</h1>;
 
     return (
-      <div>
-        <h1>Shipping Info</h1>
-        {auth.id ? <button onClick={sameAsUser}>Same As User</button> : null}
-
-        <form onSubmit={checkout}>
-          <label htmlFor="name">Name:</label>
-          <input name="name" value={name} onChange={onChange} />
-          <div className="side-by-side">
-            <label htmlFor="streetAddress">Street Address:</label>
-            <input
+      <React.Fragment>
+        <Typography variant="h6" gutterBottom>
+          Shipping Info
+        </Typography>
+        {auth.id ? (
+          <button
+            style={{ padding: "5px", margin: "10px" }}
+            onClick={sameAsUser}
+          >
+            Same As User
+          </button>
+        ) : null}
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="name"
+              name="name"
+              label="Name"
+              value={name}
+              onChange={onChange}
+              fullWidth
+              autoComplete="given-name"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="streetAddress"
               name="streetAddress"
+              label="Street Address"
               value={streetAddress}
               onChange={onChange}
+              fullWidth
+              autoComplete="shipping address-line1"
+              variant="standard"
             />
-            <label htmlFor="city">City:</label>
-            <input name="city" value={city} onChange={onChange} />
-          </div>
-          <div className="side-by-side">
-            <label htmlFor="state">State:</label>
-            <input name="state" value={state} onChange={onChange} />
-            <label htmlFor="zip">Zip:</label>
-            <input type="number" name="zip" value={zip} onChange={onChange} />
-          </div>
-          <div className="side-by-side">
-            <label htmlFor="email">Email:</label>
-            <input name="email" value={email} onChange={onChange} />
-            <label htmlFor="phone">Phone:</label>
-            <input name="phone" value={phone} onChange={onChange} />
-          </div>
-          {auth.id ? <button disabled={disabledButton}>Checkout</button> : null}
-          {!auth.id ? (
-            <>
-              <button disabled={disabledButton}>Checkout As Guest </button>{" "}
-              <Link to="/signup">Sign Up</Link>{" "}
-            </>
-          ) : null}
-        </form>
-      </div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="city"
+              name="city"
+              value={city}
+              onChange={onChange}
+              label="City"
+              fullWidth
+              autoComplete="shipping address-level2"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="state"
+              name="state"
+              value={state}
+              onChange={onChange}
+              label="State/Province/Region"
+              fullWidth
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="zip"
+              name="zip"
+              value={zip}
+              onChange={onChange}
+              label="Zip / Postal code"
+              fullWidth
+              autoComplete="shipping postal-code"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              label="E-mail"
+              fullWidth
+              autoComplete="email"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="phone"
+              name="phone"
+              value={phone}
+              onChange={onChange}
+              label="Phone Number"
+              fullWidth
+              variant="standard"
+            />
+          </Grid>
+        </Grid>
+        {auth.id ? (
+          <button
+            style={{ padding: "5px", margin: "10px" }}
+            disabled={disabledButton}
+            onClick={checkout}
+          >
+            Checkout
+          </button>
+        ) : null}
+        {!auth.id ? (
+          <>
+            <button
+              style={{ padding: "5px", margin: "10px" }}
+              disabled={disabledButton}
+              onClick={checkout}
+            >
+              Checkout As Guest{" "}
+            </button>{" "}
+            <Link to="/signup">
+              <button style={{ padding: "5px", margin: "10px" }}>
+                Sign Up
+              </button>
+            </Link>{" "}
+          </>
+        ) : null}
+      </React.Fragment>
     );
   }
 }

@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createLineItem, updateLineitem, updateInventory } from "../store";
+import { createLineItem, updateLineitem, updateInstrument } from "../store";
 
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       quantity: 0,
+      stockMessage: "",
     };
   }
 
   render() {
-    const { quantity } = this.state;
+    const { quantity, stockMessage } = this.state;
     const {
       createLineItem,
       instrument,
@@ -27,8 +28,8 @@ class AddToCart extends React.Component {
       instrumentId: instrument.id,
     };
 
-    const updatedInventory = {
-      instrumentId: instrument.id,
+    const updatedInstrument = {
+      ...instrument,
       inventory: instrument.inventory - quantity * 1,
     };
 
@@ -53,22 +54,30 @@ class AddToCart extends React.Component {
     const Submit = (ev) => {
       ev.preventDefault();
 
-
-      updateInventory(updatedInventory);
-
-      if (!lineitem) createLineItem(item);
-      else {
-        updateLineitem({
-          ...lineitem,
-          quantity: quantity * 1 + lineitem?.quantity,
+      if (quantity > instrument.inventory) {
+        this.setState({
+          stockMessage: `There are less than ${quantity} ${instrument.name} left in stock`,
         });
-      }
+        setTimeout(() => {
+          this.setState({ stockMessage: "" });
+        }, 3000);
+      } else {
+        updateInventory(updatedInstrument);
 
-      window.alert(`${quantity} ${instrument.name} added to cart!`);
+        if (!lineitem) createLineItem(item);
+        else {
+          updateLineitem({
+            ...lineitem,
+            quantity: quantity * 1 + lineitem?.quantity,
+          });
+        }
+        window.alert(`${quantity} ${instrument.name} added to cart!`);
+      }
     };
 
     return (
-      <div>
+      <>
+        {stockMessage && <div style={{ color: "red" }}>{stockMessage}</div>}
         <form onSubmit={Submit}>
           <input
             type="number"
@@ -79,7 +88,7 @@ class AddToCart extends React.Component {
           />
           <button disabled={quantity == 0}> Add to Cart </button>
         </form>
-      </div>
+      </>
     );
   }
 }
@@ -101,7 +110,7 @@ export default connect(mapState, (dispatch) => {
       dispatch(updateLineitem(item));
     },
     updateInventory: (instrument) => {
-      dispatch(updateInventory(instrument));
+      dispatch(updateInstrument(instrument));
     },
   };
 })(AddToCart);
