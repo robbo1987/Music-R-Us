@@ -13,7 +13,6 @@ export const setInstruments = () => {
 
 export const updateInstrument = (instrument) => {
   return async (dispatch) => {
-    console.log(instrument);
     const updatedInstrument = (
       await axios.put(`/api/instruments/${instrument.id}`, instrument)
     ).data;
