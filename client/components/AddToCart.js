@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createLineItem, updateLineitem, updateInventory } from "../store";
+import { createLineItem, updateLineitem, updateInstrument } from "../store";
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -28,8 +28,8 @@ class AddToCart extends React.Component {
       instrumentId: instrument.id,
     };
 
-    const updatedInventory = {
-      instrumentId: instrument.id,
+    const updatedInstrument = {
+      ...instrument,
       inventory: instrument.inventory - quantity * 1,
     };
 
@@ -62,7 +62,7 @@ class AddToCart extends React.Component {
           this.setState({ stockMessage: "" });
         }, 3000);
       } else {
-        updateInventory(updatedInventory);
+        updateInventory(updatedInstrument);
 
         if (!lineitem) createLineItem(item);
         else {
@@ -110,7 +110,7 @@ export default connect(mapState, (dispatch) => {
       dispatch(updateLineitem(item));
     },
     updateInventory: (instrument) => {
-      dispatch(updateInventory(instrument));
+      dispatch(updateInstrument(instrument));
     },
   };
 })(AddToCart);

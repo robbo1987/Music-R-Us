@@ -1,5 +1,3 @@
-//this is the access point for all things database related!
-
 const db = require("./db");
 
 const User = require("./models/User");
@@ -8,8 +6,6 @@ const Brand = require("./models/Brands");
 const Order = require("./models/Orders");
 const Lineitem = require("./models/Lineitem");
 const Category = require("./models/Category");
-
-//associations could go here!
 
 Brand.hasMany(Instrument);
 Instrument.belongsTo(Brand);

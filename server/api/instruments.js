@@ -27,8 +27,8 @@ router.get("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const instrument = await Instrument.findByPk(req.params.id);
+    await instrument.update({ ...req.body });
     console.log(instrument);
-    await instrument.update({ inventory: req.body.inventory });
     res.json(instrument);
   } catch (err) {
     next(err);

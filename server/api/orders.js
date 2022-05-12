@@ -35,10 +35,15 @@ router.get("/admin", isAdmin, async (req, res, next) => {
       where: {
         isCart: false,
       },
-      include: {
-        model: Lineitem,
-        include: Instrument,
-      },
+      include: [
+        {
+          model: Lineitem,
+          include: Instrument,
+        },
+        {
+          model: User,
+        },
+      ],
     });
     res.json(orders);
   } catch (err) {
