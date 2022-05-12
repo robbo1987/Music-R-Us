@@ -8,6 +8,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import { Pagination } from "@mui/material";
+// import Pagination from "./Pagination"
 
 export const Instruments = ({
   instruments,
@@ -86,27 +88,26 @@ export const Instruments = ({
           );
         })}
       </Grid>
+      <Pagination count={10} color="primary" />
     </Container>
   );
 };
 
 const mapState = (state, history) => {
   const sort = history.match.params.sort;
-  
+
   if (sort === "AscName") {
     state.instruments.sort((a, b) => a.name.localeCompare(b.name));
   }
   if (sort === "DescName") {
     state.instruments.sort((a, b) => b.name.localeCompare(a.name));
   }
-   if (sort === "AscPrice") {
+  if (sort === "AscPrice") {
     state.instruments.sort((a, b) => a.price - b.price);
   }
-   if (sort === "DescPrice") {
+  if (sort === "DescPrice") {
     state.instruments.sort((a, b) => b.price - a.price);
   }
-  
- 
 
   return {
     brands: state.brands,

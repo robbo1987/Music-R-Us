@@ -5,10 +5,11 @@ const SET_INSTRUMENTS = "SET_INSTRUMENTS";
 const UPDATE_INVENTORY = "UPDATE_INVENTORY";
 const DELETE_INSTRUMENT = "DELETE_INSTRUMENT";
 
-export const setInstruments = () => {
+export const setInstruments = (pageNumber = 1, itemsPerPage = 6) => {
   return async (dispatch) => {
     const instruments = (await axios.get("/api/instruments")).data;
-    dispatch({ type: SET_INSTRUMENTS, instruments });
+    const paginatedInstruments = instruments.slice((pageNumber -1) * itemsPerPage, (pageNumber * itemsPerPage))
+    dispatch({ type: SET_INSTRUMENTS, instruments: paginatedInstruments });
   };
 };
 
