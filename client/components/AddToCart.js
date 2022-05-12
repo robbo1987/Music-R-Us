@@ -7,11 +7,12 @@ class AddToCart extends React.Component {
     super(props);
     this.state = {
       quantity: 0,
+      stockMessage: "",
     };
   }
 
   render() {
-    const { quantity } = this.state;
+    const { quantity, stockMessage } = this.state;
     const {
       createLineItem,
       instrument,
@@ -53,22 +54,30 @@ class AddToCart extends React.Component {
     const Submit = (ev) => {
       ev.preventDefault();
 
-
-      updateInventory(updatedInventory);
-
-      if (!lineitem) createLineItem(item);
-      else {
-        updateLineitem({
-          ...lineitem,
-          quantity: quantity * 1 + lineitem?.quantity,
+      if (quantity > instrument.inventory) {
+        this.setState({
+          stockMessage: `There are less than ${quantity} ${instrument.name} left in stock`,
         });
-      }
+        setTimeout(() => {
+          this.setState({ stockMessage: "" });
+        }, 3000);
+      } else {
+        updateInventory(updatedInventory);
 
-      window.alert(`${quantity} ${instrument.name} added to cart!`);
+        if (!lineitem) createLineItem(item);
+        else {
+          updateLineitem({
+            ...lineitem,
+            quantity: quantity * 1 + lineitem?.quantity,
+          });
+        }
+        window.alert(`${quantity} ${instrument.name} added to cart!`);
+      }
     };
 
     return (
-      <div>
+      <>
+        {stockMessage && <div style={{ color: "red" }}>{stockMessage}</div>}
         <form onSubmit={Submit}>
           <input
             type="number"
@@ -79,7 +88,7 @@ class AddToCart extends React.Component {
           />
           <button disabled={quantity == 0}> Add to Cart </button>
         </form>
-      </div>
+      </>
     );
   }
 }

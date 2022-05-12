@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteLineitem, updateLineitem } from "../store";
 import { Link } from "react-router-dom";
-import Container from "@mui/material/Container";
-import { Grid } from "@mui/material";
-import Card from "@mui/material/Card";
-export class Cart extends Component {
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+
+export class Cartitem extends Component {
   constructor() {
     super();
   }
@@ -27,17 +27,21 @@ export class Cart extends Component {
     if (!instrument) return null;
 
     return (
-      <Card>
-        Instrument:
-        <Link to={`/instruments/${instrument.id}`}>{instrument.name}</Link>
-        <br></br>
-        {`Quantity:`} <button onClick={Decrease}>-</button>
-        {` ${cartItem.quantity} `} <button onClick={Increase}>+</button>
-        <br></br>
-        {`Subtotal: $${cartItem.quantity * instrument.price}`}
-        <br></br>
-        <button onClick={() => deleteLineitem(cartItem)}>Remove</button>
-      </Card>
+      <TableRow key={cartItem.id}>
+        <TableCell>
+          <Link to={`/instruments/${instrument.id}`}>{instrument.name}</Link>
+        </TableCell>
+        <TableCell align="right">
+          <button onClick={Decrease}>-</button>
+          {` ${cartItem.quantity} `} <button onClick={Increase}>+</button>
+        </TableCell>
+        <TableCell align="right">
+          ${cartItem.quantity * instrument.price}
+        </TableCell>
+        <TableCell align="right">
+          <button onClick={() => deleteLineitem(cartItem)}>Remove</button>
+        </TableCell>
+      </TableRow>
     );
   }
 }
@@ -58,4 +62,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Cart);
+export default connect(mapState, mapDispatch)(Cartitem);

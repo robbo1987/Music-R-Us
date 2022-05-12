@@ -10,12 +10,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-
 export const SelectedInstrument = ({ instrument, brand, category }) => {
   return (
     <Container>
       <Card>
-        <ul>
+        <ul style={{ list_style_type: "none" }}>
           <li>
             {brand.name} {instrument.name}
           </li>
