@@ -103,7 +103,11 @@ async function seed() {
 
   const [Guitar, Piano, Bass, Keyboard, Violin] = await Promise.all(
     ["Guitar", "Piano", "Bass", "Keyboard", "Violin"].map((category) => {
-      return Category.create({ name: category, image: category + ".jpeg" });
+      return Category.create({
+        name: category,
+        image: category + ".jpeg",
+        sound: category,
+      });
     })
   );
 
@@ -429,6 +433,24 @@ async function seed() {
       price: 5000,
       brandId: Yamaha.id,
       image: "keyboard2.jpg",
+      description:
+        "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
+    }),
+    Instrument.create({
+      categoryId: Keyboard.id,
+      name: "PSR-EW425",
+      price: 5999,
+      brandId: Yamaha.id,
+      image: "keyboard3.jpg",
+      description:
+        "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
+    }),
+    Instrument.create({
+      categoryId: Keyboard.id,
+      name: "PSR-I500",
+      price: 5000,
+      brandId: Yamaha.id,
+      image: "keyboard4.jpg",
       description:
         "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
     }),

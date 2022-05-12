@@ -8,8 +8,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import useSound from "use-sound";
 
 export const Categories = ({ categories }) => {
+  const soundUrl = "/public/sounds/guitar.mp3";
+
+  const [play] = useSound(soundUrl, { volume: 0.35 });
   return (
     <Container>
       <Grid container spacing={4}>
@@ -30,7 +34,7 @@ export const Categories = ({ categories }) => {
                 aligncontent="space-around"
               >
                 <Link key={category.id} to={`/categories/${category.id}`}>
-                  <CardActionArea>
+                  <CardActionArea onClick={play}>
                     <CardMedia
                       component="img"
                       image={`/public/photos/default/${category.image}`}
@@ -45,9 +49,6 @@ export const Categories = ({ categories }) => {
         })}
       </Grid>
     </Container>
-
-    // <div className="ctgyLink">
-    // </div>
   );
 };
 
