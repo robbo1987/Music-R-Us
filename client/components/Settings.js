@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { Typography } from "@mui/material";
 
 class Settings extends React.Component {
   constructor() {
@@ -43,7 +44,7 @@ class Settings extends React.Component {
             textTransform: "none",
           }}
         >
-          Settings
+          <Typography sx={{ color: "#FFFFFF" }}>Settings</Typography>
         </Button>
         <Menu
           id="basic-menu"

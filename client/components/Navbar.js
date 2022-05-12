@@ -1,15 +1,8 @@
 import React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import { connect } from "react-redux";
@@ -23,7 +16,7 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
       {isBanned ? (
         <h1>Your Account is banned! Shame! Shame! Shame!</h1>
       ) : (
-        <AppBar position="fixed">
+        <AppBar position="fixed" sx={{ bgcolor: "#BCBABE" }}>
           <Container maxWidth="xl">
             {isLoggedIn ? (
               <Toolbar
@@ -39,7 +32,11 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                     variant="h6"
                     noWrap
                     component="div"
-                    sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                    sx={{
+                      color: "#FFFFFF",
+                      mr: 2,
+                      display: { xs: "none", md: "flex" },
+                    }}
                   >
                     Music R Us
                     <MusicNoteIcon />
@@ -47,27 +44,30 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                 </Link>
                 <MenuItem>
                   <Link to="/instruments">
-                    <Typography textAlign="center">
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
                       Instruments ({instruments.length})
                     </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/brands">
-                    <Typography textAlign="center"></Typography>Shop By Brands (
-                    {brands.length})
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Shop By Brands ({brands.length})
+                    </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/categories">
-                    <Typography textAlign="center">
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
                       Shop By Categories
                     </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/cart">
-                    <Typography textAlign="center">Cart</Typography>
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Cart
+                    </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
@@ -79,7 +79,9 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                 </MenuItem>
                 <MenuItem>
                   <a href="#" onClick={handleClick}>
-                    <Typography textAlign="center">Logout</Typography>
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Logout
+                    </Typography>
                   </a>
                 </MenuItem>
               </Toolbar>
@@ -97,7 +99,11 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                     variant="h6"
                     noWrap
                     component="div"
-                    sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                    sx={{
+                      color: "#FFFFFF",
+                      mr: 2,
+                      display: { xs: "none", md: "flex" },
+                    }}
                   >
                     Music R Us
                     <MusicNoteIcon />
@@ -105,37 +111,44 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                 </Link>
                 <MenuItem>
                   <Link to="/login">
-                    <Typography textAlign="center">Login</Typography>
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Login
+                    </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/signup">
-                    <Typography textAlign="center">Sign Up</Typography>
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Sign Up
+                    </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/instruments">
-                    <Typography textAlign="center">
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
                       Instruments ({instruments.length})
                     </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/brands">
-                    <Typography textAlign="center"></Typography>Shop By Brands (
-                    {brands.length})
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Shop By Brands ({brands.length})
+                    </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/categories">
-                    <Typography textAlign="center">
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
                       Shop By Categories
                     </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/cart">
-                    <Typography textAlign="center">Cart</Typography>
+                    <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
+                      Cart
+                    </Typography>
                   </Link>
                 </MenuItem>
               </Toolbar>
