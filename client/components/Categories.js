@@ -1,9 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
@@ -11,8 +8,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import useSound from "use-sound";
 
 export const Categories = ({ categories }) => {
+  const soundUrl = "/public/sounds/guitar.mp3";
+
+  const [play] = useSound(soundUrl, { volume: 0.35 });
   return (
     <Container>
       <Grid container spacing={4}>
@@ -33,7 +34,7 @@ export const Categories = ({ categories }) => {
                 aligncontent="space-around"
               >
                 <Link key={category.id} to={`/categories/${category.id}`}>
-                  <CardActionArea>
+                  <CardActionArea onClick={play}>
                     <CardMedia
                       component="img"
                       image={`/public/photos/default/${category.image}`}
@@ -48,9 +49,6 @@ export const Categories = ({ categories }) => {
         })}
       </Grid>
     </Container>
-
-    // <div className="ctgyLink">
-    // </div>
   );
 };
 

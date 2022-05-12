@@ -103,7 +103,11 @@ async function seed() {
 
   const [Guitar, Piano, Bass, Keyboard, Violin] = await Promise.all(
     ["Guitar", "Piano", "Bass", "Keyboard", "Violin"].map((category) => {
-      return Category.create({ name: category, image: category + ".jpeg" });
+      return Category.create({
+        name: category,
+        image: category + ".jpeg",
+        sound: category,
+      });
     })
   );
 
@@ -388,6 +392,33 @@ async function seed() {
         "The Knilling 86F Nicolo Gabrieli Maestro Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
     }),
     Instrument.create({
+      categoryId: Violin.id,
+      name: "110VN Sebastian",
+      price: 3949,
+      brandId: Knilling.id,
+      image: "knilling2img.jpeg",
+      description:
+        "The Knilling 10VN Sebastian Series Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "4K Bucharest",
+      price: 3949,
+      brandId: Knilling.id,
+      image: "knilling2img.jpeg",
+      description:
+        "The Knilling 4K Bucharest Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
+      categoryId: Violin.id,
+      name: "Perfection II",
+      price: 3949,
+      brandId: Knilling.id,
+      image: "knilling2img.jpeg",
+      description:
+        "The Knilling Perfection II Violin represents the pinnacle of Knilling's craftsmanship, and their passion for building superior instruments is evident as soon as you open the case. The Nicolo Gabrieli series of instruments use premium European tonewoods, sourced from regions prized by luthiers ever since the days of Stradivari. Your reward is world-class tonal balance, response, and projection, creating an expressive instrument that will translate every nuance of your technique. Combining some of the finest tonewoods in the world with masterful craftsmanship and attention to detail, Sweetwater is sure the Knilling 86F Nicolo Gabrieli Maestro Violin will exceed your expectations.",
+    }),
+    Instrument.create({
       categoryId: Keyboard.id,
       name: "P-125 Digital Piano",
       price: 7000,
@@ -402,6 +433,24 @@ async function seed() {
       price: 5000,
       brandId: Yamaha.id,
       image: "keyboard2.jpg",
+      description:
+        "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
+    }),
+    Instrument.create({
+      categoryId: Keyboard.id,
+      name: "PSR-EW425",
+      price: 5999,
+      brandId: Yamaha.id,
+      image: "keyboard3.jpg",
+      description:
+        "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
+    }),
+    Instrument.create({
+      categoryId: Keyboard.id,
+      name: "PSR-I500",
+      price: 5000,
+      brandId: Yamaha.id,
+      image: "keyboard4.jpg",
       description:
         "The Roland K-25m is a 25-key, velocity sensitive keyboard designed for use with the Roland Boutique series. Measuring less than 12″ across, the K-25m acts as a dock for any Roland Boutique module, and once in place the module can be tilted at two different angles for easier viewing and sound programming, or can be laid completely flat. The compact keyboard can also address a range from -4 to +5 octaves when used with the relevant module.",
     }),
