@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import AppPagination from './Pagination'
 
 export const Instruments = ({
   instruments,
@@ -86,6 +87,7 @@ export const Instruments = ({
           );
         })}
       </Grid>
+      <AppPagination />
     </Container>
   );
 };
