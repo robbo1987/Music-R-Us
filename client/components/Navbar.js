@@ -45,14 +45,14 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                 <MenuItem>
                   <Link to="/instruments">
                     <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
-                      Instruments ({instruments.length})
+                      Instruments 
                     </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/brands">
                     <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
-                      Shop By Brands ({brands.length})
+                      Shop By Brands 
                     </Typography>
                   </Link>
                 </MenuItem>
@@ -126,14 +126,14 @@ const Navbar = ({ handleClick, isLoggedIn, brands, instruments, isBanned }) => {
                 <MenuItem>
                   <Link to="/instruments">
                     <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
-                      Instruments ({instruments.length})
+                      Instruments 
                     </Typography>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/brands">
                     <Typography textAlign="center" sx={{ color: "#FFFFFF" }}>
-                      Shop By Brands ({brands.length})
+                      Shop By Brands 
                     </Typography>
                   </Link>
                 </MenuItem>
