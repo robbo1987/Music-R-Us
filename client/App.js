@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Container>
       <Navbar />
-      <div style={{ marginTop: 100 }}>
+      <div style={{ marginTop: 75}}>
         <Routes />
       </div>
     </Container>

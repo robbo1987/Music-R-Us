@@ -59,7 +59,6 @@ const AuthForm = (props) => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <h1> LOGIN WITH GOOGLE</h1>
       {loginData ? (
         <div>
           <h3>
@@ -73,7 +72,7 @@ const AuthForm = (props) => {
           clientId={
             "662175514296-h4dm5bmcv28vvpcnenubrse9g470ccm7.apps.googleusercontent.com"
           }
-          buttonText="Log in with GOOGLE"
+          buttonText="Login with Google"
           onSuccess={handleLogin}
           onFailure={handleFailure}
           cookiePolicy={"single_host_origin"}

@@ -1,6 +1,7 @@
-import { Box, CardMedia, Paper } from "@mui/material";
+import { Box, Grid, CardMedia, Paper } from "@mui/material";
 import React from "react";
 import { connect } from "react-redux";
+
 
 /**
  * COMPONENT
@@ -19,7 +20,8 @@ export const Home = (props) => {
 
   return (
     <Box sx={{ height: "100vh", width: "1000px" }}>
-      <h3>{welcome}</h3>
+      <Grid container justifyContent='center' > <h2>{welcome}</h2> </Grid>
+      
       <Paper elevation={0}>
         <CardMedia component="img" image={`/public/photos/default/Home.jpeg`} />
       </Paper>
